@@ -1,37 +1,30 @@
-.ba{
-    height:600px;
-}
 /* Style the input container */
 .input-container {
   display: flex;
   margin-bottom: 15px;
-  
 }
 
 /* Style the form icons */
- .icon {
-     height: 48px;
- position: relative;
- left: 0px;
- top:0px;
- padding:10px 10px;
-  background:white;
+.icon {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  padding: 14px 10px;
+  background: white;
   color: black;
-   min-width: 50px;
+  min-width: 50px;
   text-align: center;
- }
-
-
+}
 
 /* Style the input fields */
 .input-field {
   width: 100%;
   padding: 10px;
-  padding-left: 90px;
+  padding-left: 27%;
   outline: white;
   border-bottom-width: 0px;
   border-top-width: 0px;
-    border-left-width: 0px;
+  border-left-width: 0px;
   border-right-width: 0px;
 }
 
@@ -53,12 +46,17 @@
 .btn:hover {
   opacity: 1;
 }
-.has{
+
+.has {
   display: inline;
 }
 
-.signup-Form{
-  background-image: url("/assets/shopping.jpg")
+.signup-Form {
+  background: url("/assets/shopping.jpg") center no-repeat;
+  background-size: cover;
+  height: 100vh; // Viewpoint height >> Viewport height
 }
 
-
+select {
+  color: gray;
+}
