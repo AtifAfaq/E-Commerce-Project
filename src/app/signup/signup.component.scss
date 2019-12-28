@@ -1,4 +1,8 @@
 /* Style the input container */
+h1{
+  color:white;
+  border: 2px solid black;
+}
 .input-container {
   display: flex;
   margin-bottom: 15px;
@@ -52,7 +56,7 @@
 }
 
 .signup-Form {
-  background: url("/assets/shopping.jpg") center no-repeat;
+  background: url("/assets/images/white.jpg") center no-repeat;
   background-size: cover;
   height: 100vh; // Viewpoint height >> Viewport height
 }
