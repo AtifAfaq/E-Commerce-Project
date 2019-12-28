@@ -1,6 +1,61 @@
+.errorMsg {
+  color: #be0000;
+  margin-top: 0px;
+}
+
+.primary {
+  color: #f57224 !important;
+}
+
+.secondary {
+  color: #6abc07 !important;
+}
+
+.bg-primary {
+  background-color: #f57224 !important;
+}
+
+.bg-secondary {
+  background-color: #6abc07 !important;
+}
+
+.container {
+  width: 100% !important;
+  height: 100% !important;
+  padding-left: 0% !important;
+  padding-right: 0% !important;
+}
+
 .row {
   width: 100% !important;
   margin-left: 0px !important;
 }
 
-/* You can add global styles to this file, and also import other style files */
+.gray {
+  color: #646464 !important;
+}
+
+.bg-gray {
+  background-color: gray;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+
+.dark {
+  color: #4e5661 !important;
+}
+
+.bg-dark {
+  background-color: #4e5661 !important;
+}
+
+body {
+  font-family: "Karla", sans-serif;
+  background-color: #ffffff;
+}
+
+.mainContent {
+  padding: 5.5em 2em;
+}

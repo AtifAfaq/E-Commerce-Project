@@ -1,43 +1,40 @@
-.loginForm{
+.loginForm {
   background: url(/assets/images/front.jpg) center no-repeat;
   background-size: cover;
-  height:100vh;
+  height: 100vh;
 }
 
-h1{
-  color:white;
+h1 {
+  color: white;
 }
 /* Style the input container */
 .input-container {
   display: flex;
   margin-bottom: 15px;
-  
 }
 
 /* Style the form icons */
- .icon {
-     height: 48px;
- position: relative;
- left: 0px;
- top:0px;
- padding:15px 10px;
-  background:white;
+.icon {
+  height: 48px;
+  position: relative;
+  left: 0px;
+  top: 0px;
+  padding: 15px 10px;
+  background: white;
   color: black;
-   min-width: 50px;
+  min-width: 50px;
   text-align: center;
- }
-
-
+}
 
 /* Style the input fields */
 .input-field {
   width: 100%;
   padding: 10px;
-  padding-left: 90px;
+  padding-left: 30%;
   outline: white;
   border-bottom-width: 0px;
   border-top-width: 0px;
-    border-left-width: 0px;
+  border-left-width: 0px;
   border-right-width: 0px;
 }
 
