@@ -3,12 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
+import { AllProductsComponent } from './all-products/all-products.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'allProducts', component: AllProductsComponent },
+  { path: 'productDetails', component: ProductDetailsComponent },
+
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
