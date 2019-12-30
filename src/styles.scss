@@ -57,7 +57,7 @@ body {
 }
 
 .mainContent {
-  padding: 5.5em 2em;  //top-bottom , left-right
+  padding: 5.5em 2em; //top-bottom , left-right
 }
 
 .productCard {
@@ -68,6 +68,7 @@ body {
     width: 100%;
     height: 300px;
     object-fit: contain;
+    margin-bottom: 10px;
   }
   .originalPrice {
     font-size: 13px;
