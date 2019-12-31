@@ -29,6 +29,8 @@
   }
 }
 
+// 3rd Column Delivery Option
+
 .productDetail {
   margin-top: 2.3em;
   .wishList {
@@ -36,5 +38,88 @@
   }
   .input-group {
     width: 200px !important;
+  }
+}
+.deliveryDetails{
+  .bold{
+    font-weight: bold;
+    color:lightslategray;
+  }
+  margin-top: 35px;
+.iconCenter{
+  position:absolute;
+  padding-top:15px ;
+  
+}
+.size{
+  font-size: 20px;
+}
+.buttonCenter{
+  position:absolute;
+  padding-top:15px ;
+  padding-right:25px ;
+  padding-left: 40px;
+  float: right;
+}
+  .wishList {
+    float: right;
+  }
+  .addressDetail{
+    max-width: 220px;
+    word-wrap: break-word;
+    display:-webkit-inline-box;
+    padding-left: 30px ;
+   
+   
+  }
+  .blue{
+    color: #66bcce;
+  }
+  .white-btn{
+    border: none;
+  }
+  .deliveryDetail{
+    max-width: 145px;
+    word-wrap: break-word;
+    display:-webkit-inline-box;
+    padding-left: 30px ;
+
+  }
+  .rupees{
+    display:inline;
+    font-weight: bold;
+    position:absolute;
+    padding-top:15px ;
+    padding-right:25px ;
+    padding-left: 140px;
+    
+    
+  }
+  .textSet{
+   
+    padding-left: 30px !important;
+  }
+
+  .small-box{
+    margin:2px 20px;
+    font-size: medium;
+    background-color:lightgrey;
+  }
+  .cashText{
+    display: inline;
+    padding-left: 10px;
+  }
+  .warranty{
+    display:inline;
+    padding-left: 12px;
+  }
+  .chat{
+    max-width: 100px;
+    word-wrap: break-word;
+    display:-webkit-inline-box;
+
+  }
+  .color{
+    color:lightslategray;
   }
 }
