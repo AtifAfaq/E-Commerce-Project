@@ -29,8 +29,6 @@
   }
 }
 
-// 3rd Column Delivery Option
-
 .productDetail {
   margin-top: 2.3em;
   .wishList {
@@ -40,86 +38,153 @@
     width: 200px !important;
   }
 }
-.deliveryDetails{
-  .bold{
+
+// 3rd Column Delivery Option
+
+.deliveryDetails {
+  .bold {
     font-weight: bold;
-    color:lightslategray;
+    color: lightslategray;
   }
   margin-top: 35px;
-.iconCenter{
-  position:absolute;
-  padding-top:15px ;
-  
-}
-.size{
-  font-size: 20px;
-}
-.buttonCenter{
-  position:absolute;
-  padding-top:15px ;
-  padding-right:25px ;
-  padding-left: 40px;
-  float: right;
-}
+  .iconCenter {
+    position: absolute;
+    padding-top: 15px;
+  }
+  .size {
+    font-size: 20px;
+  }
+  .buttonCenter {
+    position: absolute;
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-left: 40px;
+    float: right;
+  }
   .wishList {
     float: right;
   }
-  .addressDetail{
+  .addressDetail {
     max-width: 220px;
     word-wrap: break-word;
-    display:-webkit-inline-box;
-    padding-left: 30px ;
-   
-   
+    display: -webkit-inline-box;
+    padding-left: 30px;
   }
-  .blue{
+  .blue {
     color: #66bcce;
   }
-  .white-btn{
+  .white-btn {
     border: none;
   }
-  .deliveryDetail{
+  .deliveryDetail {
     max-width: 145px;
     word-wrap: break-word;
-    display:-webkit-inline-box;
-    padding-left: 30px ;
-
+    display: -webkit-inline-box;
+    padding-left: 30px;
   }
-  .rupees{
-    display:inline;
+  .rupees {
+    display: inline;
     font-weight: bold;
-    position:absolute;
-    padding-top:15px ;
-    padding-right:25px ;
+    position: absolute;
+    padding-top: 15px;
+    padding-right: 25px;
     padding-left: 140px;
-    
-    
   }
-  .textSet{
-   
+  .textSet {
     padding-left: 30px !important;
   }
 
-  .small-box{
-    margin:2px 20px;
+  .small-box {
+    margin: 2px 20px;
     font-size: medium;
-    background-color:lightgrey;
+    background-color: lightgrey;
   }
-  .cashText{
+  .cashText {
     display: inline;
     padding-left: 10px;
   }
-  .warranty{
-    display:inline;
+  .warranty {
+    display: inline;
     padding-left: 12px;
   }
-  .chat{
+  .chat {
     max-width: 100px;
     word-wrap: break-word;
-    display:-webkit-inline-box;
-
+    display: -webkit-inline-box;
   }
-  .color{
-    color:lightslategray;
+  .color {
+    color: lightslategray;
+  }
+}
+
+.anItem {
+  display: flex;
+  .iconLeft {
+    width: 40px;
+    i {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+  }
+}
+
+.reviewsSection {
+  .btn-grey {
+    background-color: #d8d8d8;
+    color: #fff;
+  }
+  .rating-block {
+    background-color: #ffffff;
+    border: 1px solid #efefef;
+    padding: 15px 15px 20px 15px;
+    border-radius: 3px;
+  }
+  .padding-bottom-7 {
+    padding-bottom: 7px;
+  }
+  .review-block {
+    background-color: #ffffff;
+    border: 1px solid #efefef;
+    padding: 15px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+  }
+  .review-block-name {
+    font-size: 12px;
+    margin: 10px 0;
+  }
+  .review-block-date {
+    font-size: 12px;
+  }
+  .review-block-rate {
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
+  .review-block-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .review-block-description {
+    font-size: 13px;
+  }
+  .btn-warning,
+  .btn-default {
+    margin-right: 3px !important;
+  }
+}
+
+.similarProducts {
+  .productCard {
+    img {
+      height: 180px;
+    }
+    .prodTitle {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
   }
 }

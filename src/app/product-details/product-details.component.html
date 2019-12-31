@@ -67,7 +67,8 @@
                             <i class="fa fa-minus"></i>
                         </button>
                     </div>
-                    <input type="number" class="form-control text-center" placeholder="0">
+                    <input [(ngModel)]="productQty" type="number" readonly class="form-control text-center"
+                        placeholder="0">
                     <div class="input-group-append">
                         <button (click)=increaseValue() class="btn btn-primary" type="button">
                             <i class="fa fa-plus"></i>
@@ -84,17 +85,25 @@
         <div class="col-md-4">
             <div class="deliveryDetails bg-white p-3">
                 <p class="bold"> Delivery Options <span class="wishList"><i class="fa fa-info-circle"></i></span></p>
-                <div><i class="iconCenter size fas fa-map-marker-alt"></i><span>
-                        <p class="addressDetail">Sindh, Karachi - Gulshan-e-Iqbal, Block 15 </p> <button type="button"
-                            class="buttonCenter white-btn bg-white blue ">CHANGE</button>
-                    </span></div>
-                <hr class="mt-0">
-                <div> <i class=" iconCenter fas fa-truck"></i>
-                    <p class="deliveryDetail">Home Delivery 2-5days</p>
-                    <p class="rupees">Rs 70</p>
+
+
+                <div class="anItem">
+                    <div class="iconLeft">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="itemTxt">
+                        <p>Sindh, Karachi - Gulshan-e-Iqbal, Block 15</p>
+                    </div>
+                    <div class="btnRight">
+                        <button class="btn btn-link">Change</button>
+                    </div>
                 </div>
-                <div class="small-box">
-                    <p> Enjoy free delivery if your order value is Rs 1,950</p>
+
+
+                <hr class="mt-0">
+                <div> <i class="iconCenter fas fa-truck"></i>
+                    <p class="deliveryDetail">Home Delivery 2-5 days</p>
+                    <p class="rupees">$70</p>
                 </div>
                 <div><i class="far fa-money-bill-alt"></i>
                     <p class="cashText">Cash on Delivery Available </p>
@@ -103,7 +112,6 @@
                 <div class="deliveryDetails bg-white mt-0">
                     <p class="bold"> Return & Warranty <span class="wishList"><i class="fa fa-info-circle"></i></span>
                     </p>
-
                 </div>
                 <div><i class="iconCenter fas fa-undo"></i>
                     <p class="deliveryDetail mb-0">7 Days Returns </p>
@@ -115,11 +123,386 @@
                 <hr>
                 <div>
                     <p class="chat mb-0"><b class="color">Sold by</b> Gattelo</p><span class="wishList blue"><i
-                            class=" fas fa-comments">Chat Now</i></span>
-
-
-
+                            class=" fas fa-comments"> Chat Now</i></span>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div class="reviewsSection my-4">
+        <div class="row">
+            <div class="col-md-5">
+
+            </div>
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="rating-block">
+                            <h4>Average product rating</h4>
+                            <h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
+                            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                                <i class="fa fa-star text-white"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                                <i class="fa fa-star text-white"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                                <i class="fa fa-star text-white"></i>
+                            </button>
+                            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                                <i class="fa fa-star text-white"></i>
+                            </button>
+                            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                                <i class="fa fa-star text-white"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4>Rating breakdown</h4>
+                        <div class="pull-left">
+                            <div class="pull-left" style="width:35px; line-height:1;">
+                                <div style="height:9px; margin:5px 0;">5 <span class="glyphicon glyphicon-star"></span>
+                                </div>
+                            </div>
+                            <div class="pull-left" style="width:180px;">
+                                <div class="progress" style="height:9px; margin:8px 0;">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5"
+                                        aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
+                                        <span class="sr-only">80% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pull-right" style="margin-left:10px;">1</div>
+                        </div>
+                        <div class="pull-left">
+                            <div class="pull-left" style="width:35px; line-height:1;">
+                                <div style="height:9px; margin:5px 0;">4 <span class="glyphicon glyphicon-star"></span>
+                                </div>
+                            </div>
+                            <div class="pull-left" style="width:180px;">
+                                <div class="progress" style="height:9px; margin:8px 0;">
+                                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4"
+                                        aria-valuemin="0" aria-valuemax="5" style="width: 80%">
+                                        <span class="sr-only">80% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pull-right" style="margin-left:10px;">1</div>
+                        </div>
+                        <div class="pull-left">
+                            <div class="pull-left" style="width:35px; line-height:1;">
+                                <div style="height:9px; margin:5px 0;">3 <span class="glyphicon glyphicon-star"></span>
+                                </div>
+                            </div>
+                            <div class="pull-left" style="width:180px;">
+                                <div class="progress" style="height:9px; margin:8px 0;">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3"
+                                        aria-valuemin="0" aria-valuemax="5" style="width: 60%">
+                                        <span class="sr-only">80% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pull-right" style="margin-left:10px;">0</div>
+                        </div>
+                        <div class="pull-left">
+                            <div class="pull-left" style="width:35px; line-height:1;">
+                                <div style="height:9px; margin:5px 0;">2 <span class="glyphicon glyphicon-star"></span>
+                                </div>
+                            </div>
+                            <div class="pull-left" style="width:180px;">
+                                <div class="progress" style="height:9px; margin:8px 0;">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2"
+                                        aria-valuemin="0" aria-valuemax="5" style="width: 40%">
+                                        <span class="sr-only">80% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pull-right" style="margin-left:10px;">0</div>
+                        </div>
+                        <div class="pull-left">
+                            <div class="pull-left" style="width:35px; line-height:1;">
+                                <div style="height:9px; margin:5px 0;">1 <span class="glyphicon glyphicon-star"></span>
+                                </div>
+                            </div>
+                            <div class="pull-left" style="width:180px;">
+                                <div class="progress" style="height:9px; margin:8px 0;">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1"
+                                        aria-valuemin="0" aria-valuemax="5" style="width: 20%">
+                                        <span class="sr-only">80% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pull-right" style="margin-left:10px;">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <hr />
+                        <div class="review-block">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                                    <div class="review-block-name"><a href="#">nktailor</a></div>
+                                    <div class="review-block-date">January 29, 2016<br />1 day ago</div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="review-block-rate">
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-grey btn-xs"
+                                            aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-grey btn-xs"
+                                            aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                    </div>
+                                    <div class="review-block-title">this was nice in buy</div>
+                                    <div class="review-block-description">this was nice in buy. this was nice in buy.
+                                        this
+                                        was nice in buy. this was nice in buy this was nice in buy this was nice in buy
+                                        this
+                                        was nice in buy this was nice in buy</div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                                    <div class="review-block-name"><a href="#">nktailor</a></div>
+                                    <div class="review-block-date">January 29, 2016<br />1 day ago</div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="review-block-rate">
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-grey btn-xs"
+                                            aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-grey btn-xs"
+                                            aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                    </div>
+                                    <div class="review-block-title">this was nice in buy</div>
+                                    <div class="review-block-description">this was nice in buy. this was nice in buy.
+                                        this
+                                        was nice in buy. this was nice in buy this was nice in buy this was nice in buy
+                                        this
+                                        was nice in buy this was nice in buy</div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                                    <div class="review-block-name"><a href="#">nktailor</a></div>
+                                    <div class="review-block-date">January 29, 2016<br />1 day ago</div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="review-block-rate">
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-grey btn-xs"
+                                            aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-grey btn-xs"
+                                            aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                    </div>
+                                    <div class="review-block-title">this was nice in buy</div>
+                                    <div class="review-block-description">this was nice in buy. this was nice in buy.
+                                        this
+                                        was nice in buy. this was nice in buy this was nice in buy this was nice in buy
+                                        this
+                                        was nice in buy this was nice in buy</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="similarProducts">
+        <h4>People also viewed these products</h4>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="productCard">
+                    <img src="/assets/images/prod4.jpg">
+                    <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
+                        consectetur.
+                    </p>
+                    <h4 class="prodPrice primary mt-0">$89.00</h4>
+                    <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
+                    <p class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star gray"></i> (11)
+                    </p>
+                    <button class="btn btn-success w-100">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="productCard">
+                    <img src="/assets/images/prod5.jpg">
+                    <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
+                        consectetur.
+                    </p>
+                    <h4 class="prodPrice primary mt-0">$89.00</h4>
+                    <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
+                    <p class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star gray"></i> (11)
+                    </p>
+                    <button class="btn btn-success w-100">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="productCard">
+                    <img src="/assets/images/prod6.jpg">
+                    <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
+                        consectetur.
+                    </p>
+                    <h4 class="prodPrice primary mt-0">$89.00</h4>
+                    <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
+                    <p class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star gray"></i> (11)
+                    </p>
+                    <button class="btn btn-success w-100">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="productCard">
+                    <img src="/assets/images/prod7.jpg">
+                    <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
+                        consectetur.
+                    </p>
+                    <h4 class="prodPrice primary mt-0">$89.00</h4>
+                    <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
+                    <p class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star gray"></i> (11)
+                    </p>
+                    <button class="btn btn-success w-100">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="productCard">
+                    <img src="/assets/images/prod8.jpg">
+                    <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
+                        consectetur.
+                    </p>
+                    <h4 class="prodPrice primary mt-0">$89.00</h4>
+                    <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
+                    <p class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star gray"></i> (11)
+                    </p>
+                    <button class="btn btn-success w-100">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="productCard">
+                    <img src="/assets/images/prod9.jpg">
+                    <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
+                        consectetur.
+                    </p>
+                    <h4 class="prodPrice primary mt-0">$89.00</h4>
+                    <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
+                    <p class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star gray"></i> (11)
+                    </p>
+                    <button class="btn btn-success w-100">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="productCard">
+                    <img src="/assets/images/prod10.jpg">
+                    <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
+                        consectetur.
+                    </p>
+                    <h4 class="prodPrice primary mt-0">$89.00</h4>
+                    <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
+                    <p class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star gray"></i> (11)
+                    </p>
+                    <button class="btn btn-success w-100">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="productCard">
+                    <img src="/assets/images/prod1.jpg">
+                    <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
+                        consectetur.
+                    </p>
+                    <h4 class="prodPrice primary mt-0">$89.00</h4>
+                    <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
+                    <p class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star gray"></i> (11)
+                    </p>
+                    <button class="btn btn-success w-100">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
