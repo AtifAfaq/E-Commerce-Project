@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { AllProductsComponent } from './all-products/all-products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { FormsModule } from '@angular/forms';
+import { SellerHomeComponent } from './seller-home/seller-home.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     HomeComponent,
     AllProductsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    SellerHomeComponent
   ],
   imports: [
     RouterModule,
