@@ -13,8 +13,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     public router: Router
   ) {
-    // if there is no user type then go to buyer
-    this.userType = localStorage.getItem('userType') || 'buyer'; 
+    // if there is no usertype then go to buyer
+    this.userType = localStorage.getItem('userType') || 'buyer';
   }
 
   ngOnInit() {

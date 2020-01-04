@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { AllProductsComponent } from './all-products/all-products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { SellerHomeComponent } from './seller-home/seller-home.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { ProdDetailSellerComponent } from './prod-detail-seller/prod-detail-seller.component';
 
 
 const routes: Routes = [
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'allProducts', component: AllProductsComponent },
   { path: 'productDetails', component: ProductDetailsComponent },
   { path: 'seller-home', component: SellerHomeComponent },
+  { path: 'add-product', component: AddProductComponent },
+  { path: 'prod-detail-seller', component: ProdDetailSellerComponent },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];

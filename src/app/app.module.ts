@@ -11,6 +11,8 @@ import { AllProductsComponent } from './all-products/all-products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { FormsModule } from '@angular/forms';
 import { SellerHomeComponent } from './seller-home/seller-home.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { ProdDetailSellerComponent } from './prod-detail-seller/prod-detail-seller.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { SellerHomeComponent } from './seller-home/seller-home.component';
     HomeComponent,
     AllProductsComponent,
     ProductDetailsComponent,
-    SellerHomeComponent
+    SellerHomeComponent,
+    AddProductComponent,
+    ProdDetailSellerComponent
   ],
   imports: [
     RouterModule,
