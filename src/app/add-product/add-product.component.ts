@@ -6,14 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent implements OnInit {
-  imagePath : any = {};
-  imgURL:string = '';
+
+  imagePath: any = {};
+  imgURL: any = '';
   message: any = '';
+
   constructor() { }
-  
+
   ngOnInit() {
   }
-preview(files) {
+
+  preview(files) {
     this.message = "";
     if (files.length === 0)
       return;
@@ -31,4 +34,5 @@ preview(files) {
       this.imgURL = reader.result;
     }
   }
+
 }

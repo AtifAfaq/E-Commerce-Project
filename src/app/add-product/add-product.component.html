@@ -1,17 +1,5 @@
 <app-navbar></app-navbar>
 
-
-<!-- 
-
-    1. Remove extra div and add "w-100"          Done
-    2. Add Categories (10 to 15)                 Done
-    3. Input image button styling                Done
-    4. Input fields name / id setting            Done
-    5. text-transform: normal >  Product Title   Done
-    6. Remove 'for' attribute from Label         Done
-
- -->
-
 <div class="mainContent">
     <form class="styling form-horizontal">
 
@@ -19,23 +7,24 @@
 
         <div class="row">
             <div class="col-md-6">
-           
-                    <div class="topSetting">
-                      <label for="files" class="w-100"> <span class="btn btn-info ">Upload Image</span></label>
-                      <input style="visibility: hidden; position: absolute;" id="files" class="form-control" type="file" name="files" multiple>
-                    </div>
-                  
-                 
-                <div class="form-group">
-                    <label class="control-label" >Product Name</label>
-                        <input  placeholder="Product Name"
-                            class="form-control input-md w-100"  type="text">
-                   
+
+                <p class="pl-2">Please upload images of your product:</p>
+                <div class="topSetting mt-0">
+                    <label for="files" class="w-100"> <span class="btn btn-info w-100">Upload Image</span></label>
+                    <input style="visibility: hidden; position: absolute;" id="files" class="form-control" type="file"
+                        name="files" multiple>
                 </div>
 
 
                 <div class="form-group">
-                    <label class=" control-label w-100" >Product Category</label>
+                    <label class="control-label">Product Name</label>
+                    <input placeholder="Product Name" class="form-control input-md w-100" type="text">
+
+                </div>
+
+
+                <div class="form-group">
+                    <label class=" control-label w-100">Product Category</label>
                     <select class="form-control w-100">
                         <option>Cables</option>
                         <option>Milk Products</option>
@@ -48,28 +37,26 @@
 
 
                 <div class="form-group">
-                    <label class=" control-label" >Available Quantity</label>
-                        <input placeholder="Availabe Quantity"
-                            class="form-control input-md w-100" type="text">
-                 
+                    <label class=" control-label">Available Quantity</label>
+                    <input placeholder="Availabe Quantity" class="form-control input-md w-100" type="text">
+
                 </div>
 
                 <div class="form-group">
-                    <label class=" control-label w-100" >Brand</label>
-                    <input  placeholder="Brand Name"
-                        class="form-control input-md w-100"  type="text">
+                    <label class=" control-label w-100">Brand</label>
+                    <input placeholder="Brand Name" class="form-control input-md w-100" type="text">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class=" control-label" >Product Description</label>
-                        <textarea rows="5" class="form-control w-100" ></textarea>     
+                    <label class=" control-label">Product Description</label>
+                    <textarea rows="5" class="form-control w-100"></textarea>
                 </div>
 
 
                 <div class="form-group">
-                    <label class=" control-label" >Product Specifications /
+                    <label class=" control-label">Product Specifications /
                         Features</label>
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Features">
@@ -82,21 +69,19 @@
                 </div>
 
                 <div class="form-group">
-                    <label class=" control-label" >Original Price</label>
-                        <input placeholder="Original Price"
-                            class="form-control input-md"  type="text">
+                    <label class=" control-label">Original Price</label>
+                    <input placeholder="Original Price" class="form-control input-md" type="text">
                 </div>
 
 
                 <div class="form-group">
-                    <label class=" control-label" >Discounted Price</label>
-                        <input placeholder="Discounted Price"
-                            class="form-control input-md"  type="text">
+                    <label class=" control-label">Discounted Price</label>
+                    <input placeholder="Discounted Price" class="form-control input-md" type="text">
                 </div>
             </div>
-            <div class="form-group w-100">
-                <label class=" control-label" ></label>
-                    <button  class="btn btn-primary w-100">Add Product</button>
+            <div class="form-group w-100 text-right">
+                <button routerLink="/seller-home" class="btn btn-dark mr-3">Cancel</button>
+                <button class="btn btn-primary">Add Product</button>
             </div>
         </div>
 

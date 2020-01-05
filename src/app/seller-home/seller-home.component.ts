@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-seller-home',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SellerHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public router: Router
+  ) {
+    var userType = localStorage.getItem('userType');
+    if (userType == 'buyer') {
+      router.navigate(['/home']);
+    }
+  }
 
   ngOnInit() {
   }

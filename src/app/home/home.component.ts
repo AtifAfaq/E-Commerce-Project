@@ -15,9 +15,6 @@ export class HomeComponent implements OnInit {
     if (userType == 'seller') {
       router.navigate(['/seller-home']);
     }
-    else {
-      router.navigate(['/home']);
-    }
   }
 
   ngOnInit() {
