@@ -3,12 +3,12 @@
 
 <!-- 
 
-    1. Remove extra div and add "w-100" 
-    2. Add Categories (10 to 15)
-    3. Input image button styling
-    4. Input fields name / id setting
-    5. text-transform: normal >  Product Title
-    6. Remove 'for' attribute from Label
+    1. Remove extra div and add "w-100"          Done
+    2. Add Categories (10 to 15)                 Done
+    3. Input image button styling                Done
+    4. Input fields name / id setting            Done
+    5. text-transform: normal >  Product Title   Done
+    6. Remove 'for' attribute from Label         Done
 
  -->
 
@@ -19,59 +19,60 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
-                    <label class="style control-label w-100" for="filebutton">PRODUCT IMAGES</label>
-                    <input id="filebutton" name="filebutton" class="input-file" type="file" multiple>
-                </div>
-
-                <div class="form-group">
-                    <label class="style control-label" for="product_name">PRODUCT NAME</label>
-                    <div class="">
-                        <input id="product_name" name="product_name" placeholder="PRODUCT NAME"
-                            class="form-control input-md" required="" type="text">
+           
+                    <div class="topSetting">
+                      <label for="files" class="w-100"> <span class="btn btn-info ">Upload Image</span></label>
+                      <input style="visibility: hidden; position: absolute;" id="files" class="form-control" type="file" name="files" multiple>
                     </div>
+                  
+                 
+                <div class="form-group">
+                    <label class="control-label" >Product Name</label>
+                        <input  placeholder="Product Name"
+                            class="form-control input-md w-100"  type="text">
+                   
                 </div>
 
 
                 <div class="form-group">
-                    <label class="style control-label w-100" for="product_categorie">PRODUCT CATEGORY</label>
-                    <select id="product_categorie" name="product_categorie" class="form-control">
+                    <label class=" control-label w-100" >Product Category</label>
+                    <select class="form-control w-100">
+                        <option>Cables</option>
                         <option>Milk Products</option>
+                        <option>Balloons</option>
                         <option>Mobile Phones</option>
+                        <option>Child Toys</option>
+                        <option>Jackets</option>
                     </select>
                 </div>
 
 
                 <div class="form-group">
-                    <label class="style control-label" for="available_quantity">AVAILABLE QUANTITY</label>
-                    <div class="">
-                        <input id="available_quantity" name="available_quantity" placeholder="AVAILABLE QUANTITY"
-                            class="form-control input-md" required="" type="text">
-                    </div>
+                    <label class=" control-label" >Available Quantity</label>
+                        <input placeholder="Availabe Quantity"
+                            class="form-control input-md w-100" type="text">
+                 
                 </div>
 
                 <div class="form-group">
-                    <label class="style control-label w-100" for="filebutton">Brand</label>
-                    <input id="available_quantity" name="available_quantity" placeholder="AVAILABLE QUANTITY"
-                        class="form-control input-md" required="" type="text">
+                    <label class=" control-label w-100" >Brand</label>
+                    <input  placeholder="Brand Name"
+                        class="form-control input-md w-100"  type="text">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="style control-label" for="product_description">PRODUCT DESCRIPTION</label>
-                    <div class="">
-                        <textarea rows="5" class="form-control" id="product_description"
-                            name="product_description"></textarea>
-                    </div>
+                    <label class=" control-label" >Product Description</label>
+                        <textarea rows="5" class="form-control w-100" ></textarea>     
                 </div>
 
 
                 <div class="form-group">
-                    <label class="style control-label" for="product_description">PRODUCT SPECIFICATIONS /
+                    <label class=" control-label" >Product Specifications /
                         Features</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Feature">
+                        <input type="text" class="form-control" placeholder="Features">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 <i class="fa fa-plus"></i>
@@ -81,28 +82,21 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="style control-label" for="percentage_discount">Original PRICE</label>
-                    <div class="">
-                        <input id="percentage_discount" name="percentage_discount" placeholder="PRICE"
-                            class="form-control input-md" required="" type="text">
-                    </div>
+                    <label class=" control-label" >Original Price</label>
+                        <input placeholder="Original Price"
+                            class="form-control input-md"  type="text">
                 </div>
 
 
                 <div class="form-group">
-                    <label class="style control-label" for="percentage_discount">Discounted PRICE</label>
-                    <div class="">
-                        <input id="percentage_discount" name="percentage_discount" placeholder="PRICE"
-                            class="form-control input-md" required="" type="text">
-                    </div>
+                    <label class=" control-label" >Discounted Price</label>
+                        <input placeholder="Discounted Price"
+                            class="form-control input-md"  type="text">
                 </div>
-
-                <div class="form-group">
-                    <label class=" control-label" for="singlebutton"></label>
-                    <div class="">
-                        <button id="singlebutton" name="singlebutton" class="btn btn-primary w-100">ADD PRODUCT</button>
-                    </div>
-                </div>
+            </div>
+            <div class="form-group w-100">
+                <label class=" control-label" ></label>
+                    <button  class="btn btn-primary w-100">Add Product</button>
             </div>
         </div>
 
