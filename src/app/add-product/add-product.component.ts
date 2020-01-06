@@ -28,10 +28,10 @@ export class AddProductComponent implements OnInit {
     }
 
     var reader = new FileReader();
-    this.imagePath = files;
+    this.imagePath = files;  // Object used to save on firebase storage (imageName, size, location etc)
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
-      this.imgURL = reader.result;
+      this.imgURL = reader.result;   // Url to be used for preview display (string format)
     }
   }
 

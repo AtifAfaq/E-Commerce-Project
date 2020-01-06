@@ -9,12 +9,13 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   public userType: string = '';
+  public userLoggedIn: any = '';
 
   constructor(
     public router: Router
   ) {
-    // if there is no usertype then go to buyer
     this.userType = localStorage.getItem('userType') || 'buyer';
+    this.userLoggedIn = localStorage.getItem('userLoggedIn');
   }
 
   ngOnInit() {

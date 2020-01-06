@@ -6,20 +6,24 @@
       &nbsp;
       <div class="input-container">
         <i class="fa fa-user icon"></i>
-        <input class="input-field " type="text" placeholder="Username" name="usrnm">
+        <input [(ngModel)]="email" class="input-field" type="email" placeholder="Email Address">
       </div>
 
       <div class="input-container">
         <i class="fa fa-key icon"></i>
-        <input class="input-field " type="text" placeholder="Password" name="usrnm">
+        <input [(ngModel)]="password" class="input-field" type="password" placeholder="Password">
       </div>
-    
+
       <p class="text-right"><a routerLink="/forget-Password" class="text-danger ">Forgot password?</a></p>
       <button class="btn btn-primary mb-3" (click)="userLogin()"> Submit </button>
       <button routerLink="/signup" class="btn btn-primary"> Create a new Account? </button>
 
       <div class="col-md-4"></div>
-
     </div>
   </div>
+</div>
+
+
+<div *ngIf="loading" class="spinnerContent">
+  <div class="spinner-border text-muted"></div>
 </div>

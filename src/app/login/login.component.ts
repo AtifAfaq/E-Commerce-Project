@@ -1,34 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms'; 
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
   email: string = '';
   password: string = '';
   uid: string = '';
-  constructor( public router : Router) {
+  loading: boolean = false;
+
+  constructor(public router: Router) {
     if (localStorage.getItem('userLoggedIn') == 'true') {
       router.navigate(['/home']);
-   }}
-  
-  ngOnInit() {
+    }
   }
+
+  ngOnInit() {
+
+  }
+
+
   userLogin() {
-    // this.loading = true;
+    this.loading = true;
     firebase.auth().signInWithEmailAndPassword(this.email, this.password)
       .then((user) => {
         if (user) {
           this.uid = firebase.auth().currentUser.uid;
+          // if (firebase.auth().currentUser.emailVerified) {
           this.getUserData();
+          // }
+          // else {
+          //   alert("Your account is not verified! Go to your email address and verify");
+          //   firebase.auth().currentUser.sendEmailVerification();
+          // }
         }
       })
       .catch((e) => {
-        // this.loading = false;
+        this.loading = false;
         alert(e.message);
       })
   }
@@ -44,11 +57,11 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('email', user.email);
         localStorage.setItem('uid', this.uid);
         localStorage.setItem('userLoggedIn', 'true');
-        // this.loading = false;
+        this.loading = false;
         this.router.navigate(['/home']);
       })
       .catch((e) => {
-        // this.loading = false;
+        this.loading = false;
         alert(e.message);
       })
   }

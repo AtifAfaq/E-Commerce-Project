@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms'; 
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import * as firebase from 'firebase';
 import { Router } from "@angular/router";
 
@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+
   firstName: string = '';
   lastName: string = '';
   email: string = '';
@@ -17,10 +18,13 @@ export class SignupComponent implements OnInit {
   cPassword: string = '';
   uid: string = '';
   onRegisterForm: FormGroup;
+
   constructor(public router: Router) { }
 
   ngOnInit() {
+
   }
+
   registerUser() {
     if (this.password != this.cPassword) {
       alert("Passwords are not matched!");
@@ -37,6 +41,8 @@ export class SignupComponent implements OnInit {
         alert(e.message);
       })
   }
+
+
   saveDataFirebase() {
     var userData: any = {
       firstName: this.firstName,
@@ -44,7 +50,7 @@ export class SignupComponent implements OnInit {
       email: this.email,
       contact: this.contact,
       uid: this.uid,
-      timestamp: Number(new Date()) // 123456789012 >> Sunday 10 October 2019, 10:10 PM
+      timestamp: Number(new Date())
     }
     var updates = {};
     updates['/users/' + this.uid] = userData;
