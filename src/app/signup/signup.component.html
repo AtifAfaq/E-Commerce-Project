@@ -1,43 +1,49 @@
 <div class="signup-Form">
   <div class="row px-5">
     <div class="col-md-4 "></div>
+    
     <div class="col-md-4 pt-50 mb-5">
       <h1 class="text-center mt-5 ">New Account</h1>
       &nbsp;
-      <div class="input-container">
+      <div class="form-group input-container">
         <i class="fa fa-user icon"></i>
-        <input class="input-field" type="text" placeholder="First Name" name="usrnm">
+        <input [(ngModel)]="firstName" class="input-field" type="text" placeholder="First Name" name="usrnm">
+      {{firstName}}
       </div>
 
-      <div class="input-container">
+      <div class="form-group input-container">
         <i class="fa fa-user icon"></i>
-        <input class="input-field" type="text" placeholder="Last Name" name="usrnm">
+        <input [(ngModel)]="lastName"  class="input-field" type="text" placeholder="Last Name" name="usrnm">
       </div>
 
-      <div class="input-container">
-        <i class="fa fa-user icon"></i>
-        <select class="input-field">
-          <option value="fa fa-male" selected>Gender</option>
-          <option value="1">Male</option>
-          <option value="2">Female</option>
-        </select>
+      <div class="form-group input-container">
+        <i class="fa fa-phone icon"></i>
+        <input [(ngModel)]="contact"  class="input-field" type="tel" placeholder="Contact Number" name="usrnm">
       </div>
 
-      <div class="input-container">
+      <div class="form-group input-container">
         <i class="fa fa-envelope icon"></i>
-        <input class="input-field" type="email" placeholder="Email" name="usrnm">
+        <input [(ngModel)]="email"  class="input-field" type="email" placeholder="Email" name="usrnm">
       </div>
 
-      <div class="input-container">
+      <div class="form-group input-container">
         <i class="fa fa-key icon"></i>
-        <input class="input-field" type="password" placeholder="Password" name="usrnm">
+        <input [(ngModel)]="password"  class="input-field" type="password" placeholder="Password" name="usrnm">
       </div>
 
-      <button routerLink="/home" class="btn btn-primary"> Register </button>
+      <div class="form-group input-container">
+        <i class="fa fa-key icon"></i>
+        <input [(ngModel)]="cPassword" class="input-field" type="password" placeholder="Confirm Password" name="usrnm">
+      </div>
+
+
+      <button routerLink="/home" class="btn btn-primary" (click)="registerUser()"> Register </button>
       <button routerLink="/login" class="btn btn-primary mt-3"> Already have a Account</button>
-      <div class="col-md-4"></div>
 
     </div>
+      <div class="col-md-4"></div>
+
+   
   </div>
 
 </div>

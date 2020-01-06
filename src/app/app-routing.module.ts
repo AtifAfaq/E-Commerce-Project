@@ -8,7 +8,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { SellerHomeComponent } from './seller-home/seller-home.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ProdDetailSellerComponent } from './prod-detail-seller/prod-detail-seller.component';
-
+import {ForgetPasswordComponent} from './forget-password/forget-password.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,14 +19,14 @@ const routes: Routes = [
   { path: 'seller-home', component: SellerHomeComponent },
   { path: 'add-product', component: AddProductComponent },
   { path: 'prod-detail-seller', component: ProdDetailSellerComponent },
+  { path: 'forget-Password', component: ForgetPasswordComponent },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(
-
-    routes,
+ routes,
     { enableTracing: true } // <-- debugging purposes only
   )],
   exports: [RouterModule]

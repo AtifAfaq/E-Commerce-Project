@@ -13,8 +13,9 @@
         <i class="fa fa-key icon"></i>
         <input class="input-field " type="text" placeholder="Password" name="usrnm">
       </div>
-
-      <button routerLink="/home" class="btn btn-primary mb-3"> Submit </button>
+    
+      <p class="text-right"><a routerLink="/forget-Password" class="text-danger ">Forgot password?</a></p>
+      <button class="btn btn-primary mb-3" (click)="userLogin()"> Submit </button>
       <button routerLink="/signup" class="btn btn-primary"> Create a new Account? </button>
 
       <div class="col-md-4"></div>
