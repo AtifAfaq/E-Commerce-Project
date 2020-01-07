@@ -38,12 +38,7 @@
                 <div class="form-group">
                     <label class=" control-label w-100">Product Category</label>
                     <select class="form-control w-100">
-                        <option>Cables</option>
-                        <option>Milk Products</option>
-                        <option>Balloons</option>
-                        <option>Mobile Phones</option>
-                        <option>Child Toys</option>
-                        <option>Jackets</option>
+                        <option *ngFor="let cat of catergories">{{cat}}</option>
                     </select>
                 </div>
 
@@ -107,16 +102,14 @@
                 </div>
                 <div class="form-group">
                     <label class=" control-label w-100">Warranty Policy</label>
-                    <div class="form-check-inline">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optradio">Warranty Available
-                        </label>
-                    </div>
-                    <div class="form-check-inline">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optradio">Warranty Not Available
-                        </label>
-                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="customRadio" name="example" value="customEx">
+                        <label class="custom-control-label" for="customRadio">Warranty Availabe</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="customRadio2" name="example" value="customEx">
+                        <label class="custom-control-label" for="customRadio2">Warranty Not Availabe</label>
+                      </div>
                 </div>
 
             </div>

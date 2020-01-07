@@ -1,12 +1,18 @@
 /* Style the input container */
 h1{
-  color:black;
-  border: 2px solid black;
+  color:white;
+  border: 2px solid white;
 }
 .input-container {
   display: flex;
   margin-bottom: 15px;
 }
+
+.fielderrorMsg {
+  color: white;
+  margin-top: 0px;
+}
+
 
 /* Style the form icons */
 .icon {
@@ -56,9 +62,9 @@ h1{
 }
 
 .signup-Form {
-  background: url("/assets/images/white.jpg") center no-repeat;
+  background: url("/assets/images/back.jpg") center no-repeat;
   background-size: cover;
-  height: 100vh; // Viewpoint height >> Viewport height
+  height: 100%; // 100vh Viewpoint height >> Viewport height
 
 }
 

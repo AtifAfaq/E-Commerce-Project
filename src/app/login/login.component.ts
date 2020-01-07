@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 
@@ -8,20 +9,28 @@ import * as firebase from 'firebase';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  onLoginForm: FormGroup;
   email: string = '';
   password: string = '';
   uid: string = '';
   loading: boolean = false;
 
-  constructor(public router: Router) {
+  constructor(public router: Router,
+    public fb: FormBuilder) {
     if (localStorage.getItem('userLoggedIn') == 'true') {
       router.navigate(['/home']);
     }
   }
 
   ngOnInit() {
-
+    this.onLoginForm = this.fb.group({
+      email: ['', Validators.compose([
+        Validators.required
+      ])],
+      password: ['', Validators.compose([
+        Validators.required
+      ])]
+    })
   }
 
 

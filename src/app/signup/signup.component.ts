@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 })
 export class SignupComponent implements OnInit {
 
+  onRegisterForm: FormGroup;
   firstName: string = '';
   lastName: string = '';
   email: string = '';
@@ -17,11 +18,33 @@ export class SignupComponent implements OnInit {
   password: string = '';
   cPassword: string = '';
   uid: string = '';
-  onRegisterForm: FormGroup;
+  
 
-  constructor(public router: Router) { }
+  constructor(public fb: FormBuilder, public router: Router) { }
 
   ngOnInit() {
+    this.onRegisterForm = this.fb.group({
+      firstName: ['', Validators.compose([
+        Validators.required
+      ])],
+      lastName: ['', Validators.compose([
+        Validators.required
+      ])],
+      email: ['', Validators.compose([
+        Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
+        Validators.required
+      ])],
+      contact: ['', Validators.compose([
+        Validators.required,
+      ])],
+      password: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(6)
+      ])],
+      cPassword: ['', Validators.compose([
+        Validators.required
+      ])],
+    })
 
   }
 

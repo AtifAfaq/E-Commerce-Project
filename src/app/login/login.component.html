@@ -2,24 +2,33 @@
   <div class="row pt-5">
     <div class="col-md-4"></div>
     <div class="col-md-4 mb-5">
-      <h1 class="text-center mt-5">Login</h1>
-      &nbsp;
-      <div class="input-container">
-        <i class="fa fa-user icon"></i>
-        <input [(ngModel)]="email" class="input-field" type="email" placeholder="Email Address">
+      <div [formGroup]="onLoginForm">
+        <h1 class="text-center mt-5">Login</h1>
+        &nbsp;
+        <div class="input-container">
+          <i class="fa fa-user icon"></i>
+          <input [(ngModel)]="email" formControlName="email" class="input-field" type="email"
+            placeholder="Email Address">
+        </div>
+        <p class="errorMsg" *ngIf="onLoginForm.get('email').touched && onLoginForm.get('email').hasError('required')">
+          Email is required</p>
+
+        <div class="input-container">
+          <i class="fa fa-key icon"></i>
+          <input [(ngModel)]="password" formControlName="password" class="input-field" type="password"
+            placeholder="Password">
+        </div>
+        <p class="errorMsg"
+          *ngIf="onLoginForm.get('password').touched && onLoginForm.get('password').hasError('required')">
+          Password is required</p>
+
+        <p class="text-right"><a routerLink="/forget-Password" class="text-danger ">Forgot password?</a></p>
+        <button class="btn btn-primary mb-3" (click)="userLogin()"> Submit </button>
+        <button routerLink="/signup" class="btn btn-primary"> Create a new Account? </button>
       </div>
-
-      <div class="input-container">
-        <i class="fa fa-key icon"></i>
-        <input [(ngModel)]="password" class="input-field" type="password" placeholder="Password">
-      </div>
-
-      <p class="text-right"><a routerLink="/forget-Password" class="text-danger ">Forgot password?</a></p>
-      <button class="btn btn-primary mb-3" (click)="userLogin()"> Submit </button>
-      <button routerLink="/signup" class="btn btn-primary"> Create a new Account? </button>
-
-      <div class="col-md-4"></div>
     </div>
+    <div class="col-md-4"></div>
+
   </div>
 </div>
 

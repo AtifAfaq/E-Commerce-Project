@@ -10,7 +10,7 @@ export class AddProductComponent implements OnInit {
   imagePath: any = {};
   imgURL: any = '';
   message: any = '';
-
+catergories :any =["Pets", "Rentals","Cloths","Shoes","Antiques","Appliances","Auto Parts", "Baby", "Cables","Milk Products","Balloons","Mobile Phones","Child Toys","Jackets","Vehicles","Furniture"];
   constructor() { }
 
   ngOnInit() {

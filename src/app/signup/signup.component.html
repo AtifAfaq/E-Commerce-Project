@@ -3,43 +3,72 @@
     <div class="col-md-4 "></div>
 
     <div class="col-md-4 pt-50 mb-5">
-      <h1 class="text-center mt-5 ">New Account</h1>
-      &nbsp;
-      <div class="form-group input-container">
-        <i class="fa fa-user icon"></i>
-        <input [(ngModel)]="firstName" class="input-field" type="text" placeholder="First Name" name="usrnm">
-        {{firstName}}
+      <div [formGroup]="onRegisterForm">
+        <h1 class="text-center mt-5 ">New Account</h1>
+        &nbsp;
+        <div class="form-group input-container">
+          <i class="fa fa-user icon"></i>
+          <input [(ngModel)]="firstName" class="input-field" formControlName="firstName" type="text"
+            placeholder="First Name">
+        </div>
+        <p class="fielderrorMsg"
+                *ngIf="onRegisterForm.get('firstName').touched && onRegisterForm.get('firstName').hasError('required')">
+                First Name is required</p>
+
+        <div class="form-group input-container">
+          <i class="fa fa-user icon"></i>
+          <input [(ngModel)]="lastName" class="input-field" formControlName="lastName" type="text"
+            placeholder="Last Name">
+        </div>
+        <p class="fielderrorMsg"
+        *ngIf="onRegisterForm.get('lastName').touched && onRegisterForm.get('lastName').hasError('required')">
+        Last Name is required</p>
+
+        <div class="form-group input-container">
+          <i class="fa fa-phone icon"></i>
+          <input [(ngModel)]="contact" class="input-field" formControlName="contact" type="tel"
+            placeholder="Contact Number">
+        </div>
+        <p class="fielderrorMsg"
+        *ngIf="onRegisterForm.get('contact').touched && onRegisterForm.get('contact').hasError('required')">
+        Phone Number is required</p>
+
+        <div class="form-group input-container">
+          <i class="fa fa-envelope icon"></i>
+          <input [(ngModel)]="email" class="input-field" formControlName="email" type="email" placeholder="Email">
+        </div>
+        <p class="fielderrorMsg"
+        *ngIf="onRegisterForm.get('email').touched && onRegisterForm.get('email').hasError('required')">
+        Email is required</p>
+    <p class="fielderrorMsg"
+        *ngIf="onRegisterForm.get('email').touched && onRegisterForm.get('email').hasError('pattern')">
+        Invalid email pattern</p>
+
+        <div class="form-group input-container">
+          <i class="fa fa-key icon"></i>
+          <input [(ngModel)]="password" class="input-field" formControlName="password" type="password"
+            placeholder="Password">
+        </div>
+        <p class="fielderrorMsg"
+                *ngIf="onRegisterForm.get('password').touched && onRegisterForm.get('password').hasError('required')">
+                Password is required</p>
+            <p class="errorMsg"
+                *ngIf="onRegisterForm.get('password').touched && onRegisterForm.get('password').hasError('minLength')">
+                Minimum password length is 6 characters</p>
+
+        <div class="form-group input-container">
+          <i class="fa fa-key icon"></i>
+          <input [(ngModel)]="cPassword" class="input-field" formControlName="cPassword" type="password"
+            placeholder="Confirm Password">
+        </div>
+        <p class="fielderrorMsg"
+                *ngIf="onRegisterForm.get('cPassword').touched && onRegisterForm.get('cPassword').hasError('required')">
+                Re-Enter your password</p>
+
+
+        <button class="btn btn-primary" (click)="registerUser()"> Register </button>
+        <button routerLink="/login" class="btn btn-primary mt-3"> Already have a Account</button>
       </div>
-
-      <div class="form-group input-container">
-        <i class="fa fa-user icon"></i>
-        <input [(ngModel)]="lastName" class="input-field" type="text" placeholder="Last Name" name="usrnm">
-      </div>
-
-      <div class="form-group input-container">
-        <i class="fa fa-phone icon"></i>
-        <input [(ngModel)]="contact" class="input-field" type="tel" placeholder="Contact Number" name="usrnm">
-      </div>
-
-      <div class="form-group input-container">
-        <i class="fa fa-envelope icon"></i>
-        <input [(ngModel)]="email" class="input-field" type="email" placeholder="Email" name="usrnm">
-      </div>
-
-      <div class="form-group input-container">
-        <i class="fa fa-key icon"></i>
-        <input [(ngModel)]="password" class="input-field" type="password" placeholder="Password" name="usrnm">
-      </div>
-
-      <div class="form-group input-container">
-        <i class="fa fa-key icon"></i>
-        <input [(ngModel)]="cPassword" class="input-field" type="password" placeholder="Confirm Password" name="usrnm">
-      </div>
-
-
-      <button routerLink="/home" class="btn btn-primary" (click)="registerUser()"> Register </button>
-      <button routerLink="/login" class="btn btn-primary mt-3"> Already have a Account</button>
-
     </div>
     <div class="col-md-4"></div>
 
