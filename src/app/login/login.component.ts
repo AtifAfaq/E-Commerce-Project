@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
   onLoginForm: FormGroup;
   email: string = '';
   password: string = '';

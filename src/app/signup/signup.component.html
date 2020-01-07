@@ -12,8 +12,8 @@
             placeholder="First Name">
         </div>
         <p class="fielderrorMsg"
-                *ngIf="onRegisterForm.get('firstName').touched && onRegisterForm.get('firstName').hasError('required')">
-                First Name is required</p>
+          *ngIf="onRegisterForm.get('firstName').touched && onRegisterForm.get('firstName').hasError('required')">
+          First Name is required</p>
 
         <div class="form-group input-container">
           <i class="fa fa-user icon"></i>
@@ -21,8 +21,8 @@
             placeholder="Last Name">
         </div>
         <p class="fielderrorMsg"
-        *ngIf="onRegisterForm.get('lastName').touched && onRegisterForm.get('lastName').hasError('required')">
-        Last Name is required</p>
+          *ngIf="onRegisterForm.get('lastName').touched && onRegisterForm.get('lastName').hasError('required')">
+          Last Name is required</p>
 
         <div class="form-group input-container">
           <i class="fa fa-phone icon"></i>
@@ -30,19 +30,19 @@
             placeholder="Contact Number">
         </div>
         <p class="fielderrorMsg"
-        *ngIf="onRegisterForm.get('contact').touched && onRegisterForm.get('contact').hasError('required')">
-        Phone Number is required</p>
+          *ngIf="onRegisterForm.get('contact').touched && onRegisterForm.get('contact').hasError('required')">
+          Phone Number is required</p>
 
         <div class="form-group input-container">
           <i class="fa fa-envelope icon"></i>
           <input [(ngModel)]="email" class="input-field" formControlName="email" type="email" placeholder="Email">
         </div>
         <p class="fielderrorMsg"
-        *ngIf="onRegisterForm.get('email').touched && onRegisterForm.get('email').hasError('required')">
-        Email is required</p>
-    <p class="fielderrorMsg"
-        *ngIf="onRegisterForm.get('email').touched && onRegisterForm.get('email').hasError('pattern')">
-        Invalid email pattern</p>
+          *ngIf="onRegisterForm.get('email').touched && onRegisterForm.get('email').hasError('required')">
+          Email is required</p>
+        <p class="fielderrorMsg"
+          *ngIf="onRegisterForm.get('email').touched && onRegisterForm.get('email').hasError('pattern')">
+          Invalid email pattern</p>
 
         <div class="form-group input-container">
           <i class="fa fa-key icon"></i>
@@ -50,11 +50,11 @@
             placeholder="Password">
         </div>
         <p class="fielderrorMsg"
-                *ngIf="onRegisterForm.get('password').touched && onRegisterForm.get('password').hasError('required')">
-                Password is required</p>
-            <p class="errorMsg"
-                *ngIf="onRegisterForm.get('password').touched && onRegisterForm.get('password').hasError('minLength')">
-                Minimum password length is 6 characters</p>
+          *ngIf="onRegisterForm.get('password').touched && onRegisterForm.get('password').hasError('required')">
+          Password is required</p>
+        <p class="errorMsg"
+          *ngIf="onRegisterForm.get('password').touched && onRegisterForm.get('password').hasError('minLength')">
+          Minimum password length is 6 characters</p>
 
         <div class="form-group input-container">
           <i class="fa fa-key icon"></i>
@@ -62,9 +62,8 @@
             placeholder="Confirm Password">
         </div>
         <p class="fielderrorMsg"
-                *ngIf="onRegisterForm.get('cPassword').touched && onRegisterForm.get('cPassword').hasError('required')">
-                Re-Enter your password</p>
-
+          *ngIf="onRegisterForm.get('cPassword').touched && onRegisterForm.get('cPassword').hasError('required')">
+          Re-Enter your password</p>
 
         <button class="btn btn-primary" (click)="registerUser()"> Register </button>
         <button routerLink="/login" class="btn btn-primary mt-3"> Already have a Account</button>

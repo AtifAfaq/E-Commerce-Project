@@ -18,9 +18,13 @@ export class SignupComponent implements OnInit {
   password: string = '';
   cPassword: string = '';
   uid: string = '';
-  
 
-  constructor(public fb: FormBuilder, public router: Router) { }
+  constructor(
+    public fb: FormBuilder,
+    public router: Router) {
+
+  }
+
 
   ngOnInit() {
     this.onRegisterForm = this.fb.group({

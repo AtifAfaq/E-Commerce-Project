@@ -44,12 +44,12 @@
     </div>
 
     <ul class="navbar-nav">
-      <li *ngIf="!userLoggedIn" routerLink="/login" class="nav-item mx-2">
+      <li *ngIf="userLoggedIn=='false'" routerLink="/login" class="nav-item mx-2">
         <a class="nav-link pointer text-white">
           <i class="fa fa-sign-in"></i> Login
         </a>
       </li>
-      <li *ngIf="!userLoggedIn" routerLink="/signup" class="nav-item mx-2">
+      <li *ngIf="userLoggedIn=='false'" routerLink="/signup" class="nav-item mx-2">
         <a class="nav-link pointer text-white">
           <i class="fa fa-user-plus"></i> SignUp
         </a>
@@ -59,7 +59,7 @@
           <i class="fa fa-shopping-cart"></i> Cart
         </a>
       </li>
-      <li *ngIf="userLoggedIn" (click)="signout()" class="nav-item mx-2">
+      <li *ngIf="userLoggedIn=='true'" (click)="signout()" class="nav-item mx-2">
         <a class="nav-link pointer text-white">
           <i class="fa fa-sign-out"></i> Signuout
         </a>

@@ -23,14 +23,20 @@ export class NavbarComponent implements OnInit {
   }
 
   sellerMode() {
-    localStorage.setItem('userType', 'seller');
-    this.router.navigate(['/seller-home']);
+    if (localStorage.getItem('userLoggedIn') == 'true') {
+      localStorage.setItem('userType', 'seller');
+      this.router.navigate(['/seller-home']);
+    }
+    else {
+      this.router.navigate(['/login']);
+    }
   }
 
   buyerMode() {
     localStorage.setItem('userType', 'buyer');
     this.router.navigate(['/home']);
   }
+
   signout() {
     var user = firebase.auth().currentUser;
     if (user) {
@@ -39,13 +45,16 @@ export class NavbarComponent implements OnInit {
           alert("User Logged Out!");
           localStorage.clear();
           this.router.navigate(['/login']);
+          localStorage.setItem('userLoggedIn', 'false');
         })
         .catch((e) => {
           alert(e.message);
         })
     }
     else {
-      alert("Error signing out!");
+      localStorage.clear();
+      localStorage.setItem('userLoggedIn', 'false');
+      this.router.navigate(['/login']);
     }
   }
 

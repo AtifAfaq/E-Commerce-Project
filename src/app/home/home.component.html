@@ -192,72 +192,20 @@
     <!-- Categories -->
     <div class="categoriesBlock mb-3">
         <h4>Categories</h4>
-        <div class="catList" routerLink="/allProducts">
-            <div class="anItem">
-                <img src="/assets/images/cat1.jpg">
-                <p class="mb-0">Cables</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat2.jpg">
-                <p class="mb-0">Milk Products</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat3.jpg">
-                <p class="mb-0">Balloons</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat4.jpg">
-                <p class="mb-0">Mobile Phones</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat5.jpg">
-                <p class="mb-0">Child Toys</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat6.jpg">
-                <p class="mb-0">Jackets</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat1.jpg">
-                <p class="mb-0">Cables</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat2.jpg">
-                <p class="mb-0">Milk Products</p>
+        <div class="catList">
+            <div class="outerDiv" *ngFor="let item of categories; index as i">
+                <div class="anItem" *ngIf="i<8">
+                    <img [src]="item.src">
+                    <p class="mb-0">{{item.name}}</p>
+                </div>
             </div>
         </div>
         <div class="catList">
-            <div class="anItem">
-                <img src="/assets/images/cat1.jpg">
-                <p class="mb-0">Cables</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat2.jpg">
-                <p class="mb-0">Milk Products</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat3.jpg">
-                <p class="mb-0">Balloons</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat4.jpg">
-                <p class="mb-0">Mobile Phones</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat5.jpg">
-                <p class="mb-0">Child Toys</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat6.jpg">
-                <p class="mb-0">Jackets</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat1.jpg">
-                <p class="mb-0">Cables</p>
-            </div>
-            <div class="anItem">
-                <img src="/assets/images/cat2.jpg">
-                <p class="mb-0">Milk Products</p>
+            <div *ngFor="let item of categories; index as i">
+                <div class="anItem" *ngIf="i>=8">
+                    <img [src]="item.src">
+                    <p class="mb-0">{{item.name}}</p>
+                </div>
             </div>
         </div>
     </div>
