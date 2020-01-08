@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase'; 
+
 
 @Component({
   selector: 'app-add-product',
@@ -9,21 +9,22 @@ import * as firebase from 'firebase';
   styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent implements OnInit {
+
   onAddProduct: FormGroup;
   productName: string = '';
-  productCat: string = '';
+  productCat: string = 'Please select your product category';
   availableQty: string = '';
   brand: string = '';
-  deliveryTime: string = '';
+  deliveryTime: string = '2-5 days';
   productDes: string = '';
   productSpec: string = '';
+  productSpecs: any = [];
   originalPrice: string = '';
   discountedPrice: string = '';
   deliveryFee: string = '';
   warrantyPolicy: string = '';
-
-  imagePath: any = {};
-  imgURL: any = '';
+  imagePaths: any = [];
+  imageUrls: any = [];
   message: any = '';
 
   catergories: any = ["Pets", "Rentals", "Cloths", "Shoes", "Antiques", "Appliances", "Auto Parts", "Baby", "Cables", "Milk Products", "Balloons", "Mobile Phones", "Child Toys", "Jackets", "Vehicles", "Furniture"];
@@ -69,23 +70,51 @@ export class AddProductComponent implements OnInit {
     })
   }
 
-  preview(files) {
-    this.message = "";
-    if (files.length === 0)
-      return;
 
-    var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
-      return;
-    }
 
-    var reader = new FileReader();
-    this.imagePath = files;  // Object used to save on firebase storage (imageName, size, location etc)
-    reader.readAsDataURL(files[0]);
-    reader.onload = (_event) => {
-      this.imgURL = reader.result;   // Url to be used for preview display (string format)
+  addFeature() {
+    this.productSpecs.push(this.productSpec);
+    this.productSpec = '';
+  }
+
+
+  removeSpec(index) {
+    this.productSpecs.splice(index, 1);
+  }
+
+
+  // SELECT MULTIPLE AND CREATE URLS
+
+  onChangeFiles(event: EventTarget) {
+    let eventObj: MSInputMethodContext = <MSInputMethodContext>event;
+    let target: HTMLInputElement = <HTMLInputElement>eventObj.target;
+    let files: FileList = target.files;
+    for (var i = 0; i < files.length; i++) {
+      this.imagePaths[i] = files[i];
+      var reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageUrls.push(e.target.result);
+      }
+      reader.readAsDataURL(files[i]);
     }
   }
+
+
+
+  addProduct() {
+    if (!this.manualCheckFields()) {
+      return;
+    }
+  }
+
+
+
+  manualCheckFields() {
+    if (this.productCat == 'Please select your product category') {
+      alert('Please select your product category!');
+      return false;
+    }
+  }
+
 
 }
