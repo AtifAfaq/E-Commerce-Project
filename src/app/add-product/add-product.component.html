@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="mainContent">
-    <form class="styling form-horizontal">
+    <form  [formGroup]="onAddProduct" class="styling form-horizontal">
 
         <h3 class="text-center mb-5">Add New Product</h3>
 
@@ -30,51 +30,69 @@
 
                 <div class="form-group">
                     <label class="control-label">Product Name</label>
-                    <input placeholder="Product Name" class="form-control input-md w-100" type="text">
+                    <input [(ngModel)]="productName" placeholder="Product Name" formControlName="productName" class="form-control input-md w-100" type="text">
                 </div>
+                <p class="errorMsg"
+                *ngIf="onAddProduct.get('productName').touched && onAddProduct.get('productName').hasError('required')">
+                Product Name is required</p>
 
 
                 <div class="form-group">
                     <label class=" control-label w-100">Product Category</label>
-                    <select class="form-control w-100">
-                        <option *ngFor="let cat of catergories">{{cat}}</option>
+                    <select formControlName="productCat" class="form-control w-100">
+                        <option  *ngFor="let cat of catergories">{{cat}}</option>
                     </select>
                 </div>
-
+                <p class="errorMsg"
+                *ngIf="onAddProduct.get('productCat').touched && onAddProduct.get('productCat').hasError('required')">
+                Product Category is required</p>
 
                 <div class="form-group">
                     <label class=" control-label">Available Quantity</label>
-                    <input placeholder="Availabe Quantity" class="form-control input-md w-100" type="text">
+                    <input [(ngModel)]="availableQty" placeholder="Availabe Quantity" formControlName="availableQty" class="form-control input-md w-100" type="text">
                 </div>
+                <p class="errorMsg"
+                *ngIf="onAddProduct.get('availableQty').touched && onAddProduct.get('availableQty').hasError('required')">
+                Available Quantity is required</p>
 
                 <div class="form-group">
                     <label class=" control-label w-100">Brand</label>
-                    <input placeholder="Brand Name" class="form-control input-md w-100" type="text">
+                    <input [(ngModel)]="brand" placeholder="Brand Name" formControlName="brand" class="form-control input-md w-100" type="text">
                 </div>
+                <p class="errorMsg"
+                *ngIf="onAddProduct.get('brand').touched && onAddProduct.get('brand').hasError('required')">
+                Brand is required</p>
 
                 <div class="form-group">
                     <label class=" control-label w-100">Delivery Time</label>
-                    <select class="form-control w-100">
+                    <select formControlName="deliveryTime" class="required form-control w-100">
                         <option>2-5 days</option>
                         <option>7 days</option>
                         <option>10 days</option>
                     </select>
                 </div>
+                <p class="errorMsg"
+                *ngIf="onAddProduct.get('deliveryTime').touched && onAddProduct.get('deliveryTime').hasError('required')">
+                Delivery Time is required</p>
 
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label class=" control-label">Product Description</label>
-                    <textarea rows="5" class="form-control w-100"></textarea>
+                    <textarea rows="6" [(ngModel)]="productDes" formControlName="productDes" class="form-control w-100"></textarea>
                 </div>
+                <p class="errorMsg"
+                *ngIf="onAddProduct.get('productDes').touched && onAddProduct.get('productDes').hasError('required')">
+                Product Description is required</p>
+
 
 
                 <div class="form-group">
                     <label class=" control-label">Product Specifications /
                         Features</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Features">
+                        <input type="text" [(ngModel)]="productSpec" formControlName="productSpec" class="form-control" placeholder="Features">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 <i class="fa fa-plus"></i>
@@ -82,35 +100,50 @@
                         </div>
                     </div>
                 </div>
+                <p class="errorMsg"
+                *ngIf="onAddProduct.get('productSpec').touched && onAddProduct.get('productSpec').hasError('required')">
+                Product Specifications / Features is required</p>
 
                 <div class="form-group">
                     <label class=" control-label">Original Price</label>
-                    <input placeholder="Original Price" class="form-control input-md" type="text">
+                    <input placeholder="Original Price" [(ngModel)]="originalPrice" formControlName="originalPrice" class="form-control input-md" type="text">
                 </div>
-
+                <p class="errorMsg"
+                *ngIf="onAddProduct.get('originalPrice').touched && onAddProduct.get('originalPrice').hasError('required')">
+                Original Price is required</p>
 
                 <div class="form-group">
                     <label class=" control-label">Discounted Price</label>
-                    <input placeholder="Discounted Price" class="form-control input-md" type="text">
+                    <input placeholder="Discounted Price" [(ngModel)]="discountedPrice" formControlName="discountedPrice" class="form-control input-md" type="text">
                 </div>
+                <p class="errorMsg"
+                *ngIf="onAddProduct.get('discountedPrice').touched && onAddProduct.get('discountedPrice').hasError('required')">
+                Discounted Price is required</p>
 
                 <div class="form-group">
                     <label class=" control-label w-100">Delivery Fee</label>
-                    <input placeholder="Delivery Fee" class="form-control input-md w-100" type="text">
+                    <input placeholder="Delivery Fee" [(ngModel)]="deliveryFee" formControlName="deliveryFee" class="form-control input-md w-100" type="text">
                 </div>
-                <div class="form-group">
+                <p class="errorMsg"
+                *ngIf="onAddProduct.get('deliveryFee').touched && onAddProduct.get('deliveryFee').hasError('required')">
+                Delivery Fee is required</p>
+
+                <div class="form-group" [class.has-error]="warranty.touched && warranty.invalid">
                     <label class=" control-label w-100">Warranty Policy</label>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="customRadio" name="example"
-                            value="customEx">
+                        <input type="radio" class="custom-control-input" id="customRadio" name="warranty"
+                            value="customEx" required #warranty="ngModel" [(ngModel)]="product.warranty" >
                         <label class="custom-control-label" for="customRadio">Warranty Availabe</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="customRadio2" name="example"
-                            value="customEx">
+                        <input type="radio" class="custom-control-input" id="customRadio2" name="warranty"
+                            value="customEx" required #warranty="ngModel" [(ngModel)]="product.warranty">
                         <label class="custom-control-label" for="customRadio2">Warranty Not Availabe</label>
                     </div>
                 </div>
+                <p class="errorMsg"
+                *ngIf="onAddProduct.get('warrantyPolicy').touched && onAddProduct.get('warrantyPolicy').hasError('required')">
+                Warranty Policy is required</p>
 
             </div>
             <div class="form-group w-100 text-right">

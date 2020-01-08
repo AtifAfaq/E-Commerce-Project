@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import * as firebase from 'firebase'; 
 
 @Component({
   selector: 'app-add-product',
@@ -6,6 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent implements OnInit {
+  onAddProduct: FormGroup;
+  productName: string = '';
+  productCat: string = '';
+  availableQty: string = '';
+  brand: string = '';
+  deliveryTime: string = '';
+  productDes: string = '';
+  productSpec: string = '';
+  originalPrice: string = '';
+  discountedPrice: string = '';
+  deliveryFee: string = '';
+  warrantyPolicy: string = '';
 
   imagePath: any = {};
   imgURL: any = '';
@@ -13,9 +28,45 @@ export class AddProductComponent implements OnInit {
 
   catergories: any = ["Pets", "Rentals", "Cloths", "Shoes", "Antiques", "Appliances", "Auto Parts", "Baby", "Cables", "Milk Products", "Balloons", "Mobile Phones", "Child Toys", "Jackets", "Vehicles", "Furniture"];
 
-  constructor() { }
+  constructor(public fb: FormBuilder,
+    public router: Router) { }
 
   ngOnInit() {
+    this.onAddProduct = this.fb.group({
+      productName: ['', Validators.compose([
+        Validators.required
+      ])],
+      productCat: ['', Validators.compose([
+        Validators.required
+      ])],
+      availableQty: ['', Validators.compose([
+        Validators.required
+      ])],
+      brand: ['', Validators.compose([
+        Validators.required
+      ])],
+      deliveryTime: ['', Validators.compose([
+        Validators.required
+      ])],
+      productDes: ['', Validators.compose([
+        Validators.required
+      ])],
+      productSpec: ['', Validators.compose([
+        Validators.required
+      ])],
+      originalPrice: ['', Validators.compose([
+        Validators.required
+      ])],
+      discountedPrice: ['', Validators.compose([
+        Validators.required
+      ])],
+      deliveryFee: ['', Validators.compose([
+        Validators.required
+      ])],
+      warrantyPolicy: ['', Validators.compose([
+        Validators.required
+      ])]
+    })
   }
 
   preview(files) {
