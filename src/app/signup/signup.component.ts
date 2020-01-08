@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
   password: string = '';
   cPassword: string = '';
   uid: string = '';
+  loading: boolean = false;
 
   constructor(
     public fb: FormBuilder,
@@ -57,14 +58,14 @@ export class SignupComponent implements OnInit {
       alert("Passwords are not matched!");
       return;
     }
-    // this.loading = true;
+    this.loading = true;
     firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
       .then((user) => {
         this.uid = firebase.auth().currentUser.uid;
         this.saveDataFirebase();
       })
       .catch((e) => {
-        // this.loading = false;
+        this.loading = false;
         alert(e.message);
       })
   }
@@ -89,12 +90,12 @@ export class SignupComponent implements OnInit {
         localStorage.setItem('email', this.email);
         localStorage.setItem('uid', this.uid);
         localStorage.setItem('userLoggedIn', 'true');
-        // this.loading = false;
+        this.loading = false;
         firebase.auth().currentUser.sendEmailVerification();
         this.router.navigate(['/home']);
       })
       .catch((e) => {
-        // this.loading = false;
+        this.loading = false;
         alert(e.message);
       })
   }
