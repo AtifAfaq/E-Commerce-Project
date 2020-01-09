@@ -27,6 +27,59 @@ export class HomeComponent implements OnInit {
     { name: "Furniture", src: "/assets/images/furniture.jpg" }
   ];
 
+  persons: any = [
+    {
+      id: 1,
+      name: 'Alex Smith',
+      contact: '1234567890',
+      address: {
+        street: '123 Main Street',
+        city: 'Anytown',
+        state: 'California',
+        region: 'West'
+      },
+      interests: [
+        {
+          id: 1,
+          name: 'john Doe'
+        },
+        {
+          id: 2,
+          name: 'Sam Doe'
+        },
+        {
+          id: 3,
+          name: 'Danny Doe'
+        },
+      ]
+    },
+    {
+      id: 2,
+      name: 'Marrie Smith',
+      contact: '1234567890',
+      address: {
+        street: '123 Main Street',
+        city: 'Anytown',
+        state: 'California',
+        region: 'West'
+      },
+      interests: [
+        {
+          id: 1,
+          name: 'john Doe'
+        },
+        {
+          id: 2,
+          name: 'Sam Doe'
+        },
+        {
+          id: 3,
+          name: 'Danny Doe'
+        },
+      ]
+    },
+  ];
+
   constructor(
     public router: Router
   ) {
@@ -38,7 +91,17 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
+    setTimeout(() => {
+      localStorage.setItem('myArray', JSON.stringify(this.persons));
+    }, 5000);
 
+    var myArray = localStorage.getItem('myArray');
+    this.persons = JSON.parse(myArray);
+  }
+
+
+  updateName(mainInd, index) {
+    this.persons[mainInd].interests[index].name = 'Atif';
   }
 
 }

@@ -52,9 +52,6 @@ export class AddProductComponent implements OnInit {
       productDes: ['', Validators.compose([
         Validators.required
       ])],
-      productSpec: ['', Validators.compose([
-        Validators.required
-      ])],
       originalPrice: ['', Validators.compose([
         Validators.required
       ])],
