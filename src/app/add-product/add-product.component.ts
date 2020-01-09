@@ -74,6 +74,7 @@ export class AddProductComponent implements OnInit {
 
   addFeature() {
     this.productSpecs.push(this.productSpec);
+    // to reset the feature tab
     this.productSpec = '';
   }
 
@@ -82,7 +83,9 @@ export class AddProductComponent implements OnInit {
     this.productSpecs.splice(index, 1);
   }
 
-
+  removeImg(index) {
+    this.imageUrls.splice(index, 1);
+  }
   // SELECT MULTIPLE AND CREATE URLS
 
   onChangeFiles(event: EventTarget) {
@@ -112,9 +115,19 @@ export class AddProductComponent implements OnInit {
   manualCheckFields() {
     if (this.productCat == 'Please select your product category') {
       alert('Please select your product category!');
-      return false;
     }
+    if ((this.productSpecs.length) < 3) {
+      alert('Please add atleast 3 features!');
+     
+    }
+    if ((this.imageUrls.length) < 3) {
+      alert('Please add atleast 3 images!');
+      
+    }
+
+    return false;
   }
+
 
 
 }

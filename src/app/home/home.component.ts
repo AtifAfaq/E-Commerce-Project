@@ -9,22 +9,22 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   categories: any = [
-    { name: "Pets", src: "/assets/images/cat1.jpg" },
-    { name: "Rentals", src: "/assets/images/cat2.jpg" },
-    { name: "Cloths", src: "/assets/images/cat3.jpg" },
-    { name: "Shoes", src: "/assets/images/cat4.jpg" },
-    { name: "Antiques", src: "/assets/images/cat5.jpg" },
-    { name: "Appliances", src: "/assets/images/cat6.jpg" },
-    { name: "Baby", src: "/assets/images/cat1.jpg" },
-    { name: "Cables", src: "/assets/images/cat2.jpg" },
-    { name: "Auto Parts", src: "/assets/images/cat1.jpg" },
-    { name: "Milk Products", src: "/assets/images/cat1.jpg" },
-    { name: "Balloons", src: "/assets/images/cat1.jpg" },
-    { name: "Mobile Phones", src: "/assets/images/cat1.jpg" },
-    { name: "Child Toys", src: "/assets/images/cat1.jpg" },
-    { name: "Jackets", src: "/assets/images/cat1.jpg" },
-    { name: "Vehicles", src: "/assets/images/cat1.jpg" },
-    { name: "Furniture", src: "/assets/images/cat1.jpg" }
+    { name: "Pets", src: "/assets/images/pets.png" },
+    { name: "Rentals", src: "/assets/images/rent.jpg" },
+    { name: "Cloths", src: "/assets/images/cloths.jpg" },
+    { name: "Shoes", src: "/assets/images/shoes.jpg" },
+    { name: "Antiques", src: "/assets/images/antiques.jpg" },
+    { name: "Appliances", src: "/assets/images/appliances.png" },
+    { name: "Baby Food", src: "/assets/images/babyfood.jpg" },
+    { name: "Cables", src: "/assets/images/cable.jpeg" },
+    { name: "Auto Parts", src: "/assets/images/auto.jpg" },
+    { name: "Milk Products", src: "/assets/images/milk.jpg" },
+    { name: "Balloons", src: "/assets/images/baloons.jpg" },
+    { name: "Mobile Phones", src: "/assets/images/mobile.jpg" },
+    { name: "Child Toys", src: "/assets/images/toys.jpg" },
+    { name: "Jackets", src: "/assets/images/jackets.jpg" },
+    { name: "Vehicles", src: "/assets/images/vehicles.jpg" },
+    { name: "Furniture", src: "/assets/images/furniture.jpg" }
   ];
 
   constructor(

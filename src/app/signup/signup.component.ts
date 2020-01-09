@@ -84,7 +84,7 @@ export class SignupComponent implements OnInit {
     updates['/users/' + this.uid] = userData;
     firebase.database().ref().update(updates)
       .then(() => {
-        alert("You are successfully logged in!");
+        alert("Your account has been successfully created!");
         localStorage.setItem('firstName', this.firstName);
         localStorage.setItem('lastName', this.lastName);
         localStorage.setItem('email', this.email);
