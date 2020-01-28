@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-add-product',
@@ -26,6 +26,9 @@ export class AddProductComponent implements OnInit {
   imagePaths: any = [];
   imageUrls: any = [];
   message: any = '';
+  user: any = {};
+  loading: boolean = false;
+  imageArr: any = [];
 
   catergories: any = ["Pets", "Rentals", "Cloths", "Shoes", "Antiques", "Appliances", "Auto Parts", "Baby", "Cables", "Milk Products", "Balloons", "Mobile Phones", "Child Toys", "Jackets", "Vehicles", "Furniture"];
 
@@ -103,8 +106,52 @@ export class AddProductComponent implements OnInit {
 
   addProduct() {
     if (!this.manualCheckFields()) {
+      this.uploadImage();
       return;
     }
+  }
+
+  uploadImage() {
+    var self = this;
+    let storageRef = firebase.storage().ref();
+    var metadata = {
+      contentType: 'image/jpeg/png'
+    };
+    const filename = Math.floor(Date.now() / 1000);
+    for (var i = 0; i < this.imagePaths.length; i++) {
+      debugger;
+      storageRef.child('profileImages/' + filename).put(self.imagePaths[i], metadata)
+        .on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+          (snapshot) => {
+            debugger;
+            snapshot.ref.getDownloadURL()
+              .then((downloadURL) => {
+                self.user.profileUrl = downloadURL;
+                this.imageArr.push(downloadURL);
+                debugger;
+                self.updateData();
+              })
+              .catch((e) => {
+                alert(e.message);
+                self.loading = false;
+              })
+          });
+    }
+  }
+
+
+  updateData() {
+    var updates = {};
+    updates['users/' + this.user.uid] = this.user;
+    firebase.database().ref().update(updates)
+      .then(() => {
+        alert('Profile updated successfully!');
+        this.loading = false;
+      })
+      .catch((e) => {
+        alert(e.message);
+        this.loading = false;
+      })
   }
 
 
@@ -112,14 +159,15 @@ export class AddProductComponent implements OnInit {
   manualCheckFields() {
     if (this.productCat == 'Please select your product category') {
       alert('Please select your product category!');
+      return false;
     }
     if ((this.productSpecs.length) < 3) {
       alert('Please add atleast 3 features!');
-     
+      return false;
     }
     if ((this.imageUrls.length) < 3) {
       alert('Please add atleast 3 images!');
-      
+      return false;
     }
 
     return false;

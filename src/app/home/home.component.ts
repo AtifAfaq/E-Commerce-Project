@@ -94,11 +94,11 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       localStorage.setItem('myArray', JSON.stringify(this.persons));
     }, 5000);
-
+// debugger;
     var myArray = localStorage.getItem('myArray');
     this.persons = JSON.parse(myArray);
   }
-
+  // debugger;
 
   updateName(mainInd, index) {
     this.persons[mainInd].interests[index].name = 'Atif';
