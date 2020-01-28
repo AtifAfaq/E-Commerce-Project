@@ -172,7 +172,4 @@ export class AddProductComponent implements OnInit {
 
     return false;
   }
-
-
-
 }
