@@ -106,10 +106,11 @@ export class AddProductComponent implements OnInit {
 
   addProduct() {
     if (!this.manualCheckFields()) {
-      this.uploadImage();
       return;
     }
+    this.uploadImage();
   }
+
 
   uploadImage() {
     var self = this;
@@ -120,15 +121,17 @@ export class AddProductComponent implements OnInit {
     const filename = Math.floor(Date.now() / 1000);
     for (var i = 0; i < this.imagePaths.length; i++) {
       debugger;
-      storageRef.child('profileImages/' + filename).put(self.imagePaths[i], metadata)
+      storageRef.child('productImages/' + filename).put(self.imagePaths[i], metadata)
         .on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
           (snapshot) => {
             snapshot.ref.getDownloadURL()
               .then((downloadURL) => {
-                self.user.profileUrl = downloadURL;
                 this.imageArr.push(downloadURL);
                 debugger;
-                self.updateData();
+                if (i == this.imagePaths.length) {
+                  debugger
+                  self.updateData();
+                }
               })
               .catch((e) => {
                 alert(e.message);
@@ -140,21 +143,24 @@ export class AddProductComponent implements OnInit {
 
 
   updateData() {
+    var postData = {
+      productName: this.productName,
+      productUrls: this.imageArr,
+      uid: localStorage.getItem('uid'),
+      timestamp: Number(new Date())
+    }
+    var postKey = firebase.database().ref().child('properties').push().key;
     var updates = {};
-    updates['products/' + this.user.uid] = this.user;
+    debugger;
+    updates['/products/' + postKey] = postData;
     firebase.database().ref().update(updates)
       .then(() => {
-        alert('Profile updated successfully!');
-        this.loading = false;
-        debugger;
+        alert('Product added successfully!');
       })
       .catch((e) => {
         alert(e.message);
-        this.loading = false;
       })
   }
-
-
 
 
   manualCheckFields() {
@@ -162,15 +168,17 @@ export class AddProductComponent implements OnInit {
       alert('Please select your product category!');
       return false;
     }
-    if ((this.productSpecs.length) < 3) {
+    else if ((this.productSpecs.length) < 3) {
       alert('Please add atleast 3 features!');
       return false;
     }
-    if ((this.imageUrls.length) < 3) {
+    else if ((this.imageUrls.length) < 3) {
       alert('Please add atleast 3 images!');
       return false;
     }
-
-    return false;
+    else {
+      return true;
+    }
   }
+
 }
