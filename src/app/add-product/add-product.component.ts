@@ -123,7 +123,6 @@ export class AddProductComponent implements OnInit {
       storageRef.child('profileImages/' + filename).put(self.imagePaths[i], metadata)
         .on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
           (snapshot) => {
-            debugger;
             snapshot.ref.getDownloadURL()
               .then((downloadURL) => {
                 self.user.profileUrl = downloadURL;
@@ -142,17 +141,19 @@ export class AddProductComponent implements OnInit {
 
   updateData() {
     var updates = {};
-    updates['users/' + this.user.uid] = this.user;
+    updates['products/' + this.user.uid] = this.user;
     firebase.database().ref().update(updates)
       .then(() => {
         alert('Profile updated successfully!');
         this.loading = false;
+        debugger;
       })
       .catch((e) => {
         alert(e.message);
         this.loading = false;
       })
   }
+
 
 
 
