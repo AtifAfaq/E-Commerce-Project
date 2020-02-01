@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
@@ -29,10 +29,13 @@ export class AddProductComponent implements OnInit {
   user: any = {};
   loading: boolean = false;
   imageArr: any = [];
+  imageCount: any;
 
   catergories: any = ["Pets", "Rentals", "Cloths", "Shoes", "Antiques", "Appliances", "Auto Parts", "Baby", "Cables", "Milk Products", "Balloons", "Mobile Phones", "Child Toys", "Jackets", "Vehicles", "Furniture"];
 
-  constructor(public fb: FormBuilder,
+  constructor(
+    public fb: FormBuilder,
+    public zone: NgZone,
     public router: Router) { }
 
   ngOnInit() {
@@ -73,9 +76,10 @@ export class AddProductComponent implements OnInit {
 
 
   addFeature() {
-    this.productSpecs.push(this.productSpec);
-    // to reset the feature tab
-    this.productSpec = '';
+    if (this.productSpec != '') {
+      this.productSpecs.push(this.productSpec);
+      this.productSpec = '';
+    }
   }
 
 
@@ -86,6 +90,8 @@ export class AddProductComponent implements OnInit {
   removeImg(index) {
     this.imageUrls.splice(index, 1);
   }
+
+
   // SELECT MULTIPLE AND CREATE URLS
 
   onChangeFiles(event: EventTarget) {
@@ -108,56 +114,74 @@ export class AddProductComponent implements OnInit {
     if (!this.manualCheckFields()) {
       return;
     }
-    this.uploadImage();
+    this.uploadImageMethod();
   }
 
 
-  uploadImage() {
+  uploadImageMethod() {
+    this.imageCount = this.imagePaths.length;
+    for (var i = 0; i < this.imagePaths.length; i++) {
+      this.zone.run(() => {
+        this.uploadImage(this.imagePaths[i]);
+      })
+    }
+  }
+
+
+  uploadImage(image) {
     var self = this;
     let storageRef = firebase.storage().ref();
     var metadata = {
       contentType: 'image/jpeg/png'
     };
-    const filename = Math.floor(Date.now() / 1000);
-    for (var i = 0; i < this.imagePaths.length; i++) {
-      debugger;
-      storageRef.child('productImages/' + filename).put(self.imagePaths[i], metadata)
-        .on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-          (snapshot) => {
-            snapshot.ref.getDownloadURL()
-              .then((downloadURL) => {
-                this.imageArr.push(downloadURL);
-                debugger;
-                if (i == this.imagePaths.length) {
-                  debugger
-                  self.updateData();
-                }
-              })
-              .catch((e) => {
-                alert(e.message);
-                self.loading = false;
-              })
-          });
-    }
+    const filename = Math.floor(Date.now() / 1000) + image.name;
+    storageRef.child('productImages/' + filename).put(image, metadata)
+      .on(firebase.storage.TaskEvent.STATE_CHANGED,
+        (snapshot) => {
+          snapshot.ref.getDownloadURL()
+            .then((downloadURL) => {
+              this.imageArr.push(downloadURL);
+              this.imageCount--;
+              if (this.imageCount == 0) {
+                this.updateData();
+              }
+            })
+            .catch((e) => {
+              console.log(e.message);
+              self.loading = false;
+            })
+        });
   }
 
 
   updateData() {
     var postData = {
       productName: this.productName,
+      productCategory: this.productCat,
+      availableQty: this.availableQty,
+      brand: this.brand,
+      deliveryTime: this.deliveryTime,
+      productDes: this.productDes,
+      productSpecs: this.productSpecs,
+      originalPrice: this.originalPrice,
+      discountedPrice: this.discountedPrice,
+      deliveryFee: this.deliveryFee,
+      warrantyPolicy: this.warrantyPolicy,
       productUrls: this.imageArr,
       uid: localStorage.getItem('uid'),
       timestamp: Number(new Date())
     }
-    var postKey = firebase.database().ref().child('properties').push().key;
+    var postKey = firebase.database().ref().child('products').push().key;
     var updates = {};
-    debugger;
     updates['/products/' + postKey] = postData;
     firebase.database().ref().update(updates)
       .then(() => {
+        this.loading = false;
         alert('Product added successfully!');
+        this.router.navigate(['/seller-home']);
       })
       .catch((e) => {
+        this.loading = false;
         alert(e.message);
       })
   }
