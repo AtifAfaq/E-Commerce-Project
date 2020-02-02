@@ -73,16 +73,21 @@ export class AddProductComponent implements OnInit {
     })
   }
 
-
+  onEnter() {
+    this.addFeature();
+  }
 
   addFeature() {
+    debugger;
     if (this.productSpec != '') {
       this.productSpecs.push(this.productSpec);
       this.productSpec = '';
     }
   }
 
-
+  goHome() {
+    this.router.navigate(["/seller-home"])
+  }
   removeSpec(index) {
     this.productSpecs.splice(index, 1);
   }
@@ -120,6 +125,7 @@ export class AddProductComponent implements OnInit {
 
   uploadImageMethod() {
     this.imageCount = this.imagePaths.length;
+    debugger;
     for (var i = 0; i < this.imagePaths.length; i++) {
       this.zone.run(() => {
         this.uploadImage(this.imagePaths[i]);
@@ -141,6 +147,7 @@ export class AddProductComponent implements OnInit {
           snapshot.ref.getDownloadURL()
             .then((downloadURL) => {
               this.imageArr.push(downloadURL);
+              debugger;
               this.imageCount--;
               if (this.imageCount == 0) {
                 this.updateData();

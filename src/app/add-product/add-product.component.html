@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label class=" control-label">Available Quantity</label>
                     <input [(ngModel)]="availableQty" placeholder="Availabe Quantity" formControlName="availableQty"
-                        class="form-control input-md w-100" type="text">
+                        class="form-control input-md w-100" type="number">
                 </div>
                 <p class="errorMsg"
                     *ngIf="onAddProduct.get('availableQty').touched && onAddProduct.get('availableQty').hasError('required')">
@@ -94,7 +94,7 @@
                         </li>
                     </ul>
                     <div class="input-group">
-                        <input (keyup.enter)="addFeature()" type="text" [(ngModel)]="productSpec"
+                        <input (keyup.enter)="onEnter()" type="text" [(ngModel)]="productSpec"
                             [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Features">
                         <div class="input-group-prepend">
                             <span (click)="addFeature()" class="input-group-text">
@@ -106,8 +106,10 @@
 
                 <div class="form-group">
                     <label class=" control-label">Original Price</label>
-                    <input placeholder="Original Price" [(ngModel)]="originalPrice" formControlName="originalPrice"
-                        class="form-control input-md" type="text">
+                    <div class="input-icon">
+                        <input name="currency" type="number" placeholder="Original Price" [(ngModel)]="originalPrice"
+                            formControlName="originalPrice" class="form-control input-md"> <i>$</i>
+                    </div>
                 </div>
                 <p class="errorMsg"
                     *ngIf="onAddProduct.get('originalPrice').touched && onAddProduct.get('originalPrice').hasError('required')">
@@ -115,8 +117,10 @@
 
                 <div class="form-group">
                     <label class=" control-label">Discounted Price</label>
-                    <input placeholder="Discounted Price" [(ngModel)]="discountedPrice"
-                        formControlName="discountedPrice" class="form-control input-md" type="text">
+                    <div class="input-icon">
+                        <input type="number" placeholder="Discounted Price" [(ngModel)]="discountedPrice"
+                            formControlName="discountedPrice" class="form-control input-md"><i>$</i>
+                    </div>
                 </div>
                 <p class="errorMsg"
                     *ngIf="onAddProduct.get('discountedPrice').touched && onAddProduct.get('discountedPrice').hasError('required')">
@@ -124,8 +128,11 @@
 
                 <div class="form-group">
                     <label class=" control-label w-100">Delivery Fee</label>
-                    <input placeholder="Delivery Fee" [(ngModel)]="deliveryFee" formControlName="deliveryFee"
-                        class="form-control input-md w-100" type="text">
+                    <div class="input-icon">
+                        <input placeholder="Delivery Fee" [(ngModel)]="deliveryFee" formControlName="deliveryFee"
+                            class="form-control input-md w-100" type="number">
+                        <i>$</i>
+                    </div>
                 </div>
                 <p class="errorMsg"
                     *ngIf="onAddProduct.get('deliveryFee').touched && onAddProduct.get('deliveryFee').hasError('required')">
@@ -148,7 +155,7 @@
             </div>
 
             <div class="form-group w-100 text-right">
-                <button routerLink="/seller-home" class="btn btn-dark mr-3">Cancel</button>
+                <button (click)="goHome()" class="btn btn-dark mr-3">Cancel</button>
                 <button [disabled]="!onAddProduct.valid" (click)="addProduct()" class="btn btn-primary">Add
                     Product</button>
             </div>
