@@ -81,7 +81,8 @@
                     <p class="textSet gray mt-0 p-0 "> Change of mind is not applicable</p>
                 </div>
                 <div><i class="fas fa-cogs"></i>
-                    <p class="warranty mb-0">Warranty not available</p>
+                    <p *ngIf="product.warrantypolicy=='notAvailable'" class="warranty mb-0">Warranty not available</p>
+                    <p *ngIf="product.warrantypolicy=='available'" class="warranty mb-0">Warranty available</p>
                 </div>
 
             </div>

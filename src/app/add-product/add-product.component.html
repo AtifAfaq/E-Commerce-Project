@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="mainContent">
-    <form [formGroup]="onAddProduct" class="styling form-horizontal">
+    <div [formGroup]="onAddProduct" class="styling form-horizontal">
 
         <h3 class="text-center mb-5">Add New Product</h3>
 
@@ -94,7 +94,7 @@
                         </li>
                     </ul>
                     <div class="input-group">
-                        <input (keyup.enter)="onEnter()" type="text" [(ngModel)]="productSpec"
+                        <input (keyup.enter)="addFeature()" type="text" [(ngModel)]="productSpec"
                             [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Features">
                         <div class="input-group-prepend">
                             <span (click)="addFeature()" class="input-group-text">
@@ -105,10 +105,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class=" control-label">Original Price</label>
+                    <label class=" control-label">Original Price ($)</label>
                     <div class="input-icon">
                         <input name="currency" type="number" placeholder="Original Price" [(ngModel)]="originalPrice"
-                            formControlName="originalPrice" class="form-control input-md"> <i>$</i>
+                            formControlName="originalPrice" class="form-control input-md">
                     </div>
                 </div>
                 <p class="errorMsg"
@@ -116,10 +116,10 @@
                     Original Price is required</p>
 
                 <div class="form-group">
-                    <label class=" control-label">Discounted Price</label>
+                    <label class=" control-label">Discounted Price ($)</label>
                     <div class="input-icon">
                         <input type="number" placeholder="Discounted Price" [(ngModel)]="discountedPrice"
-                            formControlName="discountedPrice" class="form-control input-md"><i>$</i>
+                            formControlName="discountedPrice" class="form-control input-md">
                     </div>
                 </div>
                 <p class="errorMsg"
@@ -127,11 +127,10 @@
                     Discounted Price is required</p>
 
                 <div class="form-group">
-                    <label class=" control-label w-100">Delivery Fee</label>
+                    <label class=" control-label w-100">Delivery Fee ($)</label>
                     <div class="input-icon">
                         <input placeholder="Delivery Fee" [(ngModel)]="deliveryFee" formControlName="deliveryFee"
                             class="form-control input-md w-100" type="number">
-                        <i>$</i>
                     </div>
                 </div>
                 <p class="errorMsg"
@@ -155,11 +154,11 @@
             </div>
 
             <div class="form-group w-100 text-right">
-                <button (click)="goHome()" class="btn btn-dark mr-3">Cancel</button>
+                <button routerLink="/seller-home" class="btn btn-dark mr-3">Cancel</button>
                 <button [disabled]="!onAddProduct.valid" (click)="addProduct()" class="btn btn-primary">Add
                     Product</button>
             </div>
         </div>
 
-    </form>
+</div>
 </div>
