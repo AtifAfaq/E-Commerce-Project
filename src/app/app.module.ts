@@ -15,7 +15,9 @@ import { SellerHomeComponent } from './seller-home/seller-home.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ProdDetailSellerComponent } from './prod-detail-seller/prod-detail-seller.component';
 import * as firebase from 'firebase';
-import { ForgetPasswordComponent } from './forget-password/forget-password.component'; 
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { DataCollectorService } from './data-collector.service';
+
 
 var firebaseConfig = {
   apiKey: "AIzaSyDT97phJ84IgJ0Ye_GrZJChWRs44WJzni0",
@@ -52,7 +54,9 @@ firebase.initializeApp(firebaseConfig);
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    DataCollectorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

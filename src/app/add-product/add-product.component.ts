@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -26,7 +27,6 @@ export class AddProductComponent implements OnInit {
   imagePaths: any = [];
   imageUrls: any = [];
   message: any = '';
-  user: any = {};
   loading: boolean = false;
   imageArr: any = [];
   imageCount: any;
@@ -36,7 +36,9 @@ export class AddProductComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public zone: NgZone,
-    public router: Router) { }
+    public router: Router) {
+
+  }
 
   ngOnInit() {
     this.onAddProduct = this.fb.group({

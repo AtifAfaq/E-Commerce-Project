@@ -1,5 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DataCollectorService } from '../data-collector.service';
 import * as firebase from 'firebase';
 
 @Component({
@@ -15,14 +16,15 @@ export class ProdDetailSellerComponent implements OnInit {
 
   constructor(
     public router: ActivatedRoute,
+    public service: DataCollectorService,
     public zone: NgZone
   ) {
-    this.productKey = router.snapshot.params.key;
-
+    this.product = service.product;
+    // this.productKey = router.snapshot.params.key;
   }
 
   ngOnInit() {
-    this.getProduct();
+    // this.getProduct();
   }
 
 
@@ -31,6 +33,7 @@ export class ProdDetailSellerComponent implements OnInit {
     firebase.database().ref().child('products/' + self.productKey)
       .once('value', (snapshot) => {
         self.product = snapshot.val();
+        // self.product.discount = ((Number(self.product.originalPrice) - Number(self.product.discountedPrice)) / Number(self.product.originalPrice)) * 100;
         console.log(self.product);
       })
   }

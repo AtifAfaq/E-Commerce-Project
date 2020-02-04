@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'productDetails', component: ProductDetailsComponent },
   { path: 'seller-home', component: SellerHomeComponent },
   { path: 'add-product', component: AddProductComponent },
-  { path: 'prod-detail-seller/:key', component: ProdDetailSellerComponent },
+  { path: 'prod-detail-seller', component: ProdDetailSellerComponent },
   { path: 'forget-Password', component: ForgetPasswordComponent },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataCollectorService } from '../data-collector.service';
 import * as firebase from 'firebase';
 
 
@@ -13,6 +14,7 @@ export class SellerHomeComponent implements OnInit {
   myProducts: Array<any> = [];
 
   constructor(
+    public service: DataCollectorService,
     public router: Router
   ) {
     var userType = localStorage.getItem('userType');
@@ -20,6 +22,7 @@ export class SellerHomeComponent implements OnInit {
       router.navigate(['/home']);
     }
   }
+
 
   ngOnInit() {
     this.getMyProducts();
@@ -44,13 +47,17 @@ export class SellerHomeComponent implements OnInit {
 
 
   getDiscount(product) {
-    return ((Number(product.originalPrice) - Number(product.discountedPrice)) / Number(product.originalPrice)) * 100;
+    var disc = ((Number(product.originalPrice) - Number(product.discountedPrice)) / Number(product.originalPrice)) * 100;
+    product.discount = disc;
+    return disc;
   }
 
 
   productDetail(p) {
-    this.router.navigate(['/prod-detail-seller/' + p.key]);
-
+    this.service.product = p;
+    // this.service.isEdit = true
+    this.router.navigate(['/prod-detail-seller']);
+    // this.router.navigate(['/prod-detail-seller/' + p.key]);
   }
 
 
