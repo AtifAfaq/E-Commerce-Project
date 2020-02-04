@@ -12,11 +12,13 @@ export class ProdDetailSellerComponent implements OnInit {
   productKey: string = '';
   product: any = {};
 
+
   constructor(
     public router: ActivatedRoute,
     public zone: NgZone
   ) {
     this.productKey = router.snapshot.params.key;
+
   }
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class ProdDetailSellerComponent implements OnInit {
         console.log(self.product);
       })
   }
+
 
 
 }

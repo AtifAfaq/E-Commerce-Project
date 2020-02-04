@@ -50,6 +50,7 @@ export class SellerHomeComponent implements OnInit {
 
   productDetail(p) {
     this.router.navigate(['/prod-detail-seller/' + p.key]);
+
   }
 
 

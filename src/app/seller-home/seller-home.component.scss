@@ -4,14 +4,18 @@
       height: 180px;
     }
     .prodTitle {
-      // white-space: nowrap;
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
 
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      // display: -webkit-box;
+      // -webkit-line-clamp: 2;
+      // -webkit-box-orient: vertical;
     }
+    // .rating{
+    //   position: absolute;
+    // }
+  
   }
 }
 
