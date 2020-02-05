@@ -40,7 +40,8 @@
                 </p>
                 <p>Brand: <span class="primary"> {{product.brand}}</span></p>
                 <h4 class="prodPrice primary mt-0">${{product.discountedPrice}}</h4>
-                <p class="originalPrice gray mb-1"><del>${{product.originalPrice}}</del> {{product.discount}}%</p>
+                <p class="originalPrice gray mb-1"><del>${{product.originalPrice}}</del>
+                    {{product.discount | number : '1.2-2'}}%</p>
                 <p class="rating">
                     <i class="fa fa-star text-warning"></i>
                     <i class="fa fa-star text-warning"></i>

@@ -2,7 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
-
+import { DataCollectorService } from '../data-collector.service';
 
 @Component({
   selector: 'app-add-product',
@@ -12,6 +12,8 @@ import * as firebase from 'firebase';
 export class AddProductComponent implements OnInit {
 
   onAddProduct: FormGroup;
+  isEdit = false;
+  product = {};
   productName: string = '';
   productCat: string = 'Please select your product category';
   availableQty: string = '';
@@ -36,11 +38,33 @@ export class AddProductComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public zone: NgZone,
-    public router: Router) {
+    public router: Router,
+    public service: DataCollectorService) {
 
   }
 
+  Edit() {
+    if (this.service.isEdit == true) {
+      debugger;
+      this.productName = this.service.product.productName;
+      this.productCat = this.service.product.productCategory;
+      this.availableQty = this.service.product.availableQty;
+      this.brand = this.service.product.brand;
+      this.deliveryTime = this.service.product.deliveryTime;
+      this.productDes = this.service.product.productDes;
+      this.productSpec = this.service.product.productSpec;
+      this.productSpecs = this.service.product.productSpecs;
+      this.originalPrice = this.service.product.originalPrice;
+      this.discountedPrice = this.service.product.discountedPrice;
+      this.deliveryFee = this.service.product.deliveryFee;
+      this.warrantyPolicy = this.service.product.warrantyPolicy;
+      this.imageUrls = this.service.product.productUrls;
+      console.log(this.service.isEdit)
+    }
+  }
+
   ngOnInit() {
+    this.Edit();
     this.onAddProduct = this.fb.group({
       productName: ['', Validators.compose([
         Validators.required

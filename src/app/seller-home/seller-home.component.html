@@ -6,20 +6,22 @@
   </h4>
   <div class="row">
 
-    <div *ngFor="let p of myProducts" (click)="productDetail(p)" class="col-md-3">
+    <div *ngFor="let p of myProducts" class="col-md-3">
       <div class="productCard">
-        <img [src]="p.productUrls[0]">
-        <p class="prodTitle mb-2">{{p.productName}}</p>
-        <h4 class="prodPrice primary mt-0">${{p.discountedPrice}}</h4>
-        <p class="originalPrice gray mb-1"><del>${{p.originalPrice}}</del> {{getDiscount(p) | number : '1.2-2'}}%</p>
-        <p class="rating">
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star gray"></i> (11)
-        </p>
-        <button class="btn btn-primary">Edit</button>
+        <div (click)="productDetail(p)">
+          <img [src]="p.productUrls[0]">
+          <p class="prodTitle mb-2">{{p.productName}}</p>
+          <h4 class="prodPrice primary mt-0">${{p.discountedPrice}}</h4>
+          <p class="originalPrice gray mb-1"><del>${{p.originalPrice}}</del> {{getDiscount(p) | number : '1.2-2'}}%</p>
+          <p class="rating">
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star gray"></i> (11)
+          </p>
+        </div>
+        <button (click)="Edit()" class="btn btn-primary">Edit</button>
       </div>
     </div>
 

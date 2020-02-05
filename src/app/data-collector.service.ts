@@ -6,6 +6,9 @@ import { Injectable } from '@angular/core';
 export class DataCollectorService {
 
   product: any = {};
+  isEdit: boolean;
+  constructor() {
 
-  constructor() { }
+  }
+
 }
