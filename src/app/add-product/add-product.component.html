@@ -3,7 +3,7 @@
 <div class="mainContent">
     <div [formGroup]="onAddProduct" class="styling form-horizontal">
         <h3 *ngIf="isEdit" class="text-center mb-5">Edit Product</h3>
-        <h3 *ngIf="isEdit" class="text-center mb-5">Add New Product</h3>
+        <h3 *ngIf="!isEdit" class="text-center mb-5">Add New Product</h3>
 
         <div class="row">
             <div class="col-md-6">
@@ -23,7 +23,7 @@
 
                 <div class="form-group">
                     <label class="control-label">Product Name</label>
-                    <input [(ngModel)]="productName" placeholder="Product Name" formControlName="productName"
+                    <input [(ngModel)]="product.productName" placeholder="Product Name" formControlName="productName"
                         class="form-control input-md w-100" type="text">
                 </div>
                 <p class="errorMsg"
@@ -33,7 +33,8 @@
 
                 <div class="form-group">
                     <label class=" control-label w-100">Product Category</label>
-                    <select formControlName="productCat" [(ngModel)]="productCat" class="form-control w-100">
+                    <select formControlName="productCat" [(ngModel)]="product.productCategory"
+                        class="form-control w-100">
                         <option [value]="cat" *ngFor="let cat of catergories">{{cat}}</option>
                         <option value="Please select your product category">Please select your product category</option>
                     </select>
@@ -44,8 +45,8 @@
 
                 <div class="form-group">
                     <label class=" control-label">Available Quantity</label>
-                    <input [(ngModel)]="availableQty" placeholder="Available Quantity" formControlName="availableQty"
-                        class="form-control input-md w-100" type="number">
+                    <input [(ngModel)]="product.availableQty" placeholder="Available Quantity"
+                        formControlName="availableQty" class="form-control input-md w-100" type="number">
                 </div>
                 <p class="errorMsg"
                     *ngIf="onAddProduct.get('availableQty').touched && onAddProduct.get('availableQty').hasError('required')">
@@ -53,7 +54,7 @@
 
                 <div class="form-group">
                     <label class=" control-label w-100">Brand</label>
-                    <input [(ngModel)]="brand" placeholder="Brand Name" formControlName="brand"
+                    <input [(ngModel)]="product.brand" placeholder="Brand Name" formControlName="brand"
                         class="form-control input-md w-100" type="text">
                 </div>
                 <p class="errorMsg"
@@ -62,7 +63,7 @@
 
                 <div class="form-group">
                     <label class=" control-label w-100">Delivery Time</label>
-                    <select formControlName="deliveryTime" [(ngModel)]="deliveryTime"
+                    <select formControlName="deliveryTime" [(ngModel)]="product.deliveryTime"
                         class="required form-control w-100">
                         <option value="2-5 days">2-5 days</option>
                         <option value="7 days">7 days</option>
@@ -78,7 +79,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class=" control-label">Product Description</label>
-                    <textarea rows="6" [(ngModel)]="productDes" formControlName="productDes"
+                    <textarea rows="6" [(ngModel)]="product.productDes" formControlName="productDes"
                         class="form-control w-100"></textarea>
                 </div>
                 <p class="errorMsg"
@@ -89,7 +90,7 @@
                 <div class="form-group">
                     <label class=" control-label">Product Specifications / Features</label>
                     <ul>
-                        <li *ngFor="let spec of productSpecs; index as i">{{spec}}
+                        <li *ngFor="let spec of product.productSpecs; index as i">{{spec}}
                             <i (click)="removeSpec(i)" class="fa fa-close text-danger float-right mr-3 pointer"></i>
                         </li>
                     </ul>
@@ -107,8 +108,9 @@
                 <div class="form-group">
                     <label class=" control-label">Original Price ($)</label>
                     <div class="input-icon">
-                        <input name="currency" type="number" placeholder="Original Price" [(ngModel)]="originalPrice"
-                            formControlName="originalPrice" class="form-control input-md">
+                        <input name="currency" type="number" placeholder="Original Price"
+                            [(ngModel)]="product.originalPrice" formControlName="originalPrice"
+                            class="form-control input-md">
                     </div>
                 </div>
                 <p class="errorMsg"
@@ -118,7 +120,7 @@
                 <div class="form-group">
                     <label class=" control-label">Discounted Price ($)</label>
                     <div class="input-icon">
-                        <input type="number" placeholder="Discounted Price" [(ngModel)]="discountedPrice"
+                        <input type="number" placeholder="Discounted Price" [(ngModel)]="product.discountedPrice"
                             formControlName="discountedPrice" class="form-control input-md">
                     </div>
                 </div>
@@ -129,8 +131,8 @@
                 <div class="form-group">
                     <label class=" control-label w-100">Delivery Fee ($)</label>
                     <div class="input-icon">
-                        <input placeholder="Delivery Fee" [(ngModel)]="deliveryFee" formControlName="deliveryFee"
-                            class="form-control input-md w-100" type="number">
+                        <input placeholder="Delivery Fee" [(ngModel)]="product.deliveryFee"
+                            formControlName="deliveryFee" class="form-control input-md w-100" type="number">
                     </div>
                 </div>
                 <p class="errorMsg"
@@ -141,12 +143,12 @@
                     <label class=" control-label w-100">Warranty Policy</label>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" class="custom-control-input" id="customRadio" name="warrantyPolicy"
-                            value="available" formControlName="warrantyPolicy" [(ngModel)]="warrantyPolicy">
+                            value="available" formControlName="warrantyPolicy" [(ngModel)]="product.warrantyPolicy">
                         <label class="custom-control-label" for="customRadio">Warranty Available</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" class="custom-control-input" id="customRadio2" name="warrantyPolicy"
-                            value="notAvailable" formControlName="warrantyPolicy" [(ngModel)]="warrantyPolicy">
+                            value="notAvailable" formControlName="warrantyPolicy" [(ngModel)]="product.warrantyPolicy">
                         <label class="custom-control-label" for="customRadio2">Warranty Not Available</label>
                     </div>
                 </div>
@@ -155,8 +157,10 @@
 
             <div class="form-group w-100 text-right">
                 <button routerLink="/seller-home" class="btn btn-dark mr-3">Cancel</button>
-                <button [disabled]="!onAddProduct.valid" (click)="addProduct()" class="btn btn-primary">Add
-                    Product</button>
+                <button *ngIf="!isEdit" [disabled]="!onAddProduct.valid" (click)="addProduct()"
+                    class="btn btn-primary">Add Product</button>
+                <button *ngIf="isEdit" [disabled]="!onAddProduct.valid" (click)="updateProduct()"
+                    class="btn btn-primary">Update Product</button>
             </div>
         </div>
 

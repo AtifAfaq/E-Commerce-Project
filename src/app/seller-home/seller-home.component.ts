@@ -44,12 +44,20 @@ export class SellerHomeComponent implements OnInit {
         console.log(self.myProducts);
       })
   }
-  Edit() {
-    this.service.isEdit = true;
-    this.router.navigate(["/add-product"])
 
 
+  addProduct() {
+    this.service.isEdit = false;
+    this.router.navigate(['/add-product']);
   }
+
+
+  Edit(p) {
+    this.service.isEdit = true;
+    this.service.product = p;
+    this.router.navigate(["/add-product"]);
+  }
+
 
   getDiscount(product) {
     var disc = ((Number(product.originalPrice) - Number(product.discountedPrice)) / Number(product.originalPrice)) * 100;

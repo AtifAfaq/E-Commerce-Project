@@ -13,24 +13,27 @@ export class AddProductComponent implements OnInit {
 
   onAddProduct: FormGroup;
   isEdit = false;
-  product = {};
-  productName: string = '';
-  productCat: string = 'Please select your product category';
-  availableQty: string = '';
-  brand: string = '';
-  deliveryTime: string = '2-5 days';
-  productDes: string = '';
+
+  product: any = {
+    productName: '',
+    productCategory: 'Please select your product category',
+    availableQty: '',
+    brand: '',
+    deliveryFee: '',
+    productDes: '',
+    productSpecs: [],
+    originalPrice: '',
+    discountedPrice: '',
+    deliveryTime: '2-5 days',
+    warrantyPolicy: '',
+    productUrls: []
+  };
+
   productSpec: string = '';
-  productSpecs: any = [];
-  originalPrice: string = '';
-  discountedPrice: string = '';
-  deliveryFee: string = '';
-  warrantyPolicy: string = '';
   imagePaths: any = [];
   imageUrls: any = [];
   message: any = '';
   loading: boolean = false;
-  imageArr: any = [];
   imageCount: any;
 
   catergories: any = ["Pets", "Rentals", "Cloths", "Shoes", "Antiques", "Appliances", "Auto Parts", "Baby", "Cables", "Milk Products", "Balloons", "Mobile Phones", "Child Toys", "Jackets", "Vehicles", "Furniture"];
@@ -40,31 +43,20 @@ export class AddProductComponent implements OnInit {
     public zone: NgZone,
     public router: Router,
     public service: DataCollectorService) {
-
+    this.populateData();
   }
 
-  Edit() {
-    if (this.service.isEdit == true) {
-      debugger;
-      this.productName = this.service.product.productName;
-      this.productCat = this.service.product.productCategory;
-      this.availableQty = this.service.product.availableQty;
-      this.brand = this.service.product.brand;
-      this.deliveryTime = this.service.product.deliveryTime;
-      this.productDes = this.service.product.productDes;
-      this.productSpec = this.service.product.productSpec;
-      this.productSpecs = this.service.product.productSpecs;
-      this.originalPrice = this.service.product.originalPrice;
-      this.discountedPrice = this.service.product.discountedPrice;
-      this.deliveryFee = this.service.product.deliveryFee;
-      this.warrantyPolicy = this.service.product.warrantyPolicy;
+
+  populateData() {
+    this.isEdit = this.service.isEdit;
+    if (this.isEdit == true) {
+      this.product = this.service.product;
       this.imageUrls = this.service.product.productUrls;
-      console.log(this.service.isEdit)
     }
   }
 
+
   ngOnInit() {
-    this.Edit();
     this.onAddProduct = this.fb.group({
       productName: ['', Validators.compose([
         Validators.required
@@ -102,14 +94,14 @@ export class AddProductComponent implements OnInit {
 
   addFeature() {
     if (this.productSpec != '') {
-      this.productSpecs.push(this.productSpec);
+      this.product.productSpecs.push(this.productSpec);
       this.productSpec = '';
     }
   }
 
 
   removeSpec(index) {
-    this.productSpecs.splice(index, 1);
+    this.product.productSpecs.splice(index, 1);
   }
 
   removeImg(index) {
@@ -165,10 +157,10 @@ export class AddProductComponent implements OnInit {
         (snapshot) => {
           snapshot.ref.getDownloadURL()
             .then((downloadURL) => {
-              this.imageArr.push(downloadURL);
-              this.imageCount--;
-              if (this.imageCount == 0) {
-                this.updateData();
+              self.product.productUrls.push(downloadURL);
+              self.imageCount--;
+              if (self.imageCount == 0) {
+                self.updateData();
               }
             })
             .catch((e) => {
@@ -180,25 +172,12 @@ export class AddProductComponent implements OnInit {
 
 
   updateData() {
-    var postData = {
-      productName: this.productName,
-      productCategory: this.productCat,
-      availableQty: this.availableQty,
-      brand: this.brand,
-      deliveryTime: this.deliveryTime,
-      productDes: this.productDes,
-      productSpecs: this.productSpecs,
-      originalPrice: this.originalPrice,
-      discountedPrice: this.discountedPrice,
-      deliveryFee: this.deliveryFee,
-      warrantyPolicy: this.warrantyPolicy,
-      productUrls: this.imageArr,
-      uid: localStorage.getItem('uid'),
-      timestamp: Number(new Date())
-    }
+    this.product.uid = localStorage.getItem('uid');
+    this.product.timestamp = Number(new Date());
+
     var postKey = firebase.database().ref().child('products').push().key;
     var updates = {};
-    updates['/products/' + postKey] = postData;
+    updates['/products/' + postKey] = this.product;
     firebase.database().ref().update(updates)
       .then(() => {
         this.loading = false;
@@ -212,12 +191,27 @@ export class AddProductComponent implements OnInit {
   }
 
 
+
+  updateProduct() {
+    var key = this.product.key;
+    delete this.product.key;
+    delete this.product.discount;
+    var updates = {};
+    updates['/products/' + key] = this.product;
+    firebase.database().ref().update(updates)
+      .then(() => {
+        alert('Product updated successfully!');
+        this.router.navigate(['/seller-home']);
+      })
+  }
+
+
   manualCheckFields() {
-    if (this.productCat == 'Please select your product category') {
+    if (this.product.productCat == 'Please select your product category') {
       alert('Please select your product category!');
       return false;
     }
-    else if ((this.productSpecs.length) < 3) {
+    else if ((this.product.productSpecs.length) < 3) {
       alert('Please add atleast 3 features!');
       return false;
     }
