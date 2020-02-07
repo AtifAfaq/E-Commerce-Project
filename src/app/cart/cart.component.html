@@ -1,69 +1,70 @@
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-hover">
-            <thead>
-                <tr class="row">
-                    <th class="col-md-4">Product</th>
-                    <th class="col-md-3">Quantity</th>
-                    <th class="col-md-2 text-center">Price</th>
-                    <th class="col-md-2 text-center">Total</th>
-                    <th> </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="row" *ngFor="let p of myArray">
-                    <td class="col-md-4">
-                        <div class="media">
-                            <a class="thumbnail pull-left"> <img class="media-object" [src]="p.productUrls[0]"
-                                    style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body pl-3">
-                                <h4 class="media-heading"><a>{{p.productName}}</a></h4>
-                                <h5 class="media-heading"> by <a>{{p.brand}}</a></h5>
-                                <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+<app-navbar></app-navbar>
+
+<div class="mainContent">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="row">
+                        <th class="col-md-4">Product</th>
+                        <th class="col-md-3">Quantity</th>
+                        <th class="col-md-2 text-center">Price</th>
+                        <th class="col-md-2 text-center">Total</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="row" *ngFor="let p of myArray">
+                        <td class="col-md-4">
+                            <div class="media">
+                                <a class="thumbnail pull-left"> <img class="media-object" [src]="p.productUrls[0]"
+                                        style="width: 72px; height: 72px;"> </a>
+                                <div class="media-body pl-3">
+                                    <h4 class="media-heading"><a>{{p.productName}}</a></h4>
+                                    <h5 class="media-heading"> by <a>{{p.brand}}</a></h5>
+                                    <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td class="col-md-3" style="text-align: center">
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <button (click)=decreaseValue(p) class="btn btn-primary" type="button">
-                                    <i class="fa fa-minus"></i>
-                                </button>
+                        </td>
+                        <td class="col-md-3" style="text-align: center">
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <button (click)=decreaseValue(p) class="btn btn-primary" type="button">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <input [(ngModel)]="p.productQty" type="number" readonly
+                                    class="form-control text-center" placeholder="0">
+                                <div class="input-group-append">
+                                    <button (click)=increaseValue(p) class="btn btn-primary" type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <input [(ngModel)]="p.productQty" type="number" readonly class="form-control text-center"
-                                placeholder="0">
-                            <div class="input-group-append">
-                                <button (click)=increaseValue(p) class="btn btn-primary" type="button">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="col-md-2 text-center"><strong>${{p.discountedPrice}}</strong></td>
-                    <td class=" col-md-2 text-center"><strong>${{ GrandTotal(p)}}</strong></td>
-                    <td class="col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
-                </tr>
+                        </td>
+                        <td class="col-md-2 text-center"><strong>${{p.discountedPrice}}</strong></td>
+                        <td class=" col-md-2 text-center"><strong>${{ GrandTotal(p)}}</strong></td>
+                        <td class="col-md-1">
+                            <button type="button" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span> Remove
+                            </button></td>
+                    </tr>
 
+                    <h5>Subtotal</h5>
+                    <h5><strong>$24.59</strong></h5>
+                    <h5>Estimated shipping</h5>
+                    <h5><strong>$6.94</strong></h5>
+                    <h3>Total</h3>
+                    <h3><strong>$31.53</strong></h3>
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                    </button>
+                    <button type="button" class="btn btn-success">
+                        Checkout <span class="glyphicon glyphicon-play"></span>
+                    </button>
 
-
-
-                <h5>Subtotal</h5>
-                <h5><strong>$24.59</strong></h5>
-                <h5>Estimated shipping</h5>
-                <h5><strong>$6.94</strong></h5>
-                <h3>Total</h3>
-                <h3><strong>$31.53</strong></h3>
-                <button type="button" class="btn btn-default">
-                    <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                </button>
-                <button type="button" class="btn btn-success">
-                    Checkout <span class="glyphicon glyphicon-play"></span>
-                </button>
-
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
