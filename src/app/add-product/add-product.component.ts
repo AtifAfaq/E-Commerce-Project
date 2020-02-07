@@ -136,6 +136,7 @@ export class AddProductComponent implements OnInit {
 
 
   uploadImageMethod() {
+    this.loading = true;
     this.imageCount = this.imagePaths.length;
     for (var i = 0; i < this.imagePaths.length; i++) {
       this.zone.run(() => {
@@ -193,6 +194,7 @@ export class AddProductComponent implements OnInit {
 
 
   updateProduct() {
+    this.loading = true;
     var key = this.product.key;
     delete this.product.key;
     delete this.product.discount;
@@ -200,6 +202,7 @@ export class AddProductComponent implements OnInit {
     updates['/products/' + key] = this.product;
     firebase.database().ref().update(updates)
       .then(() => {
+        this.loading = false;
         alert('Product updated successfully!');
         this.router.navigate(['/seller-home']);
       })

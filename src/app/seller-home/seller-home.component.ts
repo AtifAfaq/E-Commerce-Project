@@ -12,7 +12,9 @@ import * as firebase from 'firebase';
 export class SellerHomeComponent implements OnInit {
 
   myProducts: Array<any> = [];
-
+  p: any = '';
+  index: any = '';
+  loading: boolean = false;
   constructor(
     public service: DataCollectorService,
     public router: Router
@@ -31,6 +33,7 @@ export class SellerHomeComponent implements OnInit {
 
   getMyProducts() {
     var self = this;
+    this.loading = true;
     let uid = localStorage.getItem('uid');
     firebase.database().ref().child('products')
       .orderByChild('uid').equalTo(uid)
@@ -42,7 +45,9 @@ export class SellerHomeComponent implements OnInit {
           self.myProducts.push(temp);
         }
         console.log(self.myProducts);
+        this.loading = false;
       })
+
   }
 
 
@@ -72,6 +77,25 @@ export class SellerHomeComponent implements OnInit {
     // this.service.isEdit = true
     this.router.navigate(['/prod-detail-seller']);
     // this.router.navigate(['/prod-detail-seller/' + p.key]);
+  }
+  openConfirm(p, index) {
+    this.p = p;
+    debugger;
+    this.index = index;
+  }
+
+
+  deleteProduct() {
+    var updates = {};
+    updates['products/' + this.p.key] = [] // null
+    firebase.database().ref().update(updates)
+      .then(() => {
+        this.myProducts.splice(this.index, 1);
+        alert("Product deleted successfully!");
+      })
+      .catch((e) => {
+        alert(e.message);
+      })
   }
 
 

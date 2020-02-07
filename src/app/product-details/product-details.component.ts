@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { DataCollectorService } from './../data-collector.service';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -8,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class ProductDetailsComponent implements OnInit {
 
   productQty: number = 1;
+  product: any = {}
 
-  constructor() { }
+  constructor(public service: DataCollectorService) {
+    this.product = this.service.product
+    debugger;
+  }
 
   ngOnInit() {
+
   }
 
 

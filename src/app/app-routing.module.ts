@@ -9,6 +9,7 @@ import { SellerHomeComponent } from './seller-home/seller-home.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ProdDetailSellerComponent } from './prod-detail-seller/prod-detail-seller.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,7 +21,7 @@ const routes: Routes = [
   { path: 'add-product', component: AddProductComponent },
   { path: 'prod-detail-seller', component: ProdDetailSellerComponent },
   { path: 'forget-Password', component: ForgetPasswordComponent },
-
+  { path: 'cart', component: CartComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

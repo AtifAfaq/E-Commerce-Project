@@ -90,39 +90,18 @@
                     <div class="detailSets">
                         <p class="mt-3"><b>Product details of Titan Karishma Silver Dial Analog Watch For Men</b> </p>
                         <hr />
-                        <ul class="detailList">
-                            <li>Brand: Titan</li>
-                            <li>Model:1777SM01</li>
-                            <li>Dial Color: Silver</li>
-                            <li>Case Shape: Contemporary</li>
-                            <li>Dial Glass Material: Mineral</li>
-                            <li>Band Color: Silver</li>
-                            <li>Band Material: Stainless Steel</li>
-                            <li>Watch Movement Type: Quartz</li>
-                            <li>Watch Display Type: Analog</li>
-                            <li>Case Material: Brass</li>
-                            <li>Case Diameter: 45.85 millimeters</li>
-                            <li>Water Resistance Depth: 30 meters</li>
-                        </ul>
+                        <div class="detailList">
+                            <p>{{product.productDes}}</p>
+
+                        </div>
                         <hr />
                         <p class="headerBar mt-3"><b>Specifications of Titan Karishma Silver Dial Analog Watch For Men
                             </b></p>
                         <div class="mixedDetail">
-                            <div class="col-md-6">
-                                <p class="mb-0">Brand</p>
-                                <p class="mb-0">Titan</p>
-                                <p class="mb-0">Model</p>
-                                <p class="mb-0">1777SM01</p>
-                                <p class="mb-0">Dial Color</p>
-                                <p class="mb-0">Silver</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-0">SKU</p>
-                                <p class="mb-0">100526289</p>
-                                <p class="mb-0">Strap Material</p>
-                                <p class="mb-0">Stainless Steel</p>
-                                <p class="mb-0">Watch's water resistance</p>
-                            </div>
+                            <ul *ngFor="let item of product.productSpecs " class="col-md-6">
+                                <li>{{item }}</li>
+
+                            </ul>
                         </div>
                     </div>
                 </div>

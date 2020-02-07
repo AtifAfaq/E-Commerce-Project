@@ -8,15 +8,13 @@
                 <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
                     <!--Slides-->
                     <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="/assets/images/prod1.jpg">
+                        <div *ngFor="let item of product.productUrls; index as i" class="carousel-item"
+                            [class.active]="i==0">
+
+                            <img class=" d-block w-100" [src]="item">
+
                         </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="/assets/images/prod2.jpg">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="/assets/images/prod3.jpg">
-                        </div>
+
                     </div>
                     <!--/.Slides-->
                     <!--Controls-->
@@ -30,12 +28,10 @@
                     </a>
                     <!--/.Controls-->
                     <ol class="carousel-indicators text-center">
-                        <li data-target="#carousel-thumb" data-slide-to="0" class="active"> <img class="d-block w-100"
-                                src="/assets/images/prod1.jpg" class="img-fluid"></li>
-                        <li data-target="#carousel-thumb" data-slide-to="1"><img class="d-block w-100"
-                                src="/assets/images/prod2.jpg" class="img-fluid"></li>
-                        <li data-target="#carousel-thumb" data-slide-to="2"><img class="d-block w-100"
-                                src="/assets/images/prod3.jpg" class="img-fluid"></li>
+                        <li *ngFor="let item of product.productUrls; index as i " data-target="#carousel-thumb"
+                            [attr.data-slide-to]="i" [class.active]="i==0"> <img class="d-block w-100" [src]="item"
+                                class="img-fluid"></li>
+
                     </ol>
                 </div>
             </div>
@@ -43,16 +39,15 @@
 
         <div class="col-md-4">
             <div class="productDetail bg-white p-3">
-                <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                    consectetur.
+                <p class="prodTitle mb-2">{{product.productName}}
                     <span class="wishList">
                         <i class="far fa-heart gray mx-2"></i>
                         <i class="fa fa-share-alt gray mx-2"></i>
                     </span>
                 </p>
-                <p>Brand: <span class="primary"> Samsung Official</span></p>
-                <h4 class="prodPrice primary mt-0">$89.00</h4>
-                <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
+                <p>Brand: <span class="primary"> {{product.brand}}</span></p>
+                <h4 class="prodPrice primary mt-0">{{product.discountedPrice}}</h4>
+                <p class="originalPrice gray mb-1"><del>{{product.originalPrice}}</del> 35%</p>
                 <p class="rating">
                     <i class="fa fa-star text-warning"></i>
                     <i class="fa fa-star text-warning"></i>
@@ -86,7 +81,7 @@
             <div class="deliveryDetails bg-white p-3">
                 <p class="bold"> Delivery Options <span class="wishList"><i class="fa fa-info-circle"></i></span></p>
                 <div> <i class="iconCenter fas fa-truck"></i>
-                    <p class="deliveryDetail">Home Delivery 2-5 days</p>
+                    <p class="deliveryDetail">Home Delivery {{product.deliveryTime}}</p>
                     <p class="rupees">$70</p>
                 </div>
                 <div><i class="far fa-money-bill-alt"></i>
@@ -121,41 +116,20 @@
                     <div class="detailSets">
                         <p class="mt-3"><b>Product details of Titan Karishma Silver Dial Analog Watch For Men</b> </p>
                         <hr />
-                        <ul class="detailList">
-                            <li>Brand: Titan</li>
-                            <li>Model:1777SM01</li>
-                            <li>Dial Color: Silver</li>
-                            <li>Case Shape: Contemporary</li>
-                            <li>Dial Glass Material: Mineral</li>
-                            <li>Band Color: Silver</li>
-                            <li>Band Material: Stainless Steel</li>
-                            <li>Watch Movement Type: Quartz</li>
-                            <li>Watch Display Type: Analog</li>
-                            <li>Case Material: Brass</li>
-                            <li>Case Diameter: 45.85 millimeters</li>
-                            <li>Water Resistance Depth: 30 meters</li>
-                        </ul>
+                        <div class="detailList">
+                            <p>{{product.productDes}}</p>
+
+                        </div>
                         <hr />
                         <p class="headerBar mt-3"><b>Specifications of Titan Karishma Silver Dial Analog Watch For Men
                             </b></p>
-                        <div class="mixedDetail">
-                            <div class="col-md-6">
-                                <p class="mb-0">Brand</p>
-                                <p class="mb-0">Titan</p>
-                                <p class="mb-0">Model</p>
-                                <p class="mb-0">1777SM01</p>
-                                <p class="mb-0">Dial Color</p>
-                                <p class="mb-0">Silver</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-0">SKU</p>
-                                <p class="mb-0">100526289</p>
-                                <p class="mb-0">Strap Material</p>
-                                <p class="mb-0">Stainless Steel</p>
-                                <p class="mb-0">Watch's water resistance</p>
-                                <p class="mb-0">30m</p>
-                            </div>
-                        </div>
+
+                        <ul *ngFor="let item of product.productSpecs " class="mixedDetail col-md-6">
+                            <li class="mb-0">{{item}}</li>
+
+                        </ul>
+
+
                     </div>
                 </div>
             </div>

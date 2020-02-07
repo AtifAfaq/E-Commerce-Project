@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
+import { DataCollectorService } from './../data-collector.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  allProducts = [];
+  productQty: number = 1;
+  loading: boolean = false;
   categories: any = [
     { name: "Pets", src: "/assets/images/pets.png" },
     { name: "Rentals", src: "/assets/images/rent.jpg" },
@@ -81,7 +85,8 @@ export class HomeComponent implements OnInit {
   ];
 
   constructor(
-    public router: Router
+    public router: Router,
+    public service: DataCollectorService
   ) {
     var userType = localStorage.getItem('userType');
     if (userType == 'seller') {
@@ -91,17 +96,51 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    setTimeout(() => {
-      localStorage.setItem('myArray', JSON.stringify(this.persons));
-    }, 5000);
-// debugger;
-    var myArray = localStorage.getItem('myArray');
-    this.persons = JSON.parse(myArray);
-  }
-  // debugger;
+    //   setTimeout(() => {
+    //     localStorage.setItem('myArray', JSON.stringify(this.persons));
+    //   }, 5000);
+    //   // debugger;
+    //   var myArray = localStorage.getItem('myArray');
+    //   this.persons = JSON.parse(myArray);
+    // }
+    // debugger;
 
-  updateName(mainInd, index) {
-    this.persons[mainInd].interests[index].name = 'Atif';
+    // updateName(mainInd, index) {
+    //   this.persons[mainInd].interests[index].name = 'Atif';
+    // }
+    this.getAllProducts();
   }
+  getAllProducts() {
+    var self = this;
+    this.loading = true;
+    let uid = localStorage.getItem('uid');
+    firebase.database().ref().child('products')
+      .once('value', (snapshot) => {
+        var data = snapshot.val();
+        for (var key in data) {
+          var temp = data[key];
+          temp.key = key;
+          self.allProducts.push(temp);
+        }
+        console.log(self.allProducts);
+        this.loading = false;
+      })
+
+  }
+
+  productDetails(p) {
+    this.service.product = p;
+    debugger;
+    this.router.navigate(['/productDetails']);
+  }
+
+
+  AddCart(p) {
+    p.productQty = 1
+    this.service.product = p;
+    debugger;
+    this.service.AddtoCart();
+  }
+
 
 }
