@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataCollectorService } from '../data-collector.service';
 import * as firebase from 'firebase';
+
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +15,7 @@ export class NavbarComponent implements OnInit {
   public userLoggedIn: any = '';
 
   constructor(
+    public service: DataCollectorService,
     public router: Router
   ) {
     this.userType = localStorage.getItem('userType') || 'buyer';
@@ -20,7 +23,9 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
+
 
   sellerMode() {
     if (localStorage.getItem('userLoggedIn') == 'true') {

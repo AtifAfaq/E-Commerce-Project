@@ -9,6 +9,7 @@ import { DataCollectorService } from './../data-collector.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  
   allProducts = [];
   productQty: number = 1;
   loading: boolean = false;
@@ -110,10 +111,11 @@ export class HomeComponent implements OnInit {
     // }
     this.getAllProducts();
   }
+
+
   getAllProducts() {
     var self = this;
     this.loading = true;
-    let uid = localStorage.getItem('uid');
     firebase.database().ref().child('products')
       .once('value', (snapshot) => {
         var data = snapshot.val();

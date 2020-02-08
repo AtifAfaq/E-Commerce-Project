@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase';
 import { DataCollectorService } from './../data-collector.service';
 
 @Component({
@@ -9,13 +8,14 @@ import { DataCollectorService } from './../data-collector.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+
   myArray: any = [];
   Currentproduct: any = {};
   activeIndex: any;
-  totalPrice: number;
-  productQty: number = 1;
-  addTotal: number;
-  totalBill: number;
+  subTotal: any = 0;
+  shipmentCharges: any = 0;
+  totalBill: any = 0;
+
   constructor(public router: Router,
     public service: DataCollectorService) { }
 
@@ -30,45 +30,63 @@ export class CartComponent implements OnInit {
     if (!this.myArray) {
       this.myArray = [];
     }
-
+    setTimeout(() => {
+      this.getTotalCost();
+    }, 1000);
   }
 
-  increaseValue(p) {
+
+  getTotalCost() {
+    this.subTotal = 0;
+    this.shipmentCharges = 0;
+    this.totalBill = 0;
+    this.myArray.forEach(product => {
+      this.subTotal = Number(this.subTotal) + Number(product.productQty) * Number(product.discountedPrice);
+      this.shipmentCharges = Number(this.shipmentCharges) + Number(product.deliveryFee);
+    });
+    this.totalBill = this.subTotal + this.shipmentCharges;
+    this.service.getCartCount();
+  }
+
+
+  increaseValue(p, index) {
     p.productQty++;
+    var retreivedProducts = localStorage.getItem("products");
+    this.myArray = JSON.parse(retreivedProducts);
+    this.myArray[index].productQty++;
+    localStorage.setItem("products", JSON.stringify(this.myArray));
+    this.getTotalCost();
   }
 
 
-  decreaseValue(p) {
+  decreaseValue(p, index) {
     if (p.productQty > 1) {
       p.productQty--;
+      var retreivedProducts = localStorage.getItem("products");
+      this.myArray = JSON.parse(retreivedProducts);
+      this.myArray[index].productQty--;
+      localStorage.setItem("products", JSON.stringify(this.myArray));
     }
+    this.getTotalCost();
   }
+
 
   GrandTotal(p) {
     var totalPrice = Number(p.productQty) * Number(p.discountedPrice);
     return totalPrice;
   }
 
-  AddTotal(p) {
-    var addTotal = Number(p.productQty) * Number(p.discountedPrice);
-    addTotal += this.addTotal;
-    debugger;
-  }
 
-  TotalBill() {
-    var totalBill = this.addTotal;
-    // + p.deliveryFee;
-  }
   confirmOnly(i) {
-    debugger;
     this.Currentproduct = this.myArray[i];
     this.activeIndex = i;
-
-    console.log(this.myArray);
   }
+
+
   deleteData(i) {
     this.myArray.splice(i, 1);
     localStorage.setItem("products", JSON.stringify(this.myArray));
+    this.getTotalCost();
     console.log(this.myArray);
   }
 

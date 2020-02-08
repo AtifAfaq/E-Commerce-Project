@@ -12,7 +12,6 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(public service: DataCollectorService) {
     this.product = this.service.product
-    debugger;
   }
 
   ngOnInit() {

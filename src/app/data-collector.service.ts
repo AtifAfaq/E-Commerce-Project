@@ -9,9 +9,22 @@ export class DataCollectorService {
   product: any = {};
   isEdit: boolean;
   productQty: number;
+  cartCount: any = 0;
 
   constructor(public router: Router) {
+    this.getCartCount();
+  }
 
+
+  getCartCount() {
+    this.cartCount = 0;
+    var retreivedProducts = localStorage.getItem("products");
+    this.myArray = JSON.parse(retreivedProducts);
+    if (this.myArray) {
+      this.myArray.forEach(product => {
+        this.cartCount = this.cartCount + product.productQty;
+      });
+    }
   }
 
 
@@ -25,6 +38,7 @@ export class DataCollectorService {
     localStorage.setItem("products", JSON.stringify(this.myArray));
     this.router.navigate(["/cart"]);
     console.log(this.myArray);
+    this.getCartCount();
   }
 
 

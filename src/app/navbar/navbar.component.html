@@ -54,9 +54,10 @@
           <i class="fa fa-user-plus"></i> SignUp
         </a>
       </li>
-      <li *ngIf="userType=='buyer'" routerLink="/cart" class="nav-item mx-2">
+      <li style="position: relative;" *ngIf="userType=='buyer'" routerLink="/cart" class="nav-item mx-2">
         <a class="nav-link pointer text-white">
           <i class="fa fa-shopping-cart"></i> Cart
+          <span *ngIf="service.cartCount!=0" class="badge badge-success">{{service.cartCount}}</span>
         </a>
       </li>
       <li *ngIf="userLoggedIn=='true'" (click)="signout()" class="nav-item mx-2">
