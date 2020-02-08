@@ -10,8 +10,12 @@ import { DataCollectorService } from './../data-collector.service';
 })
 export class CartComponent implements OnInit {
   myArray: any = [];
+  Currentproduct: any = {};
+  activeIndex: any;
   totalPrice: number;
   productQty: number = 1;
+  addTotal: number;
+  totalBill: number;
   constructor(public router: Router,
     public service: DataCollectorService) { }
 
@@ -22,16 +26,15 @@ export class CartComponent implements OnInit {
   ShowProducts() {
     var retreivedProducts = localStorage.getItem("products");
     this.myArray = JSON.parse(retreivedProducts);
-    debugger;
+
     if (!this.myArray) {
-      debugger;
       this.myArray = [];
     }
 
   }
 
   increaseValue(p) {
-    (p.productQty++);
+    p.productQty++;
   }
 
 
@@ -44,8 +47,29 @@ export class CartComponent implements OnInit {
   GrandTotal(p) {
     var totalPrice = Number(p.productQty) * Number(p.discountedPrice);
     return totalPrice;
-
   }
 
+  AddTotal(p) {
+    var addTotal = Number(p.productQty) * Number(p.discountedPrice);
+    addTotal += this.addTotal;
+    debugger;
+  }
+
+  TotalBill() {
+    var totalBill = this.addTotal;
+    // + p.deliveryFee;
+  }
+  confirmOnly(i) {
+    debugger;
+    this.Currentproduct = this.myArray[i];
+    this.activeIndex = i;
+
+    console.log(this.myArray);
+  }
+  deleteData(i) {
+    this.myArray.splice(i, 1);
+    localStorage.setItem("products", JSON.stringify(this.myArray));
+    console.log(this.myArray);
+  }
 
 }

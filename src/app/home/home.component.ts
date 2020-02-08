@@ -130,7 +130,6 @@ export class HomeComponent implements OnInit {
 
   productDetails(p) {
     this.service.product = p;
-    debugger;
     this.router.navigate(['/productDetails']);
   }
 
@@ -138,9 +137,9 @@ export class HomeComponent implements OnInit {
   AddCart(p) {
     p.productQty = 1
     this.service.product = p;
-    debugger;
     this.service.AddtoCart();
   }
+
 
 
 }

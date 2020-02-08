@@ -6,15 +6,15 @@
             <table class="table table-hover">
                 <thead>
                     <tr class="row">
-                        <th class="col-md-4">Product</th>
-                        <th class="col-md-3">Quantity</th>
+                        <th class="col-md-4 text-center">Product</th>
+                        <th class="col-md-3 text-center">Quantity</th>
                         <th class="col-md-2 text-center">Price</th>
                         <th class="col-md-2 text-center">Total</th>
                         <th> </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="row" *ngFor="let p of myArray">
+                    <tr class="row" *ngFor="let p of myArray ; index as i">
                         <td class="col-md-4">
                             <div class="media">
                                 <a class="thumbnail pull-left"> <img class="media-object" [src]="p.productUrls[0]"
@@ -33,8 +33,8 @@
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
-                                <input [(ngModel)]="p.productQty" type="number" readonly
-                                    class="form-control text-center" placeholder="0">
+                                <input [(ngModel)]="p.productQty" type="number" class="form-control text-center"
+                                    placeholder="0">
                                 <div class="input-group-append">
                                     <button (click)=increaseValue(p) class="btn btn-primary" type="button">
                                         <i class="fa fa-plus"></i>
@@ -45,26 +45,72 @@
                         <td class="col-md-2 text-center"><strong>${{p.discountedPrice}}</strong></td>
                         <td class=" col-md-2 text-center"><strong>${{ GrandTotal(p)}}</strong></td>
                         <td class="col-md-1">
-                            <button type="button" class="btn btn-danger">
+                            <button (click)="confirmOnly(i)" type="button" class="btn btn-danger" data-toggle="modal"
+                                data-target="#deleteModal">
                                 <span class="glyphicon glyphicon-remove"></span> Remove
                             </button></td>
                     </tr>
-
-                    <h5>Subtotal</h5>
-                    <h5><strong>$24.59</strong></h5>
-                    <h5>Estimated shipping</h5>
-                    <h5><strong>$6.94</strong></h5>
-                    <h3>Total</h3>
-                    <h3><strong>$31.53</strong></h3>
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                    </button>
-                    <button type="button" class="btn btn-success">
-                        Checkout <span class="glyphicon glyphicon-play"></span>
-                    </button>
-
+                    <div class="float-right">
+                        <h5>Subtotal</h5>
+                        <h5><strong>${{ AddTotal(p)}}</strong></h5>
+                        <h5>Estimated shipping</h5>
+                        <h5><strong>${{p.deliveryFee}}</strong></h5>
+                        <h3>Total</h3>
+                        <h3><strong>${{TotalBill()}}</strong></h3>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                        </button>
+                        <button type="button" class="btn btn-success">
+                            Checkout <span class="glyphicon glyphicon-play"></span>
+                        </button>
+                    </div>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- -------------------------------------------------- -->
+<div class="modal" id="deleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <!-- *ngFor="let user of myArray; index as i" -->
+            <div class="modal-header">
+                <h4 class="modal-title">{{p.productName}}'s Data</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <!-- <div>
+                    <label>First Name:</label>
+                    <span><input [(ngModel)]="Currentuser.firstName" class="form-control  " readonly /></span>
+                </div>
+
+                <div>
+                    <label>Last Name:</label>
+                    <span><input [(ngModel)]="Currentuser.lastName" class="form-control  " readonly /></span>
+                </div>
+
+                <div>
+                    <label>Email Address:</label>
+                    <span><input [(ngModel)]="Currentuser.email" class="form-control  " readonly /></span>
+                </div> -->
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" (click)="deleteData(activeIndex)" class="btn btn-success" data-dismiss="modal">
+                    Confirm Delete
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
         </div>
     </div>
 </div>
