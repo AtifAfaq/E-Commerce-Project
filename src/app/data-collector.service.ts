@@ -34,6 +34,14 @@ export class DataCollectorService {
     if (!this.myArray) {
       this.myArray = [];
     }
+    this.myArray.forEach(product => {
+      if (product.brand == this.product.brand && product.key == this.product.key) {
+        debugger;
+        this.product.productQty++;
+        localStorage.setItem("products.productQty", this.product.productQty);
+      }
+    });
+
     this.myArray.push(this.product);
     localStorage.setItem("products", JSON.stringify(this.myArray));
     this.router.navigate(["/cart"]);

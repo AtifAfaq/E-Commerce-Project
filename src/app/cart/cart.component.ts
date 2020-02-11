@@ -15,6 +15,7 @@ export class CartComponent implements OnInit {
   subTotal: any = 0;
   shipmentCharges: any = 0;
   totalBill: any = 0;
+  productQty: Number;
 
   constructor(public router: Router,
     public service: DataCollectorService) { }
@@ -26,7 +27,8 @@ export class CartComponent implements OnInit {
   ShowProducts() {
     var retreivedProducts = localStorage.getItem("products");
     this.myArray = JSON.parse(retreivedProducts);
-
+    debugger;
+    // this.myArray.product.productQty = this.productQty
     if (!this.myArray) {
       this.myArray = [];
     }

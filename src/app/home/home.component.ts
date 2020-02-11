@@ -9,9 +9,9 @@ import { DataCollectorService } from './../data-collector.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  
+
   allProducts = [];
-  productQty: number = 1;
+  productQty: number;
   loading: boolean = false;
   categories: any = [
     { name: "Pets", src: "/assets/images/pets.png" },
@@ -134,14 +134,22 @@ export class HomeComponent implements OnInit {
     this.service.product = p;
     this.router.navigate(['/productDetails']);
   }
-
-
-  AddCart(p) {
-    p.productQty = 1
-    this.service.product = p;
-    this.service.AddtoCart();
+  getDiscount(product) {
+    var disc = ((Number(product.originalPrice) - Number(product.discountedPrice)) / Number(product.originalPrice)) * 100;
+    product.discount = disc;
+    return disc;
   }
 
+  AddCart(p) {
+    if (p.availableQty >= 1) {
+      p.productQty = 1
+      debugger;
+      this.service.product = p;
+      this.service.AddtoCart();
+    }
+    else {
+      alert("Product is not in stock")
+    }
 
-
+  }
 }
