@@ -72,7 +72,7 @@
 
 
 <!-- -------------------------------------------------- -->
-<div class="modal" id="deleteModal">
+<div *ngIf="Currentproduct.productUrls" class="modal" id="deleteModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -85,22 +85,17 @@
             </div>
 
             <!-- Modal body -->
-            <div *ngFor="let p of myArray; index as i" class="modal-body">
-                <div>
-                    <img class="image" [src]="p.productUrls[0]">
+            <div class="modal-body">
+                <img class="image" [src]="Currentproduct.productUrls[0]">
 
-
-                    <span class="detail media-body pl-3">
-                        <h4 class="media-heading"><a>{{p.productName}}</a></h4>
-                        <h5 class="media-heading"> by <a>{{p.brand}}</a></h5>
-                        <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
-                    </span>
-                </div>
+                <span class="detail media-body pl-3">
+                    <h4 class="media-heading"><a>{{Currentproduct.productName}}</a></h4>
+                    <h5 class="media-heading"> by <a>{{Currentproduct.brand}}</a></h5>
+                </span>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" (click)="deleteData(activeIndex)" class="btn btn-success"
-                        data-dismiss="modal">
+                    <button type="button" (click)="deleteData()" class="btn btn-success" data-dismiss="modal">
                         Confirm Delete
                     </button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">

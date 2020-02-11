@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   allProducts = [];
   productQty: number;
   loading: boolean = false;
+
   categories: any = [
     { name: "Pets", src: "/assets/images/pets.png" },
     { name: "Rentals", src: "/assets/images/rent.jpg" },
@@ -134,22 +135,24 @@ export class HomeComponent implements OnInit {
     this.service.product = p;
     this.router.navigate(['/productDetails']);
   }
+
+
   getDiscount(product) {
     var disc = ((Number(product.originalPrice) - Number(product.discountedPrice)) / Number(product.originalPrice)) * 100;
     product.discount = disc;
     return disc;
   }
 
+
   AddCart(p) {
     if (p.availableQty >= 1) {
       p.productQty = 1
-      debugger;
       this.service.product = p;
-      this.service.AddtoCart();
+      this.service.AddtoCart(1);
     }
     else {
       alert("Product is not in stock")
     }
-
   }
+
 }

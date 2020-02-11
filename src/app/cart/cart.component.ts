@@ -27,8 +27,6 @@ export class CartComponent implements OnInit {
   ShowProducts() {
     var retreivedProducts = localStorage.getItem("products");
     this.myArray = JSON.parse(retreivedProducts);
-    debugger;
-    // this.myArray.product.productQty = this.productQty
     if (!this.myArray) {
       this.myArray = [];
     }
@@ -85,8 +83,8 @@ export class CartComponent implements OnInit {
   }
 
 
-  deleteData(i) {
-    this.myArray.splice(i, 1);
+  deleteData() {
+    this.myArray.splice(this.activeIndex, 1);
     localStorage.setItem("products", JSON.stringify(this.myArray));
     this.getTotalCost();
     console.log(this.myArray);

@@ -29,18 +29,20 @@ export class ProductDetailsComponent implements OnInit {
       this.productQty--;
     }
   }
+
+
   getDiscount(product) {
     var disc = ((Number(product.originalPrice) - Number(product.discountedPrice)) / Number(product.originalPrice)) * 100;
     product.discount = disc;
     return disc;
   }
 
+
   AddCart(product) {
     if (product.availableQty >= 1) {
-      product.productQty = 1
-      debugger;
+      product.productQty = this.productQty;
       this.service.product = product;
-      this.service.AddtoCart();
+      this.service.AddtoCart(this.productQty);
     }
     else {
       alert("Product is not in stock")
