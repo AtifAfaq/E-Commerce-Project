@@ -155,9 +155,9 @@ export class HomeComponent implements OnInit {
       alert("Product is not in stock")
     }
   }
+  
 
   bringCategories(v) {
-    debugger;
     this.allProducts.forEach(product => {
       if (product.productCategory == v.name) {
         this.categoriesData.push(product)
@@ -166,7 +166,6 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['/allProducts'])
       }
     });
-
   }
 
 
