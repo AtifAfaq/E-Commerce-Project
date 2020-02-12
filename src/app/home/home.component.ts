@@ -11,9 +11,10 @@ import { DataCollectorService } from './../data-collector.service';
 export class HomeComponent implements OnInit {
 
   allProducts = [];
+  v = {};
   productQty: number;
   loading: boolean = false;
-
+  categoriesData = [];
   categories: any = [
     { name: "Pets", src: "/assets/images/pets.png" },
     { name: "Rentals", src: "/assets/images/rent.jpg" },
@@ -154,5 +155,19 @@ export class HomeComponent implements OnInit {
       alert("Product is not in stock")
     }
   }
+
+  bringCategories(v) {
+    debugger;
+    this.allProducts.forEach(product => {
+      if (product.productCategory == v.name) {
+        this.categoriesData.push(product)
+        console.log(this.categoriesData)
+        this.service.categoriesData = this.categoriesData
+        this.router.navigate(['/allProducts'])
+      }
+    });
+
+  }
+
 
 }

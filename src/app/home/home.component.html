@@ -207,7 +207,7 @@
         <h4>Categories</h4>
         <div class="catList">
             <div class="outerDiv" *ngFor="let item of categories; index as i">
-                <div class="anItem" *ngIf="i<8">
+                <div (click)="bringCategories(item)" class="anItem" *ngIf="i<8">
                     <img [src]="item.src">
                     <p class="mb-0">{{item.name}}</p>
                 </div>
@@ -215,7 +215,7 @@
         </div>
         <div class="catList">
             <div *ngFor="let item of categories; index as i">
-                <div class="anItem" *ngIf="i>=8">
+                <div (click)="bringCategories(item)" class="anItem" *ngIf="i>=8">
                     <img [src]="item.src">
                     <p class="mb-0">{{item.name}}</p>
                 </div>

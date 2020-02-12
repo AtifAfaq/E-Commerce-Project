@@ -50,13 +50,17 @@ export class CartComponent implements OnInit {
 
 
   increaseValue(p, index) {
+    if (this.myArray.productQty >= p.productQty)
+      debugger;
     p.productQty++;
     var retreivedProducts = localStorage.getItem("products");
     this.myArray = JSON.parse(retreivedProducts);
     this.myArray[index].productQty++;
     localStorage.setItem("products", JSON.stringify(this.myArray));
     this.getTotalCost();
+
   }
+
 
 
   decreaseValue(p, index) {

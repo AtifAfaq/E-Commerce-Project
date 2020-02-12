@@ -97,3 +97,7 @@ body {
   top: 0%;
   padding: 20% 50%;
 }
+.prodTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;}

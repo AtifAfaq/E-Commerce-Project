@@ -3,141 +3,14 @@
 <div class="mainContent productsBlock">
     <h4>All Products</h4>
     <div class="row">
-        <div class="col-md-3">
+        <div *ngFor="let item of categoriesData" class="col-md-3">
             <div class="productCard">
-                <img src="/assets/images/prod4.jpg">
-                <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                    consectetur.
+                <img [src]="item.productUrls[0]">
+                <p class="prodTitle mb-2">{{item.productDes}}
                 </p>
-                <h4 class="prodPrice primary mt-0">$89.00</h4>
-                <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
-                <p class="rating">
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star gray"></i> (11)
-                </p>
-                <button class="btn btn-success w-100">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="productCard">
-                <img src="/assets/images/prod5.jpg">
-                <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                    consectetur.
-                </p>
-                <h4 class="prodPrice primary mt-0">$89.00</h4>
-                <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
-                <p class="rating">
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star gray"></i> (11)
-                </p>
-                <button class="btn btn-success w-100">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="productCard">
-                <img src="/assets/images/prod6.jpg">
-                <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                    consectetur.
-                </p>
-                <h4 class="prodPrice primary mt-0">$89.00</h4>
-                <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
-                <p class="rating">
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star gray"></i> (11)
-                </p>
-                <button class="btn btn-success w-100">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="productCard">
-                <img src="/assets/images/prod7.jpg">
-                <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                    consectetur.
-                </p>
-                <h4 class="prodPrice primary mt-0">$89.00</h4>
-                <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
-                <p class="rating">
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star gray"></i> (11)
-                </p>
-                <button class="btn btn-success w-100">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="productCard">
-                <img src="/assets/images/prod8.jpg">
-                <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                    consectetur.
-                </p>
-                <h4 class="prodPrice primary mt-0">$89.00</h4>
-                <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
-                <p class="rating">
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star gray"></i> (11)
-                </p>
-                <button class="btn btn-success w-100">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="productCard">
-                <img src="/assets/images/prod9.jpg">
-                <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                    consectetur.
-                </p>
-                <h4 class="prodPrice primary mt-0">$89.00</h4>
-                <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
-                <p class="rating">
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star gray"></i> (11)
-                </p>
-                <button class="btn btn-success w-100">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="productCard">
-                <img src="/assets/images/prod10.jpg">
-                <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                    consectetur.
-                </p>
-                <h4 class="prodPrice primary mt-0">$89.00</h4>
-                <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
-                <p class="rating">
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star gray"></i> (11)
-                </p>
-                <button class="btn btn-success w-100">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="productCard">
-                <img src="/assets/images/prod1.jpg">
-                <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                    consectetur.
-                </p>
-                <h4 class="prodPrice primary mt-0">$89.00</h4>
-                <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
+                <h4 class="prodPrice primary mt-0">${{item.discountedPrice}}</h4>
+                <p class="originalPrice gray mb-1">
+                    <del>${{item.originalPrice }}</del> {{ getDiscount(item)| number : '1.2-2'}}%</p>
                 <p class="rating">
                     <i class="fa fa-star text-warning"></i>
                     <i class="fa fa-star text-warning"></i>
