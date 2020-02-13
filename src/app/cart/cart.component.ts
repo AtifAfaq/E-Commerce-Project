@@ -93,5 +93,8 @@ export class CartComponent implements OnInit {
     this.getTotalCost();
     console.log(this.myArray);
   }
-
+  checkout() {
+    this.service.myArray = this.myArray;
+    this.router.navigate(["/checkout"])
+  }
 }

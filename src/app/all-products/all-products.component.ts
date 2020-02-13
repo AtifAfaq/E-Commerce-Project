@@ -26,6 +26,7 @@ export class AllProductsComponent implements OnInit {
   }
   AddCart(product) {
     if (product.availableQty >= 1) {
+      debugger;
       product.productQty = this.productQty;
       this.service.product = product;
       this.service.AddtoCart(this.productQty);

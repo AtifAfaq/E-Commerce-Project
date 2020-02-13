@@ -9,6 +9,7 @@ export class DataCollectorService {
   product: any = {};
   isEdit: boolean;
   productQty: number;
+  totalPrice: number;
   cartCount: any = 0;
 
   constructor(public router: Router) {
