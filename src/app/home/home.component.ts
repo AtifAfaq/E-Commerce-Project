@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
   productQty: number;
   loading: boolean = false;
   categoriesData = [];
+  Currentproduct: any = {};
+  activeIndex: any;
   categories: any = [
     { name: "Pets", src: "/assets/images/pets.png" },
     { name: "Rentals", src: "/assets/images/rent.jpg" },
@@ -145,17 +147,19 @@ export class HomeComponent implements OnInit {
   }
 
 
-  AddCart(p) {
+  AddCart(p, i) {
     if (p.availableQty >= 1) {
       p.productQty = 1
       this.service.product = p;
+      this.Currentproduct = p;
+      this.activeIndex = i;
       this.service.AddtoCart(1);
     }
     else {
       alert("Product is not in stock")
     }
   }
-  
+
 
   bringCategories(v) {
     this.allProducts.forEach(product => {

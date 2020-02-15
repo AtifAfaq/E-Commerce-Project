@@ -11,7 +11,9 @@ export class DataCollectorService {
   productQty: number;
   totalPrice: number;
   cartCount: any = 0;
-
+  subTotal: any = 0;
+  shipmentCharges: any = 0;
+  totalBill: any = 0;
   constructor(public router: Router) {
     this.getCartCount();
   }
@@ -47,7 +49,8 @@ export class DataCollectorService {
       this.myArray.push(this.product);
     }
     localStorage.setItem("products", JSON.stringify(this.myArray));
-    this.router.navigate(["/cart"]);
+
+    // this.router.navigate(["/cart"]);
     console.log(this.myArray);
     this.getCartCount();
   }

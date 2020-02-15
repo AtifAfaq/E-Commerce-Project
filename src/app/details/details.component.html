@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<div class="mainContent">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="row">
+                        <th class="col-md-4 text-center">Product</th>
+                        <th class="col-md-4 text-center">Quantity</th>
+                        <th class="col-md-2 text-center">Price</th>
+                        <th class="col-md-2 text-center">Total</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="row" *ngFor="let p of myArray ; index as i">
+                        <td class="col-md-4">
+                            <div class="media">
+                                <a class="thumbnail pull-left"> <img class="media-object" [src]="p.productUrls[0]"
+                                        style="width: 72px; height: 72px;"> </a>
+                                <div class="media-body pl-3">
+                                    <h4 class="media-heading"><a>{{p.productName}}</a></h4>
+                                    <h5 class="media-heading"> by <a>{{p.brand}}</a></h5>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-md-4" style="text-align: center">
+                            <div class="input-group mb-3">
+
+                                <input disabled [(ngModel)]="p.productQty" Readonly type="number"
+                                    class="form-control text-center" placeholder="0">
+
+                            </div>
+                        </td>
+                        <td class="col-md-2 text-center"><strong>${{p.discountedPrice}}</strong></td>
+                        <td class=" col-md-2 text-center"><strong>${{GrandTotal(p)}}</strong></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

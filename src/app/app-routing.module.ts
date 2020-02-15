@@ -11,7 +11,8 @@ import { ProdDetailSellerComponent } from './prod-detail-seller/prod-detail-sell
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-
+import { MyordersComponent } from './myorders/myorders.component';
+import { DetailsComponent } from './details/details.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
@@ -24,11 +25,14 @@ const routes: Routes = [
   { path: 'forget-Password', component: ForgetPasswordComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'myorders', component: MyordersComponent },
+  { path: 'details', component: DetailsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(
+
     routes,
     { enableTracing: true } // <-- debugging purposes only
   )],

@@ -243,13 +243,51 @@
                             <i class="fa fa-star gray"></i> (11)
                         </p>
                     </div>
-                    <button class="btn btn-success w-100" (click)="AddCart(p)">Add to Cart</button>
+                    <button class="btn btn-success w-100" (click)="AddCart(p,i)" data-toggle="modal"
+                        data-target="#deleteModal">Add to Cart</button>
                 </div>
             </div>
 
         </div>
     </div>
 
+</div>
+
+<!-- -------------------------------------------------- -->
+
+<div *ngIf="Currentproduct.productUrls" class="modal" id="deleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+
+            <div class="modal-header">
+                <h4 class="modal-title title-color">item added to your shopping cart</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <img class="image" [src]="Currentproduct.productUrls[0]">
+
+                <span class="detail media-body pl-3">
+                    <h4 class="media-heading"><a>{{Currentproduct.productName}}</a></h4>
+                    <h5 class="media-heading"> by <a>{{Currentproduct.brand}}</a></h5>
+                </span>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" routerLink="/home" class="btn btn-success" data-dismiss="modal">
+                        Continue Shopping
+                    </button>
+                    <button type="button" routerLink="/cart" class="btn btn-primary" data-dismiss="modal">
+                        Go to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 

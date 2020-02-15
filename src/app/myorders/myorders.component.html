@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<div class="checkout row">
+    <div class=" col-md-10 offset-md-1">
+        <table class="table table-striped text-center">
+            <thead>
+                <tr>
+                    <th>Order Number</th>
+                    <th>Products Quantity</th>
+                    <th>Cost</th>
+                    <th>Status</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{order}}</td>
+                    <td>{{cartCount}}</td>
+                    <td>${{totalBill}}</td>
+                    <td>{{status}}</td>
+                    <td><button class="btn btn-primary" routerLink="/details">Details</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

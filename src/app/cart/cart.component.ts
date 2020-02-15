@@ -64,6 +64,8 @@ export class CartComponent implements OnInit {
       this.shipmentCharges = Number(this.shipmentCharges) + Number(product.deliveryFee);
     });
     this.totalBill = this.subTotal + this.shipmentCharges;
+    this.service.totalBill = this.totalBill;
+    this.service.shipmentCharges = this.shipmentCharges;
     this.service.getCartCount();
   }
 
@@ -124,6 +126,7 @@ export class CartComponent implements OnInit {
   }
   checkout() {
     this.service.myArray = this.myArray;
+    // this.service.subTotal = this.subTotal;
     this.router.navigate(["/checkout"])
   }
 }

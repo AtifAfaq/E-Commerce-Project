@@ -19,6 +19,8 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { DataCollectorService } from './data-collector.service';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { MyordersComponent } from './myorders/myorders.component';
+import { DetailsComponent } from './details/details.component';
 
 
 var firebaseConfig = {
@@ -49,7 +51,9 @@ firebase.initializeApp(firebaseConfig);
     ProdDetailSellerComponent,
     ForgetPasswordComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    MyordersComponent,
+    DetailsComponent
   ],
   imports: [
     RouterModule,
