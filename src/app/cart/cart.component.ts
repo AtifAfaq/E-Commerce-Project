@@ -129,4 +129,7 @@ export class CartComponent implements OnInit {
     // this.service.subTotal = this.subTotal;
     this.router.navigate(["/checkout"])
   }
+  emptyCart() {
+
+  }
 }

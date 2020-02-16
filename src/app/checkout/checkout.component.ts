@@ -53,6 +53,7 @@ export class CheckoutComponent implements OnInit {
       timestamp: Number(new Date())
     }
     var updates = {};
+    // key par rakhwana hai 
     updates['/orders/' + this.uid] = userData;
     firebase.database().ref().update(updates)
       .then(() => {

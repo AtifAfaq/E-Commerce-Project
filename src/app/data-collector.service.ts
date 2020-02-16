@@ -49,8 +49,6 @@ export class DataCollectorService {
       this.myArray.push(this.product);
     }
     localStorage.setItem("products", JSON.stringify(this.myArray));
-
-    // this.router.navigate(["/cart"]);
     console.log(this.myArray);
     this.getCartCount();
   }
