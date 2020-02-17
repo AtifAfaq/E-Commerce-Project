@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataCollectorService } from './../data-collector.service';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
+import { CountriesService } from './../countries.service';
 
 @Component({
   selector: 'app-checkout',
@@ -15,13 +16,16 @@ export class CheckoutComponent implements OnInit {
   address: string = '';
   uid: string = '';
   myArray = [];
-  for = "";
   totalBill: any = 0;
   shipmentCharges: any = 0;
+  subTotal: any = 0;
   loading: boolean = false;
-
+  cartCount = this.service.cartCount
+  countries;
+  states;
 
   constructor(public service: DataCollectorService,
+    public countriesService: CountriesService,
     public router: Router) {
     this.myArray = this.service.myArray;
 
@@ -29,17 +33,26 @@ export class CheckoutComponent implements OnInit {
     this.firstName = localStorage.getItem('firstName');
     this.lastName = localStorage.getItem('lastName');
     this.email = localStorage.getItem('email');
-    this.totalBill = this.service.totalBill;
-    this.shipmentCharges = this.service.shipmentCharges;
+    this.totalBill = localStorage.getItem("totalBill");
+    this.shipmentCharges = localStorage.getItem("shipmentCharges");
+    this.subTotal = localStorage.getItem("subTotal");
+
+
+
   }
 
   ngOnInit() {
+    this.countries = this.countriesService.getCountries();
   }
   GrandTotal(p) {
     var totalPrice = Number(p.productQty) * Number(p.discountedPrice);
     return totalPrice;
 
   }
+  selectStatesBasedOnCountry(countryId) {
+    this.states = this.countriesService.getStates(countryId);
+  }
+
 
 
   placeOrder() {
@@ -50,23 +63,59 @@ export class CheckoutComponent implements OnInit {
       address: this.address,
       uid: localStorage.getItem('uid'),
       myArray: this.myArray,
+      totalBill: this.totalBill,
+      shipmentCharges: this.shipmentCharges,
+      subTotal: this.subTotal,
       timestamp: Number(new Date())
     }
     var updates = {};
-    // key par rakhwana hai 
-    updates['/orders/' + this.uid] = userData;
+    var postKey = firebase.database().ref().child('orders').push().key;
+    updates['/orders/' + postKey] = userData;
     firebase.database().ref().update(updates)
       .then(() => {
-        alert("Your order has been placed!");
-        this.loading = false;
-        this.service.myArray = this.myArray;
-        this.router.navigate(["/myorders"]);
+        this.updateQty()
 
       })
       .catch((e) => {
         this.loading = false;
         alert(e.message);
       })
+  }
+  updateQty() {
+    var self = this;
+    for (var i = 0; i < self.myArray.length; i++) {
+      firebase.database().ref().child('products/' + self.myArray[i].key)
+        .once('value', (snapshot) => {
+          var data = snapshot.val();
+          data.availableQty = data.availableQty - self.myArray[i].availableQty;
+          var updates = {};
+          // updates['/products/' + 'key' + '/' + 'availableQty'] = data.availableQty;
+          firebase.database().ref().update(updates)
+            .then(() => {
+              alert("Your order has been placed!");
+
+              this.loading = false;
+              this.service.myArray = this.myArray;
+              this.firstName = "";
+              this.lastName = "";
+              this.email = "";
+              this.address = "";
+              var retreivedProducts = localStorage.getItem("products");
+              this.myArray = JSON.parse(retreivedProducts);
+              this.myArray = []
+              this.cartCount = 0;
+              this.service.cartCount = 0;
+              localStorage.setItem("products", JSON.stringify(this.myArray));
+              this.totalBill = 0;
+              localStorage.setItem("totalBill", JSON.stringify(this.totalBill));
+              this.shipmentCharges = 0;
+              localStorage.setItem("shipmentCharges", JSON.stringify(this.shipmentCharges));
+              this.subTotal = 0;
+              localStorage.setItem("subTotal", JSON.stringify(this.subTotal));
+
+            })
+        })
+    }
   }
 
 }

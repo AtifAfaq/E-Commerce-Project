@@ -66,6 +66,9 @@ export class CartComponent implements OnInit {
     this.totalBill = this.subTotal + this.shipmentCharges;
     this.service.totalBill = this.totalBill;
     this.service.shipmentCharges = this.shipmentCharges;
+    localStorage.setItem("subTotal", this.subTotal);
+    localStorage.setItem("totalBill", this.totalBill);
+    localStorage.setItem("shipmentCharges", this.shipmentCharges);
     this.service.getCartCount();
   }
 
@@ -126,10 +129,11 @@ export class CartComponent implements OnInit {
   }
   checkout() {
     this.service.myArray = this.myArray;
-    // this.service.subTotal = this.subTotal;
     this.router.navigate(["/checkout"])
   }
   emptyCart() {
-
+    this.myArray.length = 0;
+    this.service.myArray = 0;
+    this.service.cartCount = 0;
   }
 }

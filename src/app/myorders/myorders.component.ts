@@ -15,6 +15,7 @@ export class MyordersComponent implements OnInit {
   cartCount: any = 0;
   totalBill: any = 0;
   status = "pending";
+  myProducts: Array<any> = [];
 
   constructor(public router: Router,
     public service: DataCollectorService) {
@@ -23,10 +24,31 @@ export class MyordersComponent implements OnInit {
     this.order = this.order++;
     this.cartCount = this.service.cartCount;
     this.totalBill = this.service.totalBill;
-    this.status = "accepted"
+    // this.status = "accepted"
   }
 
   ngOnInit() {
+    this.getMyProducts();
+  }
+
+
+  getMyProducts() {
+    var self = this;
+    // this.loading = true;
+    let uid = localStorage.getItem('uid');
+    firebase.database().ref().child('orders')
+      .orderByChild('uid').equalTo(uid)
+      .once('value', (snapshot) => {
+        var data = snapshot.val();
+        for (var key in data) {
+          var temp = data[key];
+          temp.key = key;
+          self.myProducts.push(temp);
+        }
+        console.log(self.myProducts);
+        // this.loading = false;
+      })
+
   }
 
 }

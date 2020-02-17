@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -21,6 +20,8 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { MyordersComponent } from './myorders/myorders.component';
 import { DetailsComponent } from './details/details.component';
+import { CountriesService } from './countries.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 var firebaseConfig = {
@@ -60,10 +61,13 @@ firebase.initializeApp(firebaseConfig);
     ReactiveFormsModule,
     FormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+
   ],
   providers: [
-    DataCollectorService
+    DataCollectorService,
+    CountriesService
   ],
   bootstrap: [AppComponent]
 })

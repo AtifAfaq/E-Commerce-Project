@@ -5,17 +5,19 @@
             <thead>
                 <tr>
                     <th>Order Number</th>
-                    <th>Products Quantity</th>
-                    <th>Cost</th>
+                    <th>Order Placed Date & Time</th>
+                    <th>Shipment Address</th>
+                    <th>Grand Total</th>
                     <th>Status</th>
                     <th>Details</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>{{order}}</td>
-                    <td>{{cartCount}}</td>
-                    <td>${{totalBill}}</td>
+                <tr *ngFor="let p of myProducts; index as i">
+                    <td>{{p.timestamp}}</td>
+                    <td>{{p.timestamp}}</td>
+                    <td>${{p.shipmentCharges}}</td>
+                    <td>{{p.totalBill}}</td>
                     <td>{{status}}</td>
                     <td><button class="btn btn-primary" routerLink="/details">Details</button></td>
                 </tr>
