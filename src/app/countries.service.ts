@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+// import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, empty } from 'rxjs';
 import { map, take, filter } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
 interface State {
   id: number;
   name: string;

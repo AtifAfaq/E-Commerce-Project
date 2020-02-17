@@ -1,12 +1,14 @@
 <app-navbar></app-navbar>
 <div class="checkout row">
     <div class=" col-md-10 offset-md-1">
-        <table class="table table-striped text-center">
+        <input type="text" class="form-control mb-3" placeholder="Search here...">
+        <table class="table table-striped text-center bg-white table-bordered">
             <thead>
                 <tr>
-                    <th>Order Number</th>
-                    <th>Order Placed Date & Time</th>
-                    <th>Shipment Address</th>
+                    <th>Order ID</th>
+                    <th>Date & Time</th>
+                    <th>Address</th>
+                    <th>Delivery Fee</th>
                     <th>Grand Total</th>
                     <th>Status</th>
                     <th>Details</th>
@@ -15,10 +17,11 @@
             <tbody>
                 <tr *ngFor="let p of myProducts; index as i">
                     <td>{{p.timestamp}}</td>
-                    <td>{{p.timestamp}}</td>
+                    <td>{{p.timestamp | date: 'short'}}</td>
+                    <td>{{p.address}}</td>
                     <td>${{p.shipmentCharges}}</td>
-                    <td>{{p.totalBill}}</td>
-                    <td>{{status}}</td>
+                    <td>${{p.totalBill}}</td>
+                    <td>{{p.status}}</td>
                     <td><button class="btn btn-primary" routerLink="/details">Details</button></td>
                 </tr>
             </tbody>

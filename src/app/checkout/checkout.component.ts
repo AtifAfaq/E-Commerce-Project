@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { DataCollectorService } from './../data-collector.service';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { CountriesService } from './../countries.service';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
+
   firstName: string = '';
   lastName: string = '';
   email: string = '';
@@ -26,7 +27,8 @@ export class CheckoutComponent implements OnInit {
 
   constructor(public service: DataCollectorService,
     public countriesService: CountriesService,
-    public router: Router) {
+    public router: Router,
+    public zone: NgZone) {
     this.myArray = this.service.myArray;
 
     console.log(this.myArray)
@@ -36,14 +38,14 @@ export class CheckoutComponent implements OnInit {
     this.totalBill = localStorage.getItem("totalBill");
     this.shipmentCharges = localStorage.getItem("shipmentCharges");
     this.subTotal = localStorage.getItem("subTotal");
-
-
-
   }
+
 
   ngOnInit() {
     this.countries = this.countriesService.getCountries();
   }
+
+
   GrandTotal(p) {
     var totalPrice = Number(p.productQty) * Number(p.discountedPrice);
     return totalPrice;
@@ -73,49 +75,45 @@ export class CheckoutComponent implements OnInit {
     updates['/orders/' + postKey] = userData;
     firebase.database().ref().update(updates)
       .then(() => {
-        this.updateQty()
-
+        for (var i = 0; i < this.myArray.length; i++) {
+          this.zone.run(() => {
+            this.updateQty(i);
+          })
+        }
       })
       .catch((e) => {
         this.loading = false;
         alert(e.message);
       })
   }
-  updateQty() {
+
+
+  updateQty(i) {
     var self = this;
-    for (var i = 0; i < self.myArray.length; i++) {
-      firebase.database().ref().child('products/' + self.myArray[i].key)
-        .once('value', (snapshot) => {
-          var data = snapshot.val();
-          data.availableQty = data.availableQty - self.myArray[i].availableQty;
-          var updates = {};
-          // updates['/products/' + 'key' + '/' + 'availableQty'] = data.availableQty;
-          firebase.database().ref().update(updates)
-            .then(() => {
-              alert("Your order has been placed!");
-
-              this.loading = false;
-              this.service.myArray = this.myArray;
-              this.firstName = "";
-              this.lastName = "";
-              this.email = "";
-              this.address = "";
-              var retreivedProducts = localStorage.getItem("products");
-              this.myArray = JSON.parse(retreivedProducts);
-              this.myArray = []
-              this.cartCount = 0;
-              this.service.cartCount = 0;
-              localStorage.setItem("products", JSON.stringify(this.myArray));
-              this.totalBill = 0;
-              localStorage.setItem("totalBill", JSON.stringify(this.totalBill));
-              this.shipmentCharges = 0;
-              localStorage.setItem("shipmentCharges", JSON.stringify(this.shipmentCharges));
-              this.subTotal = 0;
-              localStorage.setItem("subTotal", JSON.stringify(this.subTotal));
-
-            })
-        })
-    }
+    firebase.database().ref().child('products/' + self.myArray[i].key)
+      .once('value', (snapshot) => {
+        var data = snapshot.val();
+        data.availableQty = Number(data.availableQty) - Number(self.myArray[i].productQty);
+        var updates = {};
+        updates['/products/' + self.myArray[i].key + '/' + 'availableQty'] = data.availableQty;
+        firebase.database().ref().update(updates)
+          .then(() => {
+            this.loading = false;
+            var retreivedProducts = localStorage.getItem("products");
+            this.myArray = JSON.parse(retreivedProducts);
+            this.myArray = [];
+            localStorage.setItem("products", JSON.stringify(this.myArray));
+            this.totalBill = 0;
+            localStorage.setItem("totalBill", JSON.stringify(this.totalBill));
+            this.shipmentCharges = 0;
+            localStorage.setItem("shipmentCharges", JSON.stringify(this.shipmentCharges));
+            this.subTotal = 0;
+            localStorage.setItem("subTotal", JSON.stringify(this.subTotal));
+            this.service.getCartCount();
+            alert("Your order has been placed!");
+            this.router.navigate(['/myorders']);
+          })
+      })
   }
 
 }

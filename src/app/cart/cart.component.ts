@@ -127,13 +127,21 @@ export class CartComponent implements OnInit {
     this.getTotalCost();
     console.log(this.myArray);
   }
+
+
   checkout() {
     this.service.myArray = this.myArray;
     this.router.navigate(["/checkout"])
   }
+
+
   emptyCart() {
     this.myArray.length = 0;
     this.service.myArray = 0;
     this.service.cartCount = 0;
+
+    // Local storage clear with confirmation msg
+
   }
+  
 }

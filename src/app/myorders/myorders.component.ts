@@ -14,7 +14,6 @@ export class MyordersComponent implements OnInit {
   order: number = 1;
   cartCount: any = 0;
   totalBill: any = 0;
-  status = "pending";
   myProducts: Array<any> = [];
 
   constructor(public router: Router,
@@ -46,9 +45,12 @@ export class MyordersComponent implements OnInit {
           self.myProducts.push(temp);
         }
         console.log(self.myProducts);
+        // this.myProducts.reverse();
         // this.loading = false;
+        this.myProducts.sort(function (a, b) {
+          return b.timestamp - a.timestamp
+        });
       })
-
   }
 
 }
