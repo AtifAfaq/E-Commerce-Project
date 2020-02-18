@@ -9,15 +9,17 @@ import * as firebase from 'firebase';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
+
   myArray: any = [];
   allProducts = [];
   constructor(public router: Router,
     public service: DataCollectorService) {
-
   }
 
   ngOnInit() {
   }
+
+
   GrandTotal(p) {
     var totalPrice = Number(p.productQty) * Number(p.discountedPrice);
     return totalPrice;

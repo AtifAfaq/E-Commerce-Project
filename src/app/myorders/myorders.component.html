@@ -17,15 +17,15 @@
                     <th>Address</th>
                     <th>Delivery Fee</th>
                     <th>Grand Total
-                        <i *ngIf="icon == false" (click)="assending()" class="fas fa-sort-numeric-up-alt"></i>
-                        <i *ngIf="icon ==true" (click)="decending()" class="fas fa-sort-numeric-up"></i>
+                        <i *ngIf="icon == false" (click)="assending()" class="fas fa-sort-up pointer"></i>
+                        <i *ngIf="icon == true" (click)="decending()" class="fas fa-sort-down pointer"></i>
                     </th>
                     <th>Status</th>
                     <th>Details</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let p of myProducts; index as i">
+                <tr *ngFor="let p of myProducts | search: searchTxt; index as i">
                     <td>{{p.timestamp}}</td>
                     <td>{{p.timestamp | date: 'short'}}</td>
                     <td>{{p.address}}</td>
