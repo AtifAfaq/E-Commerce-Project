@@ -136,12 +136,20 @@ export class CartComponent implements OnInit {
 
 
   emptyCart() {
-    this.myArray.length = 0;
-    this.service.myArray = 0;
-    this.service.cartCount = 0;
+
 
     // Local storage clear with confirmation msg
 
   }
-  
+  Modal() {
+    this.myArray.length = 0;
+    this.service.myArray = 0;
+    this.service.cartCount = 0;
+    var retreivedProducts = localStorage.getItem("products");
+    this.myArray = JSON.parse(retreivedProducts);
+    this.myArray = [];
+    localStorage.setItem("products", JSON.stringify(this.myArray));
+  }
+
+
 }

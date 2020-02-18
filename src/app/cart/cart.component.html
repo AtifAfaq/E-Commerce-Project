@@ -56,7 +56,8 @@
                         <h5><strong>${{shipmentCharges}}</strong></h5>
                         <h3>Total</h3>
                         <h3><strong>${{totalBill}}</strong></h3>
-                        <button type="button" class="btn btn-warning mr-1" (click)="emptyCart()">
+                        <button type="button" class="btn btn-warning mr-1" (click)="emptyCart()" class="btn btn-danger"
+                            data-toggle="modal" data-target="#emptycart">
                             <span class=""></span> Empty Cart
                         </button>
                         <button type="button" class="btn btn-primary mr-1" routerLink="/home">
@@ -107,6 +108,34 @@
                         Close
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- -------------------------------------------------- -->
+<div class="modal" id="emptycart">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+
+            <div class="modal-header">
+                <h4 class="modal-title">Are you sure you want to empty cart?</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+
+            <!-- Modal body -->
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" (click)="Modal()" class="btn btn-danger" data-dismiss="modal">
+                    Empty Cart
+                </button>
+                <button type="button" class="btn btn-alert" data-dismiss="modal">
+                    Close
+                </button>
             </div>
         </div>
     </div>
