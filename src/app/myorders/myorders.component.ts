@@ -15,6 +15,7 @@ export class MyordersComponent implements OnInit {
   cartCount: any = 0;
   totalBill: any = 0;
   myProducts: Array<any> = [];
+  icon: boolean = false;
 
   constructor(public router: Router,
     public service: DataCollectorService) {
@@ -53,4 +54,17 @@ export class MyordersComponent implements OnInit {
       })
   }
 
+  assending() {
+    this.myProducts.sort(function (a, b) {
+      return a.totalBill - b.totalBill
+      this.icon = true;
+    })
+  }
+
+  decending() {
+    this.myProducts.sort(function (a, b) {
+      return b.totalBill - a.totalBill
+      this.icon = false;
+    })
+  }
 }

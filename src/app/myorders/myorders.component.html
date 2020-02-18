@@ -1,7 +1,14 @@
 <app-navbar></app-navbar>
 <div class="checkout row">
     <div class=" col-md-10 offset-md-1">
-        <input type="text" class="form-control mb-3" placeholder="Search here...">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="fa fa-search"></i>
+                </span>
+            </div>
+            <input [(ngModel)]="searchTxt" type="text" class="form-control" placeholder="Search here...">
+        </div>
         <table class="table table-striped text-center bg-white table-bordered">
             <thead>
                 <tr>
@@ -9,7 +16,10 @@
                     <th>Date & Time</th>
                     <th>Address</th>
                     <th>Delivery Fee</th>
-                    <th>Grand Total</th>
+                    <th>Grand Total
+                        <i *ngIf="icon == false" (click)="assending()" class="fas fa-sort-numeric-up-alt"></i>
+                        <i *ngIf="icon ==true" (click)="decending()" class="fas fa-sort-numeric-up"></i>
+                    </th>
                     <th>Status</th>
                     <th>Details</th>
                 </tr>

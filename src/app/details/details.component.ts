@@ -10,9 +10,10 @@ import * as firebase from 'firebase';
 })
 export class DetailsComponent implements OnInit {
   myArray: any = [];
+  allProducts = [];
   constructor(public router: Router,
     public service: DataCollectorService) {
-    this.myArray = this.service.myArray
+
   }
 
   ngOnInit() {
@@ -21,4 +22,21 @@ export class DetailsComponent implements OnInit {
     var totalPrice = Number(p.productQty) * Number(p.discountedPrice);
     return totalPrice;
   }
+
+
+  bringorder(i) {
+    var self = this;
+    firebase.database().ref().child('orders/' + self.myArray[i].key)
+      .once('value', (snapshot) => {
+        var data = snapshot.val();
+        for (var key in data) {
+          var temp = data[key];
+          temp.key = key;
+          self.allProducts.push(temp);
+          console.log(this.allProducts)
+        }
+      })
+  }
+
 }
+

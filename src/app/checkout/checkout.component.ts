@@ -24,6 +24,7 @@ export class CheckoutComponent implements OnInit {
   cartCount = this.service.cartCount
   countries;
   states;
+  status = "pending";
 
   constructor(public service: DataCollectorService,
     public countriesService: CountriesService,
@@ -68,6 +69,7 @@ export class CheckoutComponent implements OnInit {
       totalBill: this.totalBill,
       shipmentCharges: this.shipmentCharges,
       subTotal: this.subTotal,
+      status: this.status,
       timestamp: Number(new Date())
     }
     var updates = {};
