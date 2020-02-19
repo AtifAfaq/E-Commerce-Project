@@ -1,18 +1,25 @@
 <app-navbar></app-navbar>
 <div class="mainContent">
-    <ul class="nav nav-tabs">
-        <li class="active m-3"><a data-toggle="tab" href="#home">Pending</a></li>
-        <li class=" m-3"><a data-toggle="tab" href="#menu1">Accepted</a></li>
-        <li class=" m-3"><a data-toggle="tab" href="#menu2">Shipped</a></li>
-        <li class=" m-3"><a data-toggle="tab" href="#menu3">Delivered</a></li>
+    <ul class="nav nav-tabs mt-2">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home">Pending (2)</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu1">Accepted (3)</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu2">Shipped (4)</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu3">Delivered (8)</a>
+        </li>
     </ul>
 
+    <!-- Tab panes -->
     <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
-
-            <h2 class="text-center">Pending Orders</h2>
-
-            <table class="table table-striped">
+        <div class="tab-pane container active" id="home">
+            <h2 class="text-center my-4">Pending Orders</h2>
+            <table class="table table-striped bg-white">
                 <thead>
                     <tr>
                         <th>Order ID</th>
@@ -21,64 +28,29 @@
                         <th>Product Qty</th>
                         <th>Buyer Name</th>
                         <th>Country</th>
-                        <th>State</th>
-                        <th>City</th>
+                        <th>Total</th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Doe</td>
+                    <tr *ngFor="let item of myOrders">
+                        <td>{{item.timestamp}}</td>
+                        <td>{{item.timestamp | date: 'mediumDate'}}</td>
+                        <td>{{item.myArray.length}}</td>
+                        <td>{{item.firstName}} {{item.lastName}}</td>
+                        <td>{{item.address}}</td>
                         <td>john@example.com</td>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        <td>John</td>
-                        <td>Doe</td>
-                    </tr>
-
-                </tbody>
-            </table>
-
-
-        </div>
-        <!-- ------------------------------------------------------------------------- -->
-        <div id="menu1" class="tab-pane fade">
-            <h2 class="text-center">Accepted Orders</h2>
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Date & Time</th>
-                        <th>Products</th>
-                        <th>Product Qty</th>
-                        <th>Buyer Name</th>
-                        <th>Country</th>
-                        <th>State</th>
-                        <th>City</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        <td>John</td>
-                        <td>Doe</td>
+                        <td>{{item.totalBill}}</td>
+                        <td><button class="btn btn-primary">Details</button></td>
                     </tr>
 
                 </tbody>
             </table>
         </div>
-        <!-- ------------------------------------------------------------------------- -->
-        <div id="menu2" class="tab-pane fade">
-            <h2 class="text-center">Shipped Orders</h2>
 
-            <table class="table table-striped">
+        <div class="tab-pane container fade" id="menu1">
+            <h2 class="text-center my-4">Accepted Orders</h2>
+            <table class="table table-striped bg-white">
                 <thead>
                     <tr>
                         <th>Order ID</th>
@@ -106,11 +78,10 @@
                 </tbody>
             </table>
         </div>
-        <!-- ------------------------------------------------------------------------- -->
-        <div id="menu3" class="tab-pane fade">
-            <h2 class="text-center">Delivered Orders</h2>
 
-            <table class="table table-striped">
+        <div class="tab-pane container fade" id="menu2">
+            <h2 class="text-center my-4">Shipped Orders</h2>
+            <table class="table table-striped bg-white">
                 <thead>
                     <tr>
                         <th>Order ID</th>
@@ -138,6 +109,37 @@
                 </tbody>
             </table>
         </div>
-        <!-- ------------------------------------------------------------------------- -->
+
+        <div class="tab-pane container fade" id="menu3">
+            <h2 class="text-center my-4">Delivered Orders</h2>
+            <table class="table table-striped bg-white">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Date & Time</th>
+                        <th>Products</th>
+                        <th>Product Qty</th>
+                        <th>Buyer Name</th>
+                        <th>Country</th>
+                        <th>State</th>
+                        <th>City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                        <td>John</td>
+                        <td>Doe</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
     </div>
+
 </div>
