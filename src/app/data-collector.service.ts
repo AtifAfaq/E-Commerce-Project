@@ -14,6 +14,7 @@ export class DataCollectorService {
   subTotal: any = 0;
   shipmentCharges: any = 0;
   totalBill: any = 0;
+  orderObj: any = {};
   constructor(public router: Router) {
     this.getCartCount();
   }

@@ -100,20 +100,23 @@ export class CheckoutComponent implements OnInit {
         updates['/products/' + self.myArray[i].key + '/' + 'availableQty'] = data.availableQty;
         firebase.database().ref().update(updates)
           .then(() => {
-            this.loading = false;
-            var retreivedProducts = localStorage.getItem("products");
-            this.myArray = JSON.parse(retreivedProducts);
-            this.myArray = [];
-            localStorage.setItem("products", JSON.stringify(this.myArray));
-            this.totalBill = 0;
-            localStorage.setItem("totalBill", JSON.stringify(this.totalBill));
-            this.shipmentCharges = 0;
-            localStorage.setItem("shipmentCharges", JSON.stringify(this.shipmentCharges));
-            this.subTotal = 0;
-            localStorage.setItem("subTotal", JSON.stringify(this.subTotal));
-            this.service.getCartCount();
-            alert("Your order has been placed!");
-            this.router.navigate(['/myorders']);
+            if (i >= (this.myArray.length - 1)) {
+
+              this.loading = false;
+              var retreivedProducts = localStorage.getItem("products");
+              this.myArray = JSON.parse(retreivedProducts);
+              this.myArray = [];
+              localStorage.setItem("products", JSON.stringify(this.myArray));
+              this.totalBill = 0;
+              localStorage.setItem("totalBill", JSON.stringify(this.totalBill));
+              this.shipmentCharges = 0;
+              localStorage.setItem("shipmentCharges", JSON.stringify(this.shipmentCharges));
+              this.subTotal = 0;
+              localStorage.setItem("subTotal", JSON.stringify(this.subTotal));
+              this.service.getCartCount();
+              alert("Your order has been placed!");
+              this.router.navigate(['/myorders']);
+            }
           })
       })
   }

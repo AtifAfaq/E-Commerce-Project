@@ -1,20 +1,39 @@
 <app-navbar></app-navbar>
-
 <div class="mainContent">
+    <ol class="progtrckr" data-progtrckr-steps="5">
+        <li class="progtrckr-done">Order Processing</li>
+        <!--
+ -->
+        <li class="progtrckr-done">Pre-Production</li>
+        <!--
+ -->
+        <li class="progtrckr-done">In Production</li>
+        <!--
+ -->
+        <li class="progtrckr-todo">Shipped</li>
+        <!--
+ -->
+        <li class="progtrckr-todo">Delivered</li>
+    </ol>
+
+
+
+
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 mt-5">
             <table class="table table-hover">
                 <thead>
                     <tr class="row">
                         <th class="col-md-4 text-center">Product</th>
-                        <th class="col-md-4 text-center">Quantity</th>
+                        <th class="col-md-2 text-center">Quantity</th>
                         <th class="col-md-2 text-center">Price</th>
                         <th class="col-md-2 text-center">Total</th>
+                        <th class="col-md-2 text-center">Delivery Fee</th>
                         <th> </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="row" *ngFor="let p of allProducts ; index as i">
+                    <tr class="row" *ngFor="let p of orderObj.myArray ; index as i">
                         <td class="col-md-4">
                             <div class="media">
                                 <a class="thumbnail pull-left"> <img class="media-object" [src]="p.productUrls[0]"
@@ -25,7 +44,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="col-md-4" style="text-align: center">
+                        <td class="col-md-2" style="text-align: center">
                             <div class="input-group mb-3">
 
                                 <input disabled [(ngModel)]="p.productQty" Readonly type="number"
@@ -35,6 +54,7 @@
                         </td>
                         <td class="col-md-2 text-center"><strong>${{p.discountedPrice}}</strong></td>
                         <td class=" col-md-2 text-center"><strong>${{GrandTotal(p)}}</strong></td>
+                        <td class=" col-md-2 text-center"><strong>${{orderObj.shipmentCharges}}</strong></td>
 
                     </tr>
 

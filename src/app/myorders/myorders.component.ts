@@ -16,6 +16,8 @@ export class MyordersComponent implements OnInit {
   totalBill: any = 0;
   myProducts: Array<any> = [];
   icon: boolean = false;
+  orderObj: any = {};
+
 
   constructor(public router: Router,
     public service: DataCollectorService) {
@@ -66,5 +68,10 @@ export class MyordersComponent implements OnInit {
       return b.totalBill - a.totalBill
       this.icon = false;
     })
+  }
+
+  orderDetails(o) {
+    this.service.orderObj = o;
+    this.router.navigate(['/details']);
   }
 }

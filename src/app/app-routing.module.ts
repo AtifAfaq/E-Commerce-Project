@@ -13,6 +13,8 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { MyordersComponent } from './myorders/myorders.component';
 import { DetailsComponent } from './details/details.component';
+import { SellerOrdersComponent } from './seller-orders/seller-orders.component';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
@@ -27,6 +29,7 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'myorders', component: MyordersComponent },
   { path: 'details', component: DetailsComponent },
+  { path: 'seller-orders', component: SellerOrdersComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

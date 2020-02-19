@@ -23,6 +23,7 @@ import { DetailsComponent } from './details/details.component';
 import { CountriesService } from './countries.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './search.pipe';
+import { SellerOrdersComponent } from './seller-orders/seller-orders.component';
 
 
 var firebaseConfig = {
@@ -56,7 +57,8 @@ firebase.initializeApp(firebaseConfig);
     CheckoutComponent,
     MyordersComponent,
     DetailsComponent,
-    SearchPipe
+    SearchPipe,
+    SellerOrdersComponent
   ],
   imports: [
     RouterModule,

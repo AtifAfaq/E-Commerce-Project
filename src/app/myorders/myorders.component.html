@@ -25,14 +25,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let p of myProducts; index as i">
-                    <td>{{p.timestamp}}</td>
-                    <td>{{p.timestamp | date: 'short'}}</td>
-                    <td>{{p.address}}</td>
-                    <td>${{p.shipmentCharges}}</td>
-                    <td>${{p.totalBill}}</td>
-                    <td>{{p.status}}</td>
-                    <td><button class="btn btn-primary" routerLink="/details">Details</button></td>
+                <tr *ngFor="let o of myProducts; index as i">
+                    <td>{{o.timestamp}}</td>
+                    <td>{{o.timestamp | date: 'short'}}</td>
+                    <td>{{o.address}}</td>
+                    <td>${{o.shipmentCharges}}</td>
+                    <td>${{o.totalBill}}</td>
+                    <td>{{o.status}}</td>
+                    <td><button class="btn btn-primary" (click)="orderDetails(o)">Details</button></td>
                 </tr>
             </tbody>
         </table>

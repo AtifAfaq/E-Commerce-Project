@@ -11,8 +11,12 @@ import * as firebase from 'firebase';
 export class DetailsComponent implements OnInit {
   myArray: any = [];
   allProducts = [];
+  orderObj: any = {};
+
   constructor(public router: Router,
     public service: DataCollectorService) {
+    this.orderObj = this.service.orderObj
+    console.log(this.orderObj)
 
   }
 
