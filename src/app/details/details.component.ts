@@ -9,12 +9,14 @@ import * as firebase from 'firebase';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
+
   myArray: any = [];
   allProducts = [];
   orderObj: any = {};
 
   constructor(public router: Router,
     public service: DataCollectorService) {
+
     this.orderObj = this.service.orderObj
     console.log(this.orderObj)
 
@@ -22,6 +24,8 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
   GrandTotal(p) {
     var totalPrice = Number(p.productQty) * Number(p.discountedPrice);
     return totalPrice;

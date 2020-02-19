@@ -57,16 +57,16 @@ export class MyordersComponent implements OnInit {
   }
 
   assending() {
+    this.icon = true;
     this.myProducts.sort(function (a, b) {
-      return a.totalBill - b.totalBill
-      this.icon = true;
+      return a.totalBill - b.totalBill;
     })
   }
 
   decending() {
+    this.icon = false;
     this.myProducts.sort(function (a, b) {
       return b.totalBill - a.totalBill
-      this.icon = false;
     })
   }
 
