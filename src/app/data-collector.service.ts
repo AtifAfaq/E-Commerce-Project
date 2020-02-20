@@ -33,9 +33,11 @@ export class DataCollectorService {
 
 
   AddtoCart(qty) {
+
     var productMatched = false;
     var retreivedProducts = localStorage.getItem("products");
     this.myArray = JSON.parse(retreivedProducts);
+    console.log(this.myArray)
     if (!this.myArray) {
       this.myArray = [];
     }
@@ -45,6 +47,13 @@ export class DataCollectorService {
         productMatched = true;
       }
     });
+    var uid = localStorage.getItem("uid");
+    this.myArray.forEach(product => {
+      if (product.uid == uid) {
+        alert("You cannot purchase your own product")
+        productMatched = true;
+      }
+    })
 
     if (!productMatched) {
       this.myArray.push(this.product);

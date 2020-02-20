@@ -2,7 +2,7 @@
 <div class="mainContent">
     <ul class="nav nav-tabs mt-2">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#home">Pending (2)</a>
+            <a class="nav-link active" data-toggle="tab" href="#home">Pending ({{pendingCount}})</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#menu1">Accepted (3)</a>
@@ -12,6 +12,9 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#menu3">Delivered (8)</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu4">Cancelled (8)</a>
         </li>
     </ul>
 
@@ -33,7 +36,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of myOrders">
+                    <tr *ngFor="let item of pendingArray">
                         <td>{{item.timestamp}}</td>
                         <td>{{item.timestamp | date: 'mediumDate'}}</td>
                         <td>{{item.myArray.length}}</td>
@@ -64,15 +67,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Doe</td>
+                    <tr *ngFor="let item of acceptedArray">
+                        <td>{{item.timestamp}}</td>
+                        <td>{{item.timestamp | date: 'mediumDate'}}</td>
+                        <td>{{item.myArray.length}}</td>
+                        <td>{{item.firstName}} {{item.lastName}}</td>
+                        <td>{{item.address}}</td>
                         <td>john@example.com</td>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        <td>John</td>
-                        <td>Doe</td>
+                        <td>{{item.totalBill}}</td>
+                        <td><button class="btn btn-primary">Details</button></td>
                     </tr>
 
                 </tbody>
@@ -95,15 +98,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Doe</td>
+                    <tr *ngFor="let item of shippedArray">
+                        <td>{{item.timestamp}}</td>
+                        <td>{{item.timestamp | date: 'mediumDate'}}</td>
+                        <td>{{item.myArray.length}}</td>
+                        <td>{{item.firstName}} {{item.lastName}}</td>
+                        <td>{{item.address}}</td>
                         <td>john@example.com</td>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        <td>John</td>
-                        <td>Doe</td>
+                        <td>{{item.totalBill}}</td>
+                        <td><button class="btn btn-primary">Details</button></td>
                     </tr>
 
                 </tbody>
@@ -126,20 +129,51 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Doe</td>
+                    <tr *ngFor="let item of deliveredArray">
+                        <td>{{item.timestamp}}</td>
+                        <td>{{item.timestamp | date: 'mediumDate'}}</td>
+                        <td>{{item.myArray.length}}</td>
+                        <td>{{item.firstName}} {{item.lastName}}</td>
+                        <td>{{item.address}}</td>
                         <td>john@example.com</td>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        <td>John</td>
-                        <td>Doe</td>
+                        <td>{{item.totalBill}}</td>
+                        <td><button class="btn btn-primary">Details</button></td>
                     </tr>
 
                 </tbody>
             </table>
         </div>
+        <div class="tab-pane container" id="menu4">
+            <h2 class="text-center my-4">Cancelled Orders</h2>
+            <table class="table table-striped bg-white">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Date & Time</th>
+                        <th>Products</th>
+                        <th>Product Qty</th>
+                        <th>Buyer Name</th>
+                        <th>Country</th>
+                        <th>Total</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cancelledArray">
+                        <td>{{item.timestamp}}</td>
+                        <td>{{item.timestamp | date: 'mediumDate'}}</td>
+                        <td>{{item.myArray.length}}</td>
+                        <td>{{item.firstName}} {{item.lastName}}</td>
+                        <td>{{item.address}}</td>
+                        <td>john@example.com</td>
+                        <td>{{item.totalBill}}</td>
+                        <td><button class="btn btn-primary">Details</button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
 </div>

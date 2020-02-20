@@ -9,11 +9,18 @@ import * as firebase from 'firebase';
 export class SellerOrdersComponent implements OnInit {
 
   myOrders: Array<any> = [];
-
+  pushOrder = false;
+  pendingArray = [];
+  acceptedArray = [];
+  shippedArray = [];
+  deliveredArray = [];
+  cancelledArray = [];
+  pendingCount: number = this.pendingArray.length;
   constructor() { }
 
   ngOnInit() {
     this.getMyOrders();
+
   }
 
 
@@ -24,15 +31,48 @@ export class SellerOrdersComponent implements OnInit {
         var data = snapshot.val();   //  JSON objects array
         for (var key in data) {
           var temp = data[key];     //   {name: 'Atif', city: 'lahore'} 
-          temp.key = key;           //   {name: 'Atif', key: 'asjdUIH32jnUYHIK8'} 
+          temp.key = key;   //   {name: 'Atif', key: 'asjdUIH32jnUYHIK8'} 
+          this.pushOrder = false;
           for (var i = 0; i < temp.myArray.length; i++) {
             if (temp.myArray[i].uid == localStorage.getItem('uid')) {
-              self.myOrders.push(temp);
+              // debugger;
+              if (!this.pushOrder) {
+                self.myOrders.push(temp);
+                console.log(self.myOrders)
+                this.pushOrder = true;
+              }
             }
           }
+
         }
+        this.showPending();
         console.log(self.myOrders);
       })
+  }
+
+  showPending() {
+    this.myOrders.forEach(product => {
+      if (product.status == "pending") {
+        this.pendingArray.push(product)
+
+      }
+      if (product.status == "accepted") {
+        this.acceptedArray.push(product)
+        var acceptedCount = this.acceptedArray.length;
+      }
+      if (product.status == "shipped") {
+        this.shippedArray.push(product)
+        var shippedCount = this.shippedArray.length;
+      }
+      if (product.status == "delivered") {
+        this.deliveredArray.push(product)
+        var deliverCount = this.deliveredArray.length;
+      }
+      if (product.status == "cancelled") {
+        this.cancelledArray.push(product)
+        var cancelCount = this.cancelledArray.length;
+      }
+    })
   }
 
 }
