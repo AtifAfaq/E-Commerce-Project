@@ -15,6 +15,7 @@ export class SellerHomeComponent implements OnInit {
   p: any = '';
   index: any = '';
   loading: boolean = false;
+  
   constructor(
     public service: DataCollectorService,
     public router: Router

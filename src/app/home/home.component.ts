@@ -148,6 +148,11 @@ export class HomeComponent implements OnInit {
 
 
   AddCart(p, i) {
+    var uid = localStorage.getItem("uid");
+    if (uid == p.uid) {
+      alert("You cannot purchase your own product")
+      return
+    }
     if (p.availableQty >= 1) {
       p.productQty = 1
       this.service.product = p;

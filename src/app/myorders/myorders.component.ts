@@ -17,6 +17,7 @@ export class MyordersComponent implements OnInit {
   myProducts: Array<any> = [];
   icon: boolean = false;
   orderObj: any = {};
+  loading: boolean = false;
 
 
   constructor(public router: Router,
@@ -26,7 +27,6 @@ export class MyordersComponent implements OnInit {
     this.order = this.order++;
     this.cartCount = this.service.cartCount;
     this.totalBill = this.service.totalBill;
-    // this.status = "accepted"
   }
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class MyordersComponent implements OnInit {
 
   getMyProducts() {
     var self = this;
-    // this.loading = true;
+    this.loading = true;
     let uid = localStorage.getItem('uid');
     firebase.database().ref().child('orders')
       .orderByChild('uid').equalTo(uid)
@@ -49,10 +49,13 @@ export class MyordersComponent implements OnInit {
         }
         console.log(self.myProducts);
         // this.myProducts.reverse();
-        // this.loading = false;
+        this.loading = false;
         this.myProducts.sort(function (a, b) {
           return b.timestamp - a.timestamp
         });
+      })
+      .catch((e) => {
+        this.loading = false;
       })
   }
 

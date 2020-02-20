@@ -96,16 +96,13 @@ body {
   position: absolute;
   top: 0%;
   padding: 20% 50%;
+  z-index: 9999999;
 }
 .prodTitle {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  }
-  .checkout{
-    margin-top: 100px;
-  }
-  
-  
-  
-
+}
+.checkout {
+  margin-top: 100px;
+}

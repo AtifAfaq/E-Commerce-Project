@@ -15,7 +15,7 @@ export class SellerOrdersComponent implements OnInit {
   shippedArray = [];
   deliveredArray = [];
   cancelledArray = [];
-  pendingCount: number = this.pendingArray.length;
+
   constructor() { }
 
   ngOnInit() {
@@ -35,7 +35,6 @@ export class SellerOrdersComponent implements OnInit {
           this.pushOrder = false;
           for (var i = 0; i < temp.myArray.length; i++) {
             if (temp.myArray[i].uid == localStorage.getItem('uid')) {
-              // debugger;
               if (!this.pushOrder) {
                 self.myOrders.push(temp);
                 console.log(self.myOrders)
@@ -43,34 +42,29 @@ export class SellerOrdersComponent implements OnInit {
               }
             }
           }
-
         }
         this.showPending();
         console.log(self.myOrders);
       })
   }
 
+
   showPending() {
     this.myOrders.forEach(product => {
       if (product.status == "pending") {
         this.pendingArray.push(product)
-
       }
       if (product.status == "accepted") {
         this.acceptedArray.push(product)
-        var acceptedCount = this.acceptedArray.length;
       }
       if (product.status == "shipped") {
         this.shippedArray.push(product)
-        var shippedCount = this.shippedArray.length;
       }
       if (product.status == "delivered") {
         this.deliveredArray.push(product)
-        var deliverCount = this.deliveredArray.length;
       }
       if (product.status == "cancelled") {
         this.cancelledArray.push(product)
-        var cancelCount = this.cancelledArray.length;
       }
     })
   }

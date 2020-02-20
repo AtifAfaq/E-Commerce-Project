@@ -49,6 +49,7 @@ export class NavbarComponent implements OnInit {
         .then(() => {
           alert("User Logged Out!");
           localStorage.clear();
+          this.service.getCartCount();
           this.router.navigate(['/login']);
           localStorage.setItem('userLoggedIn', 'false');
         })
@@ -58,6 +59,7 @@ export class NavbarComponent implements OnInit {
     }
     else {
       localStorage.clear();
+      this.service.getCartCount();
       localStorage.setItem('userLoggedIn', 'false');
       this.router.navigate(['/login']);
     }

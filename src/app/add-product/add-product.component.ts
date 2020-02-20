@@ -165,10 +165,11 @@ export class AddProductComponent implements OnInit {
               }
             })
             .catch((e) => {
-              console.log(e.message);
+              alert(e.message);
               self.loading = false;
             })
-        });
+        })
+
   }
 
 
