@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-seller-orders',
@@ -16,13 +17,19 @@ export class SellerOrdersComponent implements OnInit {
   deliveredArray = [];
   cancelledArray = [];
 
-  constructor() { }
+
+  constructor(
+    public router: Router
+  ) { }
 
   ngOnInit() {
     this.getMyOrders();
 
   }
-
+  orderDetail(item) {
+    this.router.navigate(['/seller-detail/' + item.key]);
+    debugger;
+  }
 
   getMyOrders() {
     var self = this;
@@ -53,6 +60,7 @@ export class SellerOrdersComponent implements OnInit {
     this.myOrders.forEach(product => {
       if (product.status == "pending") {
         this.pendingArray.push(product)
+        console.log(this.pendingArray)
       }
       if (product.status == "accepted") {
         this.acceptedArray.push(product)

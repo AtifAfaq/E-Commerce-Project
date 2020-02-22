@@ -69,7 +69,6 @@ export class CheckoutComponent implements OnInit {
       totalBill: this.totalBill,
       shipmentCharges: this.shipmentCharges,
       subTotal: this.subTotal,
-      status: this.status,
       timestamp: Number(new Date())
     }
     var updates = {};

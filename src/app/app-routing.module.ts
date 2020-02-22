@@ -14,6 +14,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { MyordersComponent } from './myorders/myorders.component';
 import { DetailsComponent } from './details/details.component';
 import { SellerOrdersComponent } from './seller-orders/seller-orders.component';
+import { SellerDetailsComponent } from './seller-details/seller-details.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'myorders', component: MyordersComponent },
   { path: 'details', component: DetailsComponent },
   { path: 'seller-orders', component: SellerOrdersComponent },
+  { path: 'seller-detail/:key', component: SellerDetailsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

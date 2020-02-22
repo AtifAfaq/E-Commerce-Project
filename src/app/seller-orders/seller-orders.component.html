@@ -27,11 +27,11 @@
                     <tr>
                         <th>Order ID</th>
                         <th>Date & Time</th>
-                        <th>Products</th>
                         <th>Product Qty</th>
                         <th>Buyer Name</th>
-                        <th>Country</th>
-                        <th>Total</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Total Bill</th>
                         <th>Details</th>
                     </tr>
                 </thead>
@@ -42,9 +42,9 @@
                         <td>{{item.myArray.length}}</td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
-                        <td>john@example.com</td>
+                        <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
-                        <td><button class="btn btn-primary">Details</button></td>
+                        <td><button (click)="orderDetail(item)" class="btn btn-primary">Details</button></td>
                     </tr>
 
                 </tbody>
@@ -58,12 +58,12 @@
                     <tr>
                         <th>Order ID</th>
                         <th>Date & Time</th>
-                        <th>Products</th>
                         <th>Product Qty</th>
                         <th>Buyer Name</th>
-                        <th>Country</th>
-                        <th>State</th>
-                        <th>City</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Total Bill</th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,9 +73,10 @@
                         <td>{{item.myArray.length}}</td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
-                        <td>john@example.com</td>
+                        <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
                         <td><button class="btn btn-primary">Details</button></td>
+
                     </tr>
 
                 </tbody>
@@ -89,12 +90,12 @@
                     <tr>
                         <th>Order ID</th>
                         <th>Date & Time</th>
-                        <th>Products</th>
                         <th>Product Qty</th>
                         <th>Buyer Name</th>
-                        <th>Country</th>
-                        <th>State</th>
-                        <th>City</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Total Bill</th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -104,7 +105,7 @@
                         <td>{{item.myArray.length}}</td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
-                        <td>john@example.com</td>
+                        <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
                         <td><button class="btn btn-primary">Details</button></td>
                     </tr>
@@ -120,12 +121,12 @@
                     <tr>
                         <th>Order ID</th>
                         <th>Date & Time</th>
-                        <th>Products</th>
                         <th>Product Qty</th>
                         <th>Buyer Name</th>
-                        <th>Country</th>
-                        <th>State</th>
-                        <th>City</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Total Bill</th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -135,7 +136,7 @@
                         <td>{{item.myArray.length}}</td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
-                        <td>john@example.com</td>
+                        <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
                         <td><button class="btn btn-primary">Details</button></td>
                     </tr>
@@ -165,11 +166,10 @@
                         <td>{{item.myArray.length}}</td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
-                        <td>john@example.com</td>
+                        <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
                         <td><button class="btn btn-primary">Details</button></td>
                     </tr>
-
                 </tbody>
             </table>
         </div>

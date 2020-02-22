@@ -1,0 +1,56 @@
+<div class="mainContent">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="float-right">
+                <p> Order Total: {{totalBill}} </p>
+                <p> Shipment Charges: {{shipmentCharges}} </p>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th class=" text-center">Quantity</th>
+                        <th class=" text-center">Price</th>
+                        <th class=" text-center">Order Amount</th>
+                        <th class=" text-center">Delivery Address</th>
+                        <th class=" text-center">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of orderProducts ; index as i">
+                        <td>
+                            <div class="media">
+                                <a class="thumbnail pull-left"> <img class="media-object" [src]="p.productUrls[0]"
+                                        style="width: 72px; height: 72px;"> </a>
+                                <div class="media-body pl-3">
+                                    <h4 class="media-heading"><a>{{p.productName}}</a></h4>
+                                    <h5 class="media-heading"> by <a>{{p.brand}}</a></h5>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            {{p.productQty}}
+                        </td>
+                        <td class="text-center"><strong>${{p.discountedPrice}}</strong></td>
+                        <td class="text-center">${{GrandTotal(p)}}</td>
+                        <td class="text-center">${{order.address}}</td>
+                        <!-- <td class=" col-md-2 text-center"><strong>${{GrandTotal(p)}}</strong></td> -->
+                        <td class=" text-center">
+                            <button (click)="accept(p)" class="btn btn-success m-3">Accept it</button>
+                            <button class="btn btn-danger">Cancel</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ---------------------------------- -->
+
+<div *ngIf="loading" class="spinnerContent">
+    <div class="spinner-border text-muted"></div>
+</div>
