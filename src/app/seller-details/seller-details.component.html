@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="mainContent">
     <div class="row">
         <div class="col-md-12">
@@ -34,10 +35,14 @@
                         <td class="text-center"><strong>${{p.discountedPrice}}</strong></td>
                         <td class="text-center">${{GrandTotal(p)}}</td>
                         <td class="text-center">${{order.address}}</td>
-                        <!-- <td class=" col-md-2 text-center"><strong>${{GrandTotal(p)}}</strong></td> -->
-                        <td class=" text-center">
-                            <button (click)="accept(p)" class="btn btn-success m-3">Accept it</button>
-                            <button class="btn btn-danger">Cancel</button>
+                        <td *ngIf="!p.status" class="text-center">
+                            <button (click)="acceptOrder(p, i, 'accepted')" class="btn btn-success m-3">Accept
+                                it</button>
+                            <button (click)="acceptOrder(p, i, 'cancelled')" class="btn btn-danger">Cancel</button>
+                        </td>
+                        <td *ngIf="p.status" class="text-center">
+                            <p *ngIf="p.status=='accepted'" class="text-success">Accepted</p>
+                            <p *ngIf="p.status=='cancelled'" class="text-danger">Cancelled</p>
                         </td>
                     </tr>
 
