@@ -44,7 +44,6 @@ export class SellerOrdersComponent implements OnInit {
             if (temp.myArray[i].uid == localStorage.getItem('uid')) {
               if (!this.pushOrder) {
                 self.myOrders.push(temp);
-                console.log(self.myOrders)
                 this.pushOrder = true;
               }
             }
@@ -57,24 +56,25 @@ export class SellerOrdersComponent implements OnInit {
 
 
   showPending() {
-    this.myOrders.forEach(product => {
-      if (product.status == "pending") {
-        this.pendingArray.push(product)
-        console.log(this.pendingArray)
-      }
-      if (product.status == "accepted") {
-        this.acceptedArray.push(product)
-      }
-      if (product.status == "shipped") {
-        this.shippedArray.push(product)
-      }
-      if (product.status == "delivered") {
-        this.deliveredArray.push(product)
-      }
-      if (product.status == "cancelled") {
-        this.cancelledArray.push(product)
-      }
-    })
+    for (var i = 0; i < this.myOrders.length; i++) {
+      this.myOrders[i].myArray.forEach(product => {
+        if (!product.status) {
+          this.pendingArray.push(this.myOrders[i])
+          console.log("pending array", this.pendingArray)
+        }
+        if (product.status == "accepted") {
+          this.acceptedArray.push(product)
+        }
+        if (product.status == "shipped") {
+          this.shippedArray.push(product)
+        }
+        if (product.status == "delivered") {
+          this.deliveredArray.push(product)
+        }
+        if (product.status == "cancelled") {
+          this.cancelledArray.push(product)
+        }
+      })
+    }
   }
-
 }
