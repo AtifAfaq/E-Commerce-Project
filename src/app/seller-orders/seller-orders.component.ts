@@ -58,21 +58,22 @@ export class SellerOrdersComponent implements OnInit {
   showPending() {
     for (var i = 0; i < this.myOrders.length; i++) {
       this.myOrders[i].myArray.forEach(product => {
-        if (!product.status) {
-          this.pendingArray.push(this.myOrders[i])
-          console.log("pending array", this.pendingArray)
-        }
-        if (product.status == "accepted") {
-          this.acceptedArray.push(product)
-        }
-        if (product.status == "shipped") {
-          this.shippedArray.push(product)
-        }
-        if (product.status == "delivered") {
-          this.deliveredArray.push(product)
-        }
-        if (product.status == "cancelled") {
-          this.cancelledArray.push(product)
+        for (var i = 0; i < product.myArray.length; i++) {
+          if (!product.myArray[i].status) {
+            this.pendingArray.push(this.myOrders[i])
+          }
+          if (product.myArray[i].status == "accepted") {
+            this.acceptedArray.push(product)
+          }
+          if (product.myArray[i].status == "shipped") {
+            this.shippedArray.push(product)
+          }
+          if (product.myArray[i].status == "delivered") {
+            this.deliveredArray.push(product)
+          }
+          if (product.myArray[i].status == "cancelled") {
+            this.cancelledArray.push(product)
+          }
         }
       })
     }
