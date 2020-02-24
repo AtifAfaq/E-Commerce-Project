@@ -82,8 +82,26 @@ export class SellerDetailsComponent implements OnInit {
     updates['/orders/' + self.key + '/myArray'] = self.allProducts;
     firebase.database().ref().update(updates).then(() => {
       self.orderProducts[index].status = status;
+      if (status == "cancelled") {
+        this.updateQty(index);
+      }
+
     })
   }
 
+  updateQty(index) {
+    var self = this;
+    firebase.database().ref().child('products/' + self.orderProducts[index].key)
+      .once('value', (snapshot) => {
+        var data = snapshot.val();
+        data.availableQty = Number(data.availableQty) + Number(self.orderProducts[index].productQty);
+        var updates = {};
+        updates['/products/' + self.orderProducts[index].key + '/' + 'availableQty'] = data.availableQty;
+        firebase.database().ref().update(updates)
+          .then(() => {
+            alert(" Product has been cancelled from order")
+          })
+      })
+  }
 
 }

@@ -25,6 +25,10 @@ export class CheckoutComponent implements OnInit {
   countries;
   states;
   status = "pending";
+  country;
+  state;
+  city;
+  paymentMethod;
 
   constructor(public service: DataCollectorService,
     public countriesService: CountriesService,
@@ -59,11 +63,18 @@ export class CheckoutComponent implements OnInit {
 
 
   placeOrder() {
+    if (!this.manualCheckFields()) {
+      return;
+    }
+
     var userData: any = {
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
       address: this.address,
+      country: this.country,
+      state: this.state,
+      city: this.city,
       uid: localStorage.getItem('uid'),
       myArray: this.myArray,
       totalBill: this.totalBill,
@@ -118,6 +129,36 @@ export class CheckoutComponent implements OnInit {
             }
           })
       })
+  }
+
+
+
+  manualCheckFields() {
+    if (!this.address) {
+      alert('Please Enter Address!');
+      return false;
+    }
+    else if (!this.country) {
+      alert('Please Enter Country!');
+      return false;
+    }
+    else if (!this.state) {
+      alert('Please Enter State!');
+      return false;
+    }
+    else if (!this.city) {
+      alert('Please Enter City!');
+      return false;
+    }
+
+    else if (!this.paymentMethod) {
+      alert('Please Enter PaymentMethod!');
+      return false;
+    }
+
+    else {
+      return true;
+    }
   }
 
 }
