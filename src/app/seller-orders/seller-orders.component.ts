@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 
@@ -16,10 +16,11 @@ export class SellerOrdersComponent implements OnInit {
   shippedArray = [];
   deliveredArray = [];
   cancelledArray = [];
-
+  loading = false;
 
   constructor(
-    public router: Router
+    public router: Router,
+    public zone: NgZone
   ) { }
 
   ngOnInit() {
@@ -33,6 +34,7 @@ export class SellerOrdersComponent implements OnInit {
 
   getMyOrders() {
     var self = this;
+    self.loading = true;
     firebase.database().ref().child('orders')
       .once('value', (snapshot) => {
         var data = snapshot.val();   //  JSON objects array
@@ -49,7 +51,10 @@ export class SellerOrdersComponent implements OnInit {
             }
           }
         }
+
         this.showPending();
+
+
         console.log(self.myOrders);
       })
   }
@@ -58,24 +63,35 @@ export class SellerOrdersComponent implements OnInit {
   showPending() {
     for (var i = 0; i < this.myOrders.length; i++) {
       this.myOrders[i].myArray.forEach(product => {
-        for (var i = 0; i < product.myArray.length; i++) {
-          if (!product.myArray[i].status) {
+
+        this.zone.run(() => {
+
+
+          if (!product.status) {
             this.pendingArray.push(this.myOrders[i])
           }
-          if (product.myArray[i].status == "accepted") {
-            this.acceptedArray.push(product)
-          }
-          if (product.myArray[i].status == "shipped") {
-            this.shippedArray.push(product)
-          }
-          if (product.myArray[i].status == "delivered") {
-            this.deliveredArray.push(product)
-          }
-          if (product.myArray[i].status == "cancelled") {
-            this.cancelledArray.push(product)
-          }
-        }
+          // if (product.myArray[i].status == "accepted") {
+          //   this.acceptedArray.push(product)
+          // }
+          // if (product.myArray[i].status == "shipped") {
+          //   this.shippedArray.push(product)
+          // }
+          // if (product.myArray[i].status == "delivered") {
+          //   this.deliveredArray.push(product)
+          // }
+          // if (product.myArray[i].status == "cancelled") {
+          //   this.cancelledArray.push(product)
+          // }
+
+        })
       })
     }
+    this.pendingArray = this.pendingArray.filter(function (item, index, inputArray) {
+      return inputArray.indexOf(item) == index;
+      console.log(this.inputArray)
+      console.log(this.pendingArray)
+    });
+
+    this.loading = false;
   }
 }

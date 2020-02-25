@@ -39,7 +39,7 @@
                     <tr *ngFor="let item of pendingArray">
                         <td>{{item.timestamp}}</td>
                         <td>{{item.timestamp | date: 'mediumDate'}}</td>
-                        <td>{{item.myArray.length}}</td>
+                        <!-- <td>{{item.myArray.length}}</td> -->
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
@@ -70,7 +70,7 @@
                     <tr *ngFor="let item of acceptedArray">
                         <td>{{item.timestamp}}</td>
                         <td>{{item.timestamp | date: 'mediumDate'}}</td>
-                        <td>{{item.myArray.length}}</td>
+                        <!-- <td>{{item.myArray.length}}</td> -->
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
@@ -102,7 +102,7 @@
                     <tr *ngFor="let item of shippedArray">
                         <td>{{item.timestamp}}</td>
                         <td>{{item.timestamp | date: 'mediumDate'}}</td>
-                        <td>{{item.myArray.length}}</td>
+                        <!-- <td>{{item.myArray.length}}</td> -->
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
@@ -133,7 +133,7 @@
                     <tr *ngFor="let item of deliveredArray">
                         <td>{{item.timestamp}}</td>
                         <td>{{item.timestamp | date: 'mediumDate'}}</td>
-                        <td>{{item.myArray.length}}</td>
+                        <!-- <td>{{item.myArray.length}}</td> -->
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
@@ -163,7 +163,7 @@
                     <tr *ngFor="let item of cancelledArray">
                         <td>{{item.timestamp}}</td>
                         <td>{{item.timestamp | date: 'mediumDate'}}</td>
-                        <td>{{item.myArray.length}}</td>
+                        <!-- <td>{{item.myArray.length}}</td> -->
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
@@ -176,4 +176,8 @@
 
     </div>
 
+</div>
+
+<div *ngIf="loading" class="spinnerContent">
+    <div class="spinner-border text-muted"></div>
 </div>
