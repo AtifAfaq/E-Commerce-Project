@@ -70,26 +70,43 @@ export class SellerOrdersComponent implements OnInit {
           if (!product.status) {
             this.pendingArray.push(this.myOrders[i])
           }
-          // if (product.myArray[i].status == "accepted") {
-          //   this.acceptedArray.push(product)
-          // }
-          // if (product.myArray[i].status == "shipped") {
-          //   this.shippedArray.push(product)
-          // }
-          // if (product.myArray[i].status == "delivered") {
-          //   this.deliveredArray.push(product)
-          // }
-          // if (product.myArray[i].status == "cancelled") {
-          //   this.cancelledArray.push(product)
-          // }
+          if (product.status == "pending") {
+            this.pendingArray.push(this.myOrders[i])
+          }
+          if (product.status == "accepted") {
+            this.acceptedArray.push(this.myOrders[i])
+          }
+          if (product.status == "shipped") {
+            this.shippedArray.push(this.myOrders[i])
+          }
+          if (product.status == "delivered") {
+            this.deliveredArray.push(this.myOrders[i])
+          }
+          if (product.status == "cancelled") {
+            this.cancelledArray.push(this.myOrders[i])
+          }
 
         })
       })
     }
     this.pendingArray = this.pendingArray.filter(function (item, index, inputArray) {
       return inputArray.indexOf(item) == index;
-      console.log(this.inputArray)
-      console.log(this.pendingArray)
+    });
+
+    this.acceptedArray = this.acceptedArray.filter(function (item, index, inputArray) {
+      return inputArray.indexOf(item) == index;
+    });
+
+    this.shippedArray = this.shippedArray.filter(function (item, index, inputArray) {
+      return inputArray.indexOf(item) == index;
+    });
+
+    this.deliveredArray = this.deliveredArray.filter(function (item, index, inputArray) {
+      return inputArray.indexOf(item) == index;
+    });
+
+    this.cancelledArray = this.cancelledArray.filter(function (item, index, inputArray) {
+      return inputArray.indexOf(item) == index;
     });
 
     this.loading = false;

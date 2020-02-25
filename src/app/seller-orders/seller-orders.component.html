@@ -22,7 +22,7 @@
     <div class="tab-content">
         <div class="tab-pane container active" id="home">
             <h2 class="text-center my-4">Pending Orders</h2>
-            <table class="table table-striped bg-white">
+            <table class="text-center table table-striped bg-white">
                 <thead>
                     <tr>
                         <th>Order ID</th>
@@ -39,7 +39,7 @@
                     <tr *ngFor="let item of pendingArray">
                         <td>{{item.timestamp}}</td>
                         <td>{{item.timestamp | date: 'mediumDate'}}</td>
-                        <!-- <td>{{item.myArray.length}}</td> -->
+                        <td>{{item.myArray.length}}</td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
@@ -70,12 +70,12 @@
                     <tr *ngFor="let item of acceptedArray">
                         <td>{{item.timestamp}}</td>
                         <td>{{item.timestamp | date: 'mediumDate'}}</td>
-                        <!-- <td>{{item.myArray.length}}</td> -->
+                        <td>{{item.myArray.length}}</td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
-                        <td><button class="btn btn-primary">Details</button></td>
+                        <td><button (click)="orderDetail(item)" class="btn btn-primary">Details</button></td>
 
                     </tr>
 
@@ -102,12 +102,12 @@
                     <tr *ngFor="let item of shippedArray">
                         <td>{{item.timestamp}}</td>
                         <td>{{item.timestamp | date: 'mediumDate'}}</td>
-                        <!-- <td>{{item.myArray.length}}</td> -->
+                        <td>{{item.myArray.length}}</td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
-                        <td><button class="btn btn-primary">Details</button></td>
+                        <td><button (click)="orderDetail(item)" class="btn btn-primary">Details</button></td>
                     </tr>
 
                 </tbody>
@@ -133,12 +133,12 @@
                     <tr *ngFor="let item of deliveredArray">
                         <td>{{item.timestamp}}</td>
                         <td>{{item.timestamp | date: 'mediumDate'}}</td>
-                        <!-- <td>{{item.myArray.length}}</td> -->
+                        <td>{{item.myArray.length}}</td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
-                        <td><button class="btn btn-primary">Details</button></td>
+                        <td><button (click)="orderDetail(item)" class="btn btn-primary">Details</button></td>
                     </tr>
 
                 </tbody>
@@ -163,12 +163,12 @@
                     <tr *ngFor="let item of cancelledArray">
                         <td>{{item.timestamp}}</td>
                         <td>{{item.timestamp | date: 'mediumDate'}}</td>
-                        <!-- <td>{{item.myArray.length}}</td> -->
+                        <td>{{item.myArray.length}}</td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
-                        <td><button class="btn btn-primary">Details</button></td>
+                        <td><button (click)="orderDetail(item)" class="btn btn-primary">Details</button></td>
                     </tr>
                 </tbody>
             </table>
