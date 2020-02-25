@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as firebase from 'firebase';
 
 @Component({
@@ -17,11 +17,15 @@ export class SellerDetailsComponent implements OnInit {
   subTotal;
   shipmentCharges;
   totalBill;
+  productStatus: boolean = false;
 
-  constructor(public router: ActivatedRoute) {
+  constructor(
+    public router: ActivatedRoute,
+    public route: Router) {
     this.key = router.snapshot.params.key;
     this.getUserDetail(this.key);
   }
+
 
   ngOnInit() {
 
@@ -39,11 +43,39 @@ export class SellerDetailsComponent implements OnInit {
             this.orderProducts.push(product)
           }
         })
-        this.getTotalCost()
+        this.getTotalCost();
+        this.getAcceptedStatus();
       })
       .catch((e) => {
         alert(e.message);
       })
+  }
+
+
+  getAcceptedStatus() {
+    for (var i = 0; i < this.orderProducts.length; i++) {
+      if (this.orderProducts[i].status == 'accepted') {
+        this.productStatus = true;
+      }
+    }
+  }
+
+
+  shipOrder() {
+    var self = this;
+    self.allProducts.forEach(product => {
+      if (product.uid == localStorage.getItem('uid')) {
+        if (product.status == 'accepted') {
+          product.status = 'shipped';
+        }
+      }
+    });
+    var updates = {};
+    updates['/orders/' + self.key + '/myArray'] = self.allProducts;
+    firebase.database().ref().update(updates).then(() => {
+      alert("Order has been shipped successfully!");
+      this.route.navigate(['/seller-orders']);
+    })
   }
 
 
@@ -85,9 +117,9 @@ export class SellerDetailsComponent implements OnInit {
       if (status == "cancelled") {
         this.updateQty(index);
       }
-
     })
   }
+
 
   updateQty(index) {
     var self = this;

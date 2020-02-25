@@ -25,12 +25,13 @@ export class SellerOrdersComponent implements OnInit {
 
   ngOnInit() {
     this.getMyOrders();
-
   }
+
+
   orderDetail(item) {
     this.router.navigate(['/seller-detail/' + item.key]);
-    debugger;
   }
+
 
   getMyOrders() {
     var self = this;
@@ -51,10 +52,7 @@ export class SellerOrdersComponent implements OnInit {
             }
           }
         }
-
         this.showPending();
-
-
         console.log(self.myOrders);
       })
   }
@@ -63,32 +61,28 @@ export class SellerOrdersComponent implements OnInit {
   showPending() {
     for (var i = 0; i < this.myOrders.length; i++) {
       this.myOrders[i].myArray.forEach(product => {
-
         this.zone.run(() => {
-
-
-          if (!product.status) {
-            this.pendingArray.push(this.myOrders[i])
+          if (product.uid == localStorage.getItem('uid')) {
+            if (!product.status) {
+              this.pendingArray.push(this.myOrders[i])
+            }
+            if (product.status == "accepted") {
+              this.acceptedArray.push(this.myOrders[i])
+            }
+            if (product.status == "shipped") {
+              this.shippedArray.push(this.myOrders[i])
+            }
+            if (product.status == "delivered") {
+              this.deliveredArray.push(this.myOrders[i])
+            }
+            if (product.status == "cancelled") {
+              this.cancelledArray.push(this.myOrders[i])
+            }
           }
-          if (product.status == "pending") {
-            this.pendingArray.push(this.myOrders[i])
-          }
-          if (product.status == "accepted") {
-            this.acceptedArray.push(this.myOrders[i])
-          }
-          if (product.status == "shipped") {
-            this.shippedArray.push(this.myOrders[i])
-          }
-          if (product.status == "delivered") {
-            this.deliveredArray.push(this.myOrders[i])
-          }
-          if (product.status == "cancelled") {
-            this.cancelledArray.push(this.myOrders[i])
-          }
-
         })
       })
     }
+
     this.pendingArray = this.pendingArray.filter(function (item, index, inputArray) {
       return inputArray.indexOf(item) == index;
     });

@@ -2,6 +2,10 @@
 <div class="mainContent">
     <div class="row">
         <div class="col-md-12">
+            <div class="float-left text-center">
+                <button (click)="shipOrder()" *ngIf="productStatus" class="btn btn-primary mt-3">Ship this
+                    order</button>
+            </div>
             <div class="float-right">
                 <p> Order Total: {{totalBill}} </p>
                 <p> Shipment Charges: {{shipmentCharges}} </p>
