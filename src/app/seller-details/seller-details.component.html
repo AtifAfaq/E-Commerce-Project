@@ -46,6 +46,7 @@
                         </td>
                         <td *ngIf="p.status" class="text-center">
                             <p *ngIf="p.status=='accepted'" class="text-success">Accepted</p>
+                            <p *ngIf="p.status=='shipped'" class="text-success">Shipped</p>
                             <p *ngIf="p.status=='cancelled'" class="text-danger">Cancelled</p>
                         </td>
                     </tr>
