@@ -12,12 +12,14 @@ export class SellerDetailsComponent implements OnInit {
   key: string = '';
   order: any = {};
   orderProducts = [];
+  cancelProducts = [];
   allProducts = [];
   loading = false;
   subTotal;
   shipmentCharges;
   totalBill;
   productStatus: boolean = false;
+  shippedStatus: boolean = false;
 
   constructor(
     public router: ActivatedRoute,
@@ -40,7 +42,12 @@ export class SellerDetailsComponent implements OnInit {
         this.order.myArray.forEach(product => {
           let uid = localStorage.getItem('uid');
           if (uid == product.uid) {
-            this.orderProducts.push(product)
+            if (product.status != "cancelled") {
+              this.orderProducts.push(product)
+            }
+            if (product.status == "cancelled") {
+              this.cancelProducts.push(product)
+            }
           }
         })
         this.getTotalCost();
@@ -56,6 +63,9 @@ export class SellerDetailsComponent implements OnInit {
     for (var i = 0; i < this.orderProducts.length; i++) {
       if (this.orderProducts[i].status == 'accepted') {
         this.productStatus = true;
+      }
+      if (this.orderProducts[i].status == 'shipped') {
+        this.shippedStatus = true;
       }
     }
   }
@@ -77,7 +87,22 @@ export class SellerDetailsComponent implements OnInit {
       this.route.navigate(['/seller-orders']);
     })
   }
-
+  deliverOrder() {
+    var self = this;
+    self.allProducts.forEach(product => {
+      if (product.uid == localStorage.getItem('uid')) {
+        if (product.status == 'shipped') {
+          product.status = 'delivered';
+        }
+      }
+    });
+    var updates = {};
+    updates['/orders/' + self.key + '/myArray'] = self.allProducts;
+    firebase.database().ref().update(updates).then(() => {
+      alert("Order has been shipped successfully!");
+      this.route.navigate(['/seller-orders']);
+    })
+  }
 
   GrandTotal(p) {
     var totalPrice = Number(p.productQty) * Number(p.discountedPrice);

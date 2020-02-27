@@ -6,6 +6,10 @@
                 <button (click)="shipOrder()" *ngIf="productStatus" class="btn btn-primary mt-3">Ship this
                     order</button>
             </div>
+            <div class="float-left text-center">
+                <button (click)="deliverOrder()" *ngIf="shippedStatus" class="btn btn-primary mt-3">Order
+                    Delivered</button>
+            </div>
             <div class="float-right">
                 <p> Order Total: {{totalBill}} </p>
                 <p> Shipment Charges: {{shipmentCharges}} </p>
@@ -21,8 +25,8 @@
                         <th class=" text-center">Status</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr *ngFor="let p of orderProducts ; index as i">
+                <tbody *ngFor="let p of orderProducts ; index as i">
+                    <tr>
                         <td>
                             <div class="media">
                                 <a class="thumbnail pull-left"> <img class="media-object" [src]="p.productUrls[0]"
@@ -48,6 +52,7 @@
                             <p *ngIf="p.status=='accepted'" class="text-success">Accepted</p>
                             <p *ngIf="p.status=='shipped'" class="text-success">Shipped</p>
                             <p *ngIf="p.status=='cancelled'" class="text-danger">Cancelled</p>
+                            <p *ngIf="p.status=='delivered'" class="text-danger">Delivered</p>
                         </td>
                     </tr>
 
