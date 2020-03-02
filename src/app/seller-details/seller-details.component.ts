@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as firebase from 'firebase';
+import { DataCollectorService } from './../data-collector.service';
 
 @Component({
   selector: 'app-seller-details',
@@ -20,12 +21,15 @@ export class SellerDetailsComponent implements OnInit {
   totalBill;
   productStatus: boolean = false;
   shippedStatus: boolean = false;
+  status;
 
   constructor(
     public router: ActivatedRoute,
-    public route: Router) {
+    public route: Router,
+    public service: DataCollectorService) {
     this.key = router.snapshot.params.key;
     this.getUserDetail(this.key);
+    this.status = this.service.status;
   }
 
 
@@ -42,12 +46,13 @@ export class SellerDetailsComponent implements OnInit {
         this.order.myArray.forEach(product => {
           let uid = localStorage.getItem('uid');
           if (uid == product.uid) {
-            if (product.status != "cancelled") {
+            if (!product.status) {
+              product.status = "pending"
+            }
+            if (this.status == product.status) {
               this.orderProducts.push(product)
             }
-            if (product.status == "cancelled") {
-              this.cancelProducts.push(product)
-            }
+
           }
         })
         this.getTotalCost();
@@ -99,7 +104,7 @@ export class SellerDetailsComponent implements OnInit {
     var updates = {};
     updates['/orders/' + self.key + '/myArray'] = self.allProducts;
     firebase.database().ref().update(updates).then(() => {
-      alert("Order has been shipped successfully!");
+      alert("Order has been delivered successfully!");
       this.route.navigate(['/seller-orders']);
     })
   }

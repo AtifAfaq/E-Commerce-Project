@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
-
+import { DataCollectorService } from '../data-collector.service';
 @Component({
   selector: 'app-seller-orders',
   templateUrl: './seller-orders.component.html',
@@ -18,9 +18,11 @@ export class SellerOrdersComponent implements OnInit {
   cancelledArray = [];
   loading = false;
 
+
   constructor(
     public router: Router,
-    public zone: NgZone
+    public zone: NgZone,
+    public service: DataCollectorService,
   ) { }
 
   ngOnInit() {
@@ -28,7 +30,8 @@ export class SellerOrdersComponent implements OnInit {
   }
 
 
-  orderDetail(item) {
+  orderDetail(item, status) {
+    this.service.status = status;
     this.router.navigate(['/seller-detail/' + item.key]);
   }
 

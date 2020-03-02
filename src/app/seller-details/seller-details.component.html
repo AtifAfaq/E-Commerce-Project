@@ -43,16 +43,16 @@
                         <td class="text-center"><strong>${{p.discountedPrice}}</strong></td>
                         <td class="text-center">${{GrandTotal(p)}}</td>
                         <td class="text-center">${{order.address}}</td>
-                        <td *ngIf="!p.status" class="text-center">
+                        <td *ngIf="p.status=='pending'" class="text-center">
                             <button (click)="acceptOrder(p, i, 'accepted')" class="btn btn-success m-3">Accept
                                 it</button>
                             <button (click)="acceptOrder(p, i, 'cancelled')" class="btn btn-danger">Cancel</button>
                         </td>
-                        <td *ngIf="p.status" class="text-center">
+                        <td *ngIf="p.status!='pending'" class="text-center">
                             <p *ngIf="p.status=='accepted'" class="text-success">Accepted</p>
                             <p *ngIf="p.status=='shipped'" class="text-success">Shipped</p>
                             <p *ngIf="p.status=='cancelled'" class="text-danger">Cancelled</p>
-                            <p *ngIf="p.status=='delivered'" class="text-danger">Delivered</p>
+                            <p *ngIf="p.status=='delivered'" class="text-success">Delivered</p>
                         </td>
                     </tr>
 

@@ -44,7 +44,7 @@
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
-                        <td><button (click)="orderDetail(item)" class="btn btn-primary">Details</button></td>
+                        <td><button (click)="orderDetail(item, 'pending')" class="btn btn-primary">Details</button></td>
                     </tr>
 
                 </tbody>
@@ -75,7 +75,8 @@
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
-                        <td><button (click)="orderDetail(item)" class="btn btn-primary">Details</button></td>
+                        <td><button (click)="orderDetail(item , 'accepted')" class="btn btn-primary">Details</button>
+                        </td>
 
                     </tr>
 
@@ -107,7 +108,8 @@
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
-                        <td><button (click)="orderDetail(item)" class="btn btn-primary">Details</button></td>
+                        <td><button (click)="orderDetail(item , 'shipped')" class="btn btn-primary">Details</button>
+                        </td>
                     </tr>
 
                 </tbody>
@@ -138,7 +140,8 @@
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
-                        <td><button (click)="orderDetail(item)" class="btn btn-primary">Details</button></td>
+                        <td><button (click)="orderDetail(item , 'delivered')" class="btn btn-primary">Details</button>
+                        </td>
                     </tr>
 
                 </tbody>
@@ -168,7 +171,8 @@
                         <td>{{item.address}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.totalBill}}</td>
-                        <td><button (click)="orderDetail(item)" class="btn btn-primary">Details</button></td>
+                        <td><button (click)="orderDetail(item ,'cancelled')" class="btn btn-primary">Details</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
