@@ -25,7 +25,6 @@
                         <i *ngIf="icon == false" (click)="assending()" class="fas fa-sort-up pointer"></i>
                         <i *ngIf="icon == true" (click)="decending()" class="fas fa-sort-down pointer"></i>
                     </th>
-                    <th>Status</th>
                     <th>Details</th>
                 </tr>
             </thead>
@@ -37,7 +36,6 @@
                     <td>{{o.address}}</td>
                     <td>${{o.shipmentCharges}}</td>
                     <td>${{o.totalBill}}</td>
-                    <td>{{o.status}}</td>
                     <td><button class="btn btn-primary" (click)="orderDetails(o)">Details</button></td>
                 </tr>
             </tbody>

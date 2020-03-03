@@ -28,8 +28,8 @@
                         <th class="col-md-2 text-center">Quantity</th>
                         <th class="col-md-2 text-center">Price</th>
                         <th class="col-md-2 text-center">Total</th>
-                        <th class="col-md-2 text-center">Delivery Fee</th>
-                        <th> </th>
+                        <th class="col-md-1 text-center">Delivery Fee</th>
+                        <th class="col-md-1 text-center">Status </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,8 +54,8 @@
                         </td>
                         <td class="col-md-2 text-center"><strong>${{p.discountedPrice}}</strong></td>
                         <td class=" col-md-2 text-center"><strong>${{GrandTotal(p)}}</strong></td>
-                        <td class=" col-md-2 text-center"><strong>${{orderObj.shipmentCharges}}</strong></td>
-
+                        <td class=" col-md-1 text-center"><strong>${{orderObj.shipmentCharges}}</strong></td>
+                        <td class=" col-md-1 text-center"><strong>{{p.status}}</strong></td>
                     </tr>
 
                 </tbody>
