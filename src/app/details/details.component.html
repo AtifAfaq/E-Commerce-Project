@@ -1,19 +1,23 @@
 <app-navbar></app-navbar>
 <div class="mainContent">
-    <ol class="progtrckr" data-progtrckr-steps="5">
-        <li class="progtrckr-done">Order Processing</li>
+    <ol class="progtrckr" data-progtrckr-steps="4">
+        <li class="progtrckr-done">
+            Pending Order</li>
         <!--
  -->
-        <li class="progtrckr-done">Pre-Production</li>
+        <li [class.progtrckr-done]="orderObj.myArray[0].status=='accepted' || orderObj.myArray[0].status=='shipped' || orderObj.myArray[0].status=='delivered'"
+            [class.progtrckr-todo]="orderObj.myArray[0].status!='accepted' && orderObj.myArray[0].status!='shipped' && orderObj.myArray[0].status!='delivered'">
+            Accepted</li>
         <!--
  -->
-        <li class="progtrckr-done">In Production</li>
+        <li [class.progtrckr-done]="orderObj.myArray[0].status=='shipped' || orderObj.myArray[0].status=='delivered'"
+            [class.progtrckr-todo]="orderObj.myArray[0].status!='shipped' && orderObj.myArray[0].status!='delivered'">
+            Shipped</li>
         <!--
  -->
-        <li class="progtrckr-todo">Shipped</li>
-        <!--
- -->
-        <li class="progtrckr-todo">Delivered</li>
+        <li [class.progtrckr-done]="orderObj.myArray[0].status=='delivered'"
+            [class.progtrckr-todo]="orderObj.myArray[0].status!='delivered'">Delivered</li>
+
     </ol>
 
 
