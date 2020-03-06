@@ -16,12 +16,16 @@ export class DetailsComponent implements OnInit {
   comment: '';
   loading;
   productKey;
+
+  star1: boolean = false;
+  star2: boolean = false;
+  star3: boolean = false;
+  star4: boolean = false;
+  star5: boolean = false;
+
   constructor(public router: Router,
     public service: DataCollectorService) {
-
-    this.orderObj = this.service.orderObj
-    console.log(this.orderObj)
-
+    this.orderObj = this.service.orderObj;
   }
 
   ngOnInit() {
@@ -33,20 +37,6 @@ export class DetailsComponent implements OnInit {
     return totalPrice;
   }
 
-
-  bringorder(i) {
-    var self = this;
-    firebase.database().ref().child('orders/' + self.myArray[i].key)
-      .once('value', (snapshot) => {
-        var data = snapshot.val();
-        for (var key in data) {
-          var temp = data[key];
-          temp.key = key;
-          self.allProducts.push(temp);
-          console.log(this.allProducts)
-        }
-      })
-  }
 
   reviewDataFirebase() {
     var review: any = {
@@ -75,23 +65,46 @@ export class DetailsComponent implements OnInit {
   sendProduct(key) {
     this.productKey = key;
   }
-  // updates['/users/' + this.uid] = userData;
-  // firebase.database().ref().update(updates)
-  //   .then(() => {
-  //     alert("Your account has been successfully created!");
-  //     localStorage.setItem('firstName', this.firstName);
-  //     localStorage.setItem('lastName', this.lastName);
-  //     localStorage.setItem('email', this.email);
-  //     localStorage.setItem('uid', this.uid);
-  //     localStorage.setItem('userLoggedIn', 'true');
-  //     this.loading = false;
-  //     firebase.auth().currentUser.sendEmailVerification();
-  //     this.router.navigate(['/home']);
-  //   })
-  //   .catch((e) => {
-  //     this.loading = false;
-  //     alert(e.message);
-  //   })
+
+
+
+  rateStars(index) {
+    if (index == 1) {
+      this.star1 = true;
+      this.star2 = false;
+      this.star3 = false;
+      this.star4 = false;
+      this.star5 = false;
+    }
+    if (index == 2) {
+      this.star1 = true;
+      this.star2 = true;
+      this.star3 = false;
+      this.star4 = false;
+      this.star5 = false;
+    }
+    if (index == 3) {
+      this.star1 = true;
+      this.star2 = true;
+      this.star3 = true;
+      this.star4 = false;
+      this.star5 = false;
+    }
+    if (index == 4) {
+      this.star1 = true;
+      this.star2 = true;
+      this.star3 = true;
+      this.star4 = true;
+      this.star5 = false;
+    }
+    if (index == 5) {
+      this.star1 = true;
+      this.star2 = true;
+      this.star3 = true;
+      this.star4 = true;
+      this.star5 = true;
+    }
+  }
 
 
 }

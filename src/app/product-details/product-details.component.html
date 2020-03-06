@@ -245,44 +245,38 @@
                     <div class="col-sm-12">
                         <hr />
                         <div class="review-block">
-                            <div class="row">
-                                <div *ngFor="let review of myReview">
-                                    <div *ngFor="let user of myReviewUser" class="col-sm-3">
-                                        <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image"
-                                            class="img-rounded">
-                                        <div class="review-block-name"><a href="#">{{user.firstName}}</a></div>
-                                        <div class="review-block-date">{{review.timestamp | date :'medium'}}<br />1 day
-                                            ago</div>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <div class="review-block-rate">
-                                            <button type="button" class="btn btn-warning btn-xs"
-                                                aria-label="Left Align">
-                                                <i class="fa fa-star text-white"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-warning btn-xs"
-                                                aria-label="Left Align">
-                                                <i class="fa fa-star text-white"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-warning btn-xs"
-                                                aria-label="Left Align">
-                                                <i class="fa fa-star text-white"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-default btn-grey btn-xs"
-                                                aria-label="Left Align">
-                                                <i class="fa fa-star text-white"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-default btn-grey btn-xs"
-                                                aria-label="Left Align">
-                                                <i class="fa fa-star text-white"></i>
-                                            </button>
-                                        </div>
-                                        <div class="review-block-title"></div>
-                                        <div class="review-block-description">{{review.comment}}</div>
-                                    </div>
+                            <div class="row" *ngFor="let review of myReview">
+                                <div class="col-sm-3">
+                                    <img [src]="review.profileUrl || 'http://dummyimage.com/60x60/666/ffffff&text=No+Image'"
+                                        class="img-rounded">
+                                    <div class="review-block-name"><a href="#">{{review.firstName}}</a></div>
+                                    <div class="review-block-date">{{review.timestamp | date :'medium'}}<br /></div>
                                 </div>
+                                <div class="col-sm-9">
+                                    <div class="review-block-rate">
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-grey btn-xs"
+                                            aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-grey btn-xs"
+                                            aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                    </div>
+                                    <div class="review-block-title"></div>
+                                    <div class="review-block-description">{{review.comment}}</div>
+                                </div>
+                                <hr class="w-100" />
                             </div>
-                            <hr />
                         </div>
                     </div>
                 </div>

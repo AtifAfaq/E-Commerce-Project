@@ -60,7 +60,7 @@
                         <td class="col-md-2 text-center"><strong>${{p.discountedPrice}}</strong></td>
                         <td class=" col-md-1 text-center"><strong>${{GrandTotal(p)}}</strong></td>
                         <td class=" col-md-1 text-center"><strong>${{orderObj.shipmentCharges}}</strong></td>
-                        <td class=" col-md-1 text-center"><strong>{{p.status}}</strong></td>
+                        <td class=" col-md-1 text-center"><strong>{{p.status || 'pending'}}</strong></td>
                         <td class=" col-md-1 text-center"><button *ngIf="p.status=='delivered'" class="btn btn-primary"
                                 data-toggle="modal" data-target="#feedbackModal" (click)="sendProduct(p.key)">Give
                                 Feedback</button></td>
@@ -80,7 +80,7 @@
             <!-- Modal Header -->
 
             <div class="modal-header">
-                <h4 class="modal-title title-color">Please Give Review about the Product</h4>
+                <p class="modal-title title-color">Please Give Review about the Product</p>
                 <button type="button" class="close" data-dismiss="modal">
                     &times;
                 </button>
@@ -88,17 +88,30 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-
-
                 <span class="detail media-body pl-3">
-                    <p class="rating">
-                        <label>Rating </label>
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star gray"></i>
-                    </p>
+                    <div class="review-block-rate text-center">
+                        <p class="mt-0">Rating</p>
+                        <button (click)="rateStars('1')" [class.btn-warning]="star1" [class.btn-dark]="!star1"
+                            type="button" class="btn btn-xs mr-1" aria-label="Left Align">
+                            <i class="fa fa-star text-white"></i>
+                        </button>
+                        <button (click)="rateStars('2')" [class.btn-warning]="star2" [class.btn-dark]="!star2"
+                            type="button" class="btn btn-xs mr-1" aria-label="Left Align">
+                            <i class="fa fa-star text-white"></i>
+                        </button>
+                        <button (click)="rateStars('3')" [class.btn-warning]="star3" [class.btn-dark]="!star3"
+                            type="button" class="btn btn-xs mr-1" aria-label="Left Align">
+                            <i class="fa fa-star text-white"></i>
+                        </button>
+                        <button (click)="rateStars('4')" [class.btn-warning]="star4" [class.btn-dark]="!star4"
+                            type="button" class="btn btn-xs mr-1" aria-label="Left Align">
+                            <i class="fa fa-star text-white"></i>
+                        </button>
+                        <button (click)="rateStars('5')" [class.btn-warning]="star5" [class.btn-dark]="!star5"
+                            type="button" class="btn btn-dark btn-xs mr-1" aria-label="Left Align">
+                            <i class="fa fa-star text-white"></i>
+                        </button>
+                    </div>
                     <div class="form-group">
                         <label class="control-label">Comments</label>
                         <textarea rows="6" [(ngModel)]="comment" class="form-control w-100"></textarea>
