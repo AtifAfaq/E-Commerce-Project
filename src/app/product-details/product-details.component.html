@@ -160,7 +160,8 @@
                         <h4>Rating breakdown</h4>
                         <div class="pull-left">
                             <div class="pull-left" style="width:35px; line-height:1;">
-                                <div style="height:9px; margin:5px 0;">5 <span class="glyphicon glyphicon-star"></span>
+                                <div style="height:9px; margin:5px 0;">5 <span><i
+                                            class="fa fa-star text-warning"></i></span>
                                 </div>
                             </div>
                             <div class="pull-left" style="width:180px;">
@@ -175,7 +176,8 @@
                         </div>
                         <div class="pull-left">
                             <div class="pull-left" style="width:35px; line-height:1;">
-                                <div style="height:9px; margin:5px 0;">4 <span class="glyphicon glyphicon-star"></span>
+                                <div style="height:9px; margin:5px 0;">4 <span><i
+                                            class="fa fa-star text-warning"></i></span>
                                 </div>
                             </div>
                             <div class="pull-left" style="width:180px;">
@@ -190,7 +192,8 @@
                         </div>
                         <div class="pull-left">
                             <div class="pull-left" style="width:35px; line-height:1;">
-                                <div style="height:9px; margin:5px 0;">3 <span class="glyphicon glyphicon-star"></span>
+                                <div style="height:9px; margin:5px 0;">3 <span><i
+                                            class="fa fa-star text-warning"></i></span>
                                 </div>
                             </div>
                             <div class="pull-left" style="width:180px;">
@@ -205,7 +208,8 @@
                         </div>
                         <div class="pull-left">
                             <div class="pull-left" style="width:35px; line-height:1;">
-                                <div style="height:9px; margin:5px 0;">2 <span class="glyphicon glyphicon-star"></span>
+                                <div style="height:9px; margin:5px 0;">2 <span><i
+                                            class="fa fa-star text-warning"></i></span>
                                 </div>
                             </div>
                             <div class="pull-left" style="width:180px;">
@@ -220,7 +224,8 @@
                         </div>
                         <div class="pull-left">
                             <div class="pull-left" style="width:35px; line-height:1;">
-                                <div style="height:9px; margin:5px 0;">1 <span class="glyphicon glyphicon-star"></span>
+                                <div style="height:9px; margin:5px 0;">1 <span><i
+                                            class="fa fa-star text-warning"></i></span>
                                 </div>
                             </div>
                             <div class="pull-left" style="width:180px;">
@@ -241,109 +246,43 @@
                         <hr />
                         <div class="review-block">
                             <div class="row">
-                                <div class="col-sm-3">
-                                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-                                    <div class="review-block-name"><a href="#">nktailor</a></div>
-                                    <div class="review-block-date">January 29, 2016<br />1 day ago</div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="review-block-rate">
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-grey btn-xs"
-                                            aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-grey btn-xs"
-                                            aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
+                                <div *ngFor="let review of myReview">
+                                    <div *ngFor="let user of myReviewUser" class="col-sm-3">
+                                        <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image"
+                                            class="img-rounded">
+                                        <div class="review-block-name"><a href="#">{{user.firstName}}</a></div>
+                                        <div class="review-block-date">{{review.timestamp | date :'medium'}}<br />1 day
+                                            ago</div>
                                     </div>
-                                    <div class="review-block-title">this was nice in buy</div>
-                                    <div class="review-block-description">this was nice in buy. this was nice in buy.
-                                        this
-                                        was nice in buy. this was nice in buy this was nice in buy this was nice in buy
-                                        this
-                                        was nice in buy this was nice in buy</div>
+                                    <div class="col-sm-9">
+                                        <div class="review-block-rate">
+                                            <button type="button" class="btn btn-warning btn-xs"
+                                                aria-label="Left Align">
+                                                <i class="fa fa-star text-white"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-xs"
+                                                aria-label="Left Align">
+                                                <i class="fa fa-star text-white"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-xs"
+                                                aria-label="Left Align">
+                                                <i class="fa fa-star text-white"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-default btn-grey btn-xs"
+                                                aria-label="Left Align">
+                                                <i class="fa fa-star text-white"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-default btn-grey btn-xs"
+                                                aria-label="Left Align">
+                                                <i class="fa fa-star text-white"></i>
+                                            </button>
+                                        </div>
+                                        <div class="review-block-title"></div>
+                                        <div class="review-block-description">{{review.comment}}</div>
+                                    </div>
                                 </div>
                             </div>
                             <hr />
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-                                    <div class="review-block-name"><a href="#">nktailor</a></div>
-                                    <div class="review-block-date">January 29, 2016<br />1 day ago</div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="review-block-rate">
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-grey btn-xs"
-                                            aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-grey btn-xs"
-                                            aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                    </div>
-                                    <div class="review-block-title">this was nice in buy</div>
-                                    <div class="review-block-description">this was nice in buy. this was nice in buy.
-                                        this
-                                        was nice in buy. this was nice in buy this was nice in buy this was nice in buy
-                                        this
-                                        was nice in buy this was nice in buy</div>
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-                                    <div class="review-block-name"><a href="#">nktailor</a></div>
-                                    <div class="review-block-date">January 29, 2016<br />1 day ago</div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="review-block-rate">
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-grey btn-xs"
-                                            aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-grey btn-xs"
-                                            aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                    </div>
-                                    <div class="review-block-title">this was nice in buy</div>
-                                    <div class="review-block-description">this was nice in buy. this was nice in buy.
-                                        this
-                                        was nice in buy. this was nice in buy this was nice in buy this was nice in buy
-                                        this
-                                        was nice in buy this was nice in buy</div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -503,4 +442,10 @@
         </div>
     </div>
 
+</div>
+
+
+<!-- ____________________________________________________________________________ -->
+<div *ngIf="loading" class="spinnerContent">
+    <div class="spinner-border text-muted"></div>
 </div>
