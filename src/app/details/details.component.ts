@@ -16,6 +16,8 @@ export class DetailsComponent implements OnInit {
   comment: '';
   loading;
   productKey;
+  index;
+  rating;
 
   star1: boolean = false;
   star2: boolean = false;
@@ -39,6 +41,7 @@ export class DetailsComponent implements OnInit {
 
 
   reviewDataFirebase() {
+    var self = this;
     var review: any = {
       comment: this.comment,
       firstName: localStorage.getItem('firstName'),
@@ -46,10 +49,17 @@ export class DetailsComponent implements OnInit {
       email: localStorage.getItem('email'),
       uid: localStorage.getItem('uid'),
       productKey: this.productKey,
+      rating: this.rating,
       timestamp: Number(new Date())
     }
     this.loading = true;
     var updates = {};
+    this.orderObj.myArray[this.index].review = true;
+    updates['/orders/' + this.orderObj.key + '/myArray'] = this.orderObj.myArray;
+    debugger;
+    firebase.database().ref().update(updates).then(() => {
+      alert("Review submitted successfully!");
+    })
     var postKey = firebase.database().ref().child('reviews').push().key;
     updates['/reviews/' + postKey] = review;
     firebase.database().ref().update(updates)
@@ -62,48 +72,50 @@ export class DetailsComponent implements OnInit {
       })
   }
 
-  sendProduct(key) {
+  sendProduct(key, index) {
     this.productKey = key;
+    this.index = index;
   }
 
 
 
-  rateStars(index) {
-    if (index == 1) {
+  rateStars(num) {
+    if (num == 1) {
       this.star1 = true;
       this.star2 = false;
       this.star3 = false;
       this.star4 = false;
       this.star5 = false;
     }
-    if (index == 2) {
+    if (num == 2) {
       this.star1 = true;
       this.star2 = true;
       this.star3 = false;
       this.star4 = false;
       this.star5 = false;
     }
-    if (index == 3) {
+    if (num == 3) {
       this.star1 = true;
       this.star2 = true;
       this.star3 = true;
       this.star4 = false;
       this.star5 = false;
     }
-    if (index == 4) {
+    if (num == 4) {
       this.star1 = true;
       this.star2 = true;
       this.star3 = true;
       this.star4 = true;
       this.star5 = false;
     }
-    if (index == 5) {
+    if (num == 5) {
       this.star1 = true;
       this.star2 = true;
       this.star3 = true;
       this.star4 = true;
       this.star5 = true;
     }
+    this.rating = num;
   }
 
 

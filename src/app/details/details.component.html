@@ -62,7 +62,7 @@
                         <td class=" col-md-1 text-center"><strong>${{orderObj.shipmentCharges}}</strong></td>
                         <td class=" col-md-1 text-center"><strong>{{p.status || 'pending'}}</strong></td>
                         <td class=" col-md-1 text-center"><button *ngIf="p.status=='delivered'" class="btn btn-primary"
-                                data-toggle="modal" data-target="#feedbackModal" (click)="sendProduct(p.key)">Give
+                                data-toggle="modal" data-target="#feedbackModal" (click)="sendProduct(p.key,index)">Give
                                 Feedback</button></td>
                     </tr>
 
