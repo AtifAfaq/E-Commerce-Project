@@ -61,9 +61,10 @@
                         <td class=" col-md-1 text-center"><strong>${{GrandTotal(p)}}</strong></td>
                         <td class=" col-md-1 text-center"><strong>${{orderObj.shipmentCharges}}</strong></td>
                         <td class=" col-md-1 text-center"><strong>{{p.status || 'pending'}}</strong></td>
-                        <td class=" col-md-1 text-center"><button *ngIf="p.status=='delivered'" class="btn btn-primary"
-                                data-toggle="modal" data-target="#feedbackModal" (click)="sendProduct(p.key,index)">Give
-                                Feedback</button></td>
+                        <td *ngIf="p.status=='delivered' && !p.review" class="col-md-1 text-center"><button
+                                class="btn btn-primary" data-toggle="modal" data-target="#feedbackModal"
+                                (click)="sendProduct(p.key, i)">Give Feedback</button></td>
+                        <td *ngIf="p.review" class="col-md-1 text-center text-success">Reviewed</td>
                     </tr>
 
                 </tbody>
@@ -91,11 +92,11 @@
                 <span class="detail media-body pl-3">
                     <div class="review-block-rate text-center">
                         <p class="mt-0">Rating</p>
-                        <button (click)="rateStars('1')" [class.btn-warning]="star1" [class.btn-dark]="!star1"
-                            type="button" class="btn btn-xs mr-1" aria-label="Left Align">
-                            <i class="fa fa-star text-white"></i>
+                        <button *ngFor="let btn of ratingBtns; index as i" (click)="rateStars(btn.value)"
+                            [class.btn-warning]="btn.status" [class.btn-dark]="!btn.status" type="button"
+                            class="btn btn-xs mr-1" aria-label="Left Align"><i class="fa fa-star text-white"></i>
                         </button>
-                        <button (click)="rateStars('2')" [class.btn-warning]="star2" [class.btn-dark]="!star2"
+                        <!-- <button (click)="rateStars('2')" [class.btn-warning]="star2" [class.btn-dark]="!star2"
                             type="button" class="btn btn-xs mr-1" aria-label="Left Align">
                             <i class="fa fa-star text-white"></i>
                         </button>
@@ -110,7 +111,7 @@
                         <button (click)="rateStars('5')" [class.btn-warning]="star5" [class.btn-dark]="!star5"
                             type="button" class="btn btn-dark btn-xs mr-1" aria-label="Left Align">
                             <i class="fa fa-star text-white"></i>
-                        </button>
+                        </button> -->
                     </div>
                     <div class="form-group">
                         <label class="control-label">Comments</label>

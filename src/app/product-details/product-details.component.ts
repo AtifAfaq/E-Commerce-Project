@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { DataCollectorService } from './../data-collector.service';
 import * as firebase from 'firebase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-details',
@@ -17,9 +18,12 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     public zone: NgZone,
+    router: Router,
     public service: DataCollectorService) {
-    this.product = this.service.product
-    console.log(this.product)
+    this.product = this.service.product;
+    if (!this.product.key) {
+      router.navigate(['/home']);
+    }
   }
 
   ngOnInit() {

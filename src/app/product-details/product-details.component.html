@@ -249,25 +249,33 @@
                                 <div class="col-sm-3">
                                     <img [src]="review.profileUrl || 'http://dummyimage.com/60x60/666/ffffff&text=No+Image'"
                                         class="img-rounded">
-                                    <div class="review-block-name"><a href="#">{{review.firstName}}</a></div>
+                                    <div class="review-block-name text-primary">{{review.firstName}} {{review.lastName}}
+                                    </div>
                                     <div class="review-block-date">{{review.timestamp | date :'medium'}}<br /></div>
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="review-block-rate">
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
+                                        <button [class.btn-warning]="review.rating>=1" type="button"
+                                            [class.btn-grey]="!review.rating" class="btn btn-xs mr-1"
+                                            aria-label="Left Align"> <i class="fa fa-star text-white"></i>
                                         </button>
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <i class="fa fa-star text-white"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-grey btn-xs"
+                                        <button [class.btn-warning]="review.rating>=2" type="button"
+                                            [class.btn-grey]="!review.rating || review.rating<2" class="btn btn-xs mr-1"
                                             aria-label="Left Align">
                                             <i class="fa fa-star text-white"></i>
                                         </button>
-                                        <button type="button" class="btn btn-default btn-grey btn-xs"
+                                        <button [class.btn-warning]="review.rating>=3" type="button"
+                                            [class.btn-grey]="!review.rating || review.rating<3" class="btn btn-xs mr-1"
+                                            aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button [class.btn-warning]="review.rating>=4" type="button"
+                                            [class.btn-grey]="!review.rating || review.rating<4" class="btn btn-xs mr-1"
+                                            aria-label="Left Align">
+                                            <i class="fa fa-star text-white"></i>
+                                        </button>
+                                        <button [class.btn-warning]="review.rating>=5" type="button"
+                                            [class.btn-grey]="!review.rating || review.rating<5" class="btn btn-xs mr-1"
                                             aria-label="Left Align">
                                             <i class="fa fa-star text-white"></i>
                                         </button>
