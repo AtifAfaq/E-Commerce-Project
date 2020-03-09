@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { DataCollectorService } from './../data-collector.service';
 import * as firebase from 'firebase';
 
@@ -15,7 +15,9 @@ export class ProductDetailsComponent implements OnInit {
   myReview: any = [];
   myReviewUser: any = [];
 
-  constructor(public service: DataCollectorService) {
+  constructor(
+    public zone: NgZone,
+    public service: DataCollectorService) {
     this.product = this.service.product
     console.log(this.product)
   }
@@ -59,32 +61,38 @@ export class ProductDetailsComponent implements OnInit {
   getMyReviews() {
     var self = this;
     self.loading = true;
-
-    debugger;
     firebase.database().ref().child('reviews')
-      .orderByChild('productKey').equalTo(this.product.key)
+      .orderByChild('productKey').equalTo(self.product.key)
       .once('value', (snapshot) => {
         var data = snapshot.val();
         for (var key in data) {
           var review = data[key];
-          var myuid = review.uid;
-          self.myReview.push(review);
+          self.getUserData(review);
         }
-        console.log(self.myReview);
         self.loading = false;
-        firebase.database().ref().child('users')
-          .orderByChild('uid').equalTo(myuid)
-          .once('value', (snapshot) => {
-            var data = snapshot.val();
+      })
+      .catch((e) => {
+        self.loading = false;
+        alert(e.message);
+      })
+  }
 
-            for (var key in data) {
-              var user = data[key];
-              // temp.key = key;
-              self.myReviewUser.push(user);
-            }
-            console.log(self.myReviewUser);
-            self.loading = false;
-          })
+
+  getUserData(review) {
+    var self = this;
+    firebase.database().ref().child('users')
+      .orderByChild('uid').equalTo(review.uid)
+      .once('value', (snapshot) => {
+        self.zone.run(() => {
+          var data = snapshot.val();
+          for (var key in data) {
+            var user = data[key];
+            review.profileUrl = user.profileUrl || null;
+            review.firstName = user.firstName;
+            review.lastName = user.lastName;
+            self.myReview.push(review);
+          }
+        })
       })
   }
 
