@@ -15,6 +15,12 @@ export class ProductDetailsComponent implements OnInit {
   loading = false;
   myReview: any = [];
   myReviewUser: any = [];
+  rate1 = 0;
+  rate2 = 0;
+  rate3 = 0;
+  rate4 = 0;
+  rate5 = 0;
+
 
   constructor(
     public zone: NgZone,
@@ -27,7 +33,8 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getMyReviews()
+    this.getMyReviews();
+    this.reviewCount();
   }
 
 
@@ -98,6 +105,29 @@ export class ProductDetailsComponent implements OnInit {
           }
         })
       })
+  }
+
+
+  reviewCount() {
+    for (var i = 0; i < this.myReview.length; i++) {
+      debugger;
+      var rate = this.myReview[i].rating;
+      if (rate == 1) {
+        this.rate1 = ++this.rate1;
+      }
+      if (rate == 2) {
+        this.rate2 = ++this.rate2;
+      }
+      if (rate == 3) {
+        this.rate3 = ++this.rate3;
+      }
+      if (rate == 4) {
+        this.rate4 = ++this.rate4;
+      }
+      if (rate == 5) {
+        this.rate5 = ++this.rate5;
+      }
+    }
   }
 
 }
