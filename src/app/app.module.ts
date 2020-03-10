@@ -25,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './search.pipe';
 import { SellerOrdersComponent } from './seller-orders/seller-orders.component';
 import { SellerDetailsComponent } from './seller-details/seller-details.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 var firebaseConfig = {
@@ -69,7 +70,9 @@ firebase.initializeApp(firebaseConfig);
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCb9lhLYxUnRjSp1oIGl6aAsXLODc3o-f4'
+    }),
   ],
   providers: [
     DataCollectorService,

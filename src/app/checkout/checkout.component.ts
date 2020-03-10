@@ -3,6 +3,8 @@ import { DataCollectorService } from './../data-collector.service';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { CountriesService } from './../countries.service';
+declare var google: any;
+
 
 @Component({
   selector: 'app-checkout',
@@ -30,21 +32,79 @@ export class CheckoutComponent implements OnInit {
   city;
   paymentMethod;
 
+  public lat: any;
+  public lng: any;
+  public locationLat: any;
+  public locationLng: any;
+  public locationSettings: any;
+  public locationAddress: any;
+
   constructor(public service: DataCollectorService,
     public countriesService: CountriesService,
     public router: Router,
     public zone: NgZone) {
     this.myArray = this.service.myArray;
-
-    console.log(this.myArray)
     this.firstName = localStorage.getItem('firstName');
     this.lastName = localStorage.getItem('lastName');
     this.email = localStorage.getItem('email');
     this.totalBill = localStorage.getItem("totalBill");
     this.shipmentCharges = localStorage.getItem("shipmentCharges");
     this.subTotal = localStorage.getItem("subTotal");
+
+    this.getCurrentLocation();
+
   }
 
+
+  getCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+        this.done();
+      });
+    }
+  }
+
+
+  done() {
+    var self = this;
+    let geocoder = new google.maps.Geocoder;
+    let latlng = { lat: this.lat, lng: this.lng };
+    geocoder.geocode({ 'location': latlng }, (results) => {
+      if (results[0]) {
+        self.locationSettings = {
+          inputPlaceholderText: results[0].formatted_address,
+        };
+        self.locationAddress = results[0].formatted_address;
+      } else {
+        console.log('No results found');
+      }
+    });
+  }
+
+  autoCompleteCallback1(selectedData: any) {
+    var self = this;
+    var Data = selectedData.data;
+    self.locationAddress = Data.description;
+    var geometry = Data.geometry;
+    var Location = geometry.location;
+    self.locationLat = Location.lat;
+    self.locationLng = Location.lng;
+
+    self.lat = self.locationLat;
+    self.lng = self.locationLng;
+  }
+
+  mapClicked(event) {
+    var self = this;
+    self.lat = event.coords.lat;
+    self.lng = event.coords.lng;
+
+    self.locationLat = self.lat;
+    self.locationLng = self.lng;
+    self.done();
+  }
 
   ngOnInit() {
     this.countries = this.countriesService.getCountries();

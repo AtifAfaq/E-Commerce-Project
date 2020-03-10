@@ -133,7 +133,7 @@
                     </div>
                 </div>
             </div>
-<!-- 
+            <!-- 
             Average product rating -->
 
             <div class="col-md-7">
@@ -141,20 +141,24 @@
                     <div class="col-sm-6">
                         <div class="rating-block">
                             <h4>Average product rating</h4>
-                            <h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
-                            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                            <h2 class="bold padding-bottom-7">{{avgRating}} <small>/ 5</small></h2>
+                            <button [class.btn-warning]="avgRating>=1" type="button" [class.btn-grey]="!avgRating"
+                                class="btn btn-xs mr-1" aria-label="Left Align"> <i class="fa fa-star text-white"></i>
+                            </button>
+                            <button [class.btn-warning]="avgRating>=2" type="button" [class.btn-grey]="avgRating<2"
+                                class="btn btn-xs mr-1" aria-label="Left Align">
                                 <i class="fa fa-star text-white"></i>
                             </button>
-                            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                            <button [class.btn-warning]="avgRating>=3" type="button" [class.btn-grey]="avgRating<3"
+                                class="btn btn-xs mr-1" aria-label="Left Align">
                                 <i class="fa fa-star text-white"></i>
                             </button>
-                            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                            <button [class.btn-warning]="avgRating>=4" type="button" [class.btn-grey]="avgRating<4"
+                                class="btn btn-xs mr-1" aria-label="Left Align">
                                 <i class="fa fa-star text-white"></i>
                             </button>
-                            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                                <i class="fa fa-star text-white"></i>
-                            </button>
-                            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                            <button [class.btn-warning]="avgRating>=5" type="button" [class.btn-grey]="avgRating<5"
+                                class="btn btn-xs mr-1" aria-label="Left Align">
                                 <i class="fa fa-star text-white"></i>
                             </button>
                         </div>
@@ -181,8 +185,7 @@
                         </div>
                         <div class="pull-left">
                             <div class="pull-left" style="width:35px; line-height:1;">
-                                <div style="height:9px; margin:5px 0;">4 <span><i
-                                            class="fa fa-star text-boom"></i></span>
+                                <div style="height:9px; margin:5px 0;">4 <span><i class="fa fa-star primary"></i></span>
                                 </div>
                             </div>
                             <div class="pull-left" style="width:180px;">
@@ -193,7 +196,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="pull-right" style="margin-left:10px;">1</div>
+                            <div class="pull-right" style="margin-left:10px;">{{rate4}}</div>
                         </div>
                         <div class="pull-left">
                             <div class="pull-left" style="width:35px; line-height:1;">
@@ -209,7 +212,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="pull-right" style="margin-left:10px;">0</div>
+                            <div class="pull-right" style="margin-left:10px;">{{rate3}}</div>
                         </div>
                         <div class="pull-left">
                             <div class="pull-left" style="width:35px; line-height:1;">
@@ -225,7 +228,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="pull-right" style="margin-left:10px;">0</div>
+                            <div class="pull-right" style="margin-left:10px;">{{rate2}}</div>
                         </div>
                         <div class="pull-left">
                             <div class="pull-left" style="width:35px; line-height:1;">
@@ -241,7 +244,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="pull-right" style="margin-left:10px;">0</div>
+                            <div class="pull-right" style="margin-left:10px;">{{rate1}}</div>
                         </div>
                     </div>
                 </div>

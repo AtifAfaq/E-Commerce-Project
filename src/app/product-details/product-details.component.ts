@@ -20,6 +20,7 @@ export class ProductDetailsComponent implements OnInit {
   rate3 = 0;
   rate4 = 0;
   rate5 = 0;
+  avgRating: any;
 
 
   constructor(
@@ -34,7 +35,6 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getMyReviews();
-    this.reviewCount();
   }
 
 
@@ -81,6 +81,9 @@ export class ProductDetailsComponent implements OnInit {
           self.getUserData(review);
         }
         self.loading = false;
+        setTimeout(() => {
+          self.reviewCount();
+        }, 2000);
       })
       .catch((e) => {
         self.loading = false;
@@ -110,24 +113,24 @@ export class ProductDetailsComponent implements OnInit {
 
   reviewCount() {
     for (var i = 0; i < this.myReview.length; i++) {
-      debugger;
       var rate = this.myReview[i].rating;
       if (rate == 1) {
-        this.rate1 = ++this.rate1;
+        this.rate1++;
       }
-      if (rate == 2) {
-        this.rate2 = ++this.rate2;
+      else if (rate == 2) {
+        this.rate2++;
       }
-      if (rate == 3) {
-        this.rate3 = ++this.rate3;
+      else if (rate == 3) {
+        this.rate3++;
       }
-      if (rate == 4) {
-        this.rate4 = ++this.rate4;
+      else if (rate == 4) {
+        this.rate4++;
       }
-      if (rate == 5) {
-        this.rate5 = ++this.rate5;
+      else if (rate == 5) {
+        this.rate5++;
       }
     }
+    this.avgRating = ((this.rate1) * 1 + (this.rate2) * 2 + (this.rate3) * 3 + (this.rate4) * 4 + (this.rate5) * 5) / this.myReview.length;
   }
 
 }

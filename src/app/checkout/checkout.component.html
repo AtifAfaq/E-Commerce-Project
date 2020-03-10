@@ -30,7 +30,7 @@
 
 
 
-        <div class="card p-2">
+        <div class="card p-2 mb-5">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Promo code">
                 <div class="input-group-append">
@@ -38,6 +38,16 @@
                 </div>
             </div>
         </div>
+
+        <agm-map style="width: 100% !important; height:400px !important;" (mapClick)="mapClicked($event)" [zoom]="10"
+            [latitude]="lat" [longitude]="lng">
+            <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false">
+                <agm-info-window>
+                    <strong>Your location</strong>
+                </agm-info-window>
+            </agm-marker>
+        </agm-map>
+
     </div>
     <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Billing address</h4>
