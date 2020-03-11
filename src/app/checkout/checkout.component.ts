@@ -50,7 +50,6 @@ export class CheckoutComponent implements OnInit {
     this.totalBill = localStorage.getItem("totalBill");
     this.shipmentCharges = localStorage.getItem("shipmentCharges");
     this.subTotal = localStorage.getItem("subTotal");
-
     this.getCurrentLocation();
 
   }

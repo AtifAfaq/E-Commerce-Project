@@ -26,7 +26,7 @@ import { SearchPipe } from './search.pipe';
 import { SellerOrdersComponent } from './seller-orders/seller-orders.component';
 import { SellerDetailsComponent } from './seller-details/seller-details.component';
 import { AgmCoreModule } from '@agm/core';
-
+import { NgxGeoautocompleteModule } from 'ngx-geoautocomplete';
 
 var firebaseConfig = {
   apiKey: "AIzaSyDT97phJ84IgJ0Ye_GrZJChWRs44WJzni0",
@@ -70,6 +70,7 @@ firebase.initializeApp(firebaseConfig);
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxGeoautocompleteModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCb9lhLYxUnRjSp1oIGl6aAsXLODc3o-f4'
     }),

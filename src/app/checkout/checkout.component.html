@@ -38,7 +38,8 @@
                 </div>
             </div>
         </div>
-
+        <!-- [userSettings]="userSettings" -->
+        <ngxgeo-autocomplete  (componentCallback)="autoCompleteCallback1($event)"></ng4geo-autocomplete>
         <agm-map style="width: 100% !important; height:400px !important;" (mapClick)="mapClicked($event)" [zoom]="10"
             [latitude]="lat" [longitude]="lng">
             <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false">
