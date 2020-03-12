@@ -6,6 +6,7 @@ import { CountriesService } from './../countries.service';
 declare var google: any;
 
 
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -70,7 +71,9 @@ export class CheckoutComponent implements OnInit {
     let latlng = { lat: this.lat, lng: this.lng };
     geocoder.geocode({ 'location': latlng }, (results) => {
       if (results[0]) {
+        debugger;
         self.userSettings = {
+
           inputPlaceholderText: results[0].formatted_address,
         };
         self.locationAddress = results[0].formatted_address;
@@ -89,7 +92,7 @@ export class CheckoutComponent implements OnInit {
     var Location = geometry.location;
     self.lat = Location.lat;
     self.lng = Location.lng;
-
+    debugger;
     // City 
     // Street
     // Country
