@@ -39,8 +39,9 @@
     <div class="form-inline my-2 ml-auto mr-2">
       <button *ngIf="userType=='buyer'" (click)="sellerMode()" class="btn btn-success mr-3">Become a seller</button>
       <button *ngIf="userType=='seller'" (click)="buyerMode()" class="btn btn-success mr-3">Become a buyer</button>
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-light my-2 my-sm-0">Search</button>
+      <input [(ngModel)]="searchQuery" class="form-control mr-sm-2" type="text" placeholder="Search"
+        aria-label="Search">
+      <button (click)="allProducts(searchQuery)" class="btn btn-outline-light my-2 my-sm-0">Search</button>
     </div>
 
     <ul class="navbar-nav">

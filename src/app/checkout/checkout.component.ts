@@ -71,12 +71,14 @@ export class CheckoutComponent implements OnInit {
     let latlng = { lat: this.lat, lng: this.lng };
     geocoder.geocode({ 'location': latlng }, (results) => {
       if (results[0]) {
-        debugger;
         self.userSettings = {
-
           inputPlaceholderText: results[0].formatted_address,
         };
-        self.locationAddress = results[0].formatted_address;
+        self.address = results[0].formatted_address;
+        var parts = this.address.split(', ');
+        self.country = parts[parts.length - 1];
+        self.state = parts[parts.length - 2];
+        self.city = parts[parts.length - 3];
       } else {
         console.log('No results found');
       }
@@ -87,16 +89,16 @@ export class CheckoutComponent implements OnInit {
   autoCompleteCallback1(selectedData: any) {
     var self = this;
     var Data = selectedData.data;
-    self.locationAddress = Data.description;
+    console.log(Data);
+    self.address = Data.description;
     var geometry = Data.geometry;
     var Location = geometry.location;
     self.lat = Location.lat;
     self.lng = Location.lng;
-    debugger;
-    // City 
-    // Street
-    // Country
-    // Phone
+    var parts = this.address.split(', ');
+    self.country = parts[parts.length - 1];
+    self.state = parts[parts.length - 2];
+    self.city = parts[parts.length - 3];
   }
 
 

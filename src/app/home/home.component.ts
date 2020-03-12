@@ -128,11 +128,11 @@ export class HomeComponent implements OnInit {
           temp.key = key;
           self.allProducts.push(temp);
         }
-        console.log(self.allProducts);
-        this.loading = false;
+        self.service.allProducts = self.allProducts;
+        self.loading = false;
       })
-
   }
+
 
   productDetails(p) {
     this.service.product = p;

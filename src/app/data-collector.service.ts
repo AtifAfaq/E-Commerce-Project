@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class DataCollectorService {
+
   categoriesData = [];
   myArray: any = [];
   product: any = {};
@@ -16,6 +17,9 @@ export class DataCollectorService {
   totalBill: any = 0;
   orderObj: any = {};
   status;
+  searchQuery: any;
+  allProducts: any = [];
+
   constructor(public router: Router) {
     this.getCartCount();
   }

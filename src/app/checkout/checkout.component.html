@@ -38,13 +38,13 @@
                 </div>
             </div>
         </div>
-        <!-- [userSettings]="userSettings" -->
-        <ngxgeo-autocomplete (componentCallback)="autoCompleteCallback1($event)"></ngxgeo-autocomplete>
+        <ngxgeo-autocomplete [userSettings]="userSettings" (componentCallback)="autoCompleteCallback1($event)">
+        </ngxgeo-autocomplete>
         <agm-map style="width: 100% !important; height:400px !important;" (mapClick)="mapClicked($event)" [zoom]="10"
             [latitude]="lat" [longitude]="lng">
             <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false">
                 <agm-info-window>
-                    <strong>Your location</strong>
+                    <strong>{{address}}</strong>
                 </agm-info-window>
             </agm-marker>
         </agm-map>
@@ -86,7 +86,7 @@
             <div class="mb-3">
                 <label for="address">Address</label>
                 <input type="text" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" class="form-control"
-                    id="address" placeholder="1234 Main St" required>
+                    id="address" placeholder="Street address" required>
                 <div class="invalid-feedback">
                     Please enter your shipping address.
                 </div>
@@ -97,32 +97,17 @@
             <div class="row">
                 <div class="col-md-5 mb-3">
                     <label for="country">Country</label>
-                    <select #selectList class="form-control" [(ngModel)]="country" name="country"
-                        (change)="selectStatesBasedOnCountry(selectList.value)" required>
-                        <option value="">--Select Country--</option>
-                        <option [value]="country.id" *ngFor="let country of countries | async">
-                            {{country.name}}
-                        </option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Please select a valid country.
-                    </div>
+                    <input type="text" [(ngModel)]="country" [ngModelOptions]="{standalone: true}" class="form-control"
+                        id="address" placeholder="Country" required>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="state">State</label>
-                    <select class="form-control" [(ngModel)]="state" name="state" required>
-                        <option value="">--Select State--</option>
-                        <option *ngFor="let state of states | async">
-                            {{state.name}}
-                        </option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Please provide a valid state.
-                    </div>
+                    <input type="text" [(ngModel)]="state" [ngModelOptions]="{standalone: true}" class="form-control"
+                        id="address" placeholder="State/Province" required>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="zip">City</label>
-                    <input type="text" [(ngModel)]="city" name="city" class="form-control" id="zip" placeholder=""
+                    <input type="text" [(ngModel)]="city" name="city" class="form-control" id="zip" placeholder="City"
                         required>
                     <div class="invalid-feedback">
                         City is required.

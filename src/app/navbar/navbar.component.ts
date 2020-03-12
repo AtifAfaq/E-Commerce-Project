@@ -27,6 +27,12 @@ export class NavbarComponent implements OnInit {
   }
 
 
+  allProducts(searchQuery) {
+    this.service.searchQuery = searchQuery;
+    this.router.navigate(['/allProducts']);
+  }
+
+
   sellerMode() {
     if (localStorage.getItem('userLoggedIn') == 'true') {
       localStorage.setItem('userType', 'seller');

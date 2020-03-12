@@ -9,31 +9,47 @@ import { DataCollectorService } from './../data-collector.service';
   styleUrls: ['./all-products.component.scss']
 })
 export class AllProductsComponent implements OnInit {
+
   categoriesData = [];
   productQty: number;
-  constructor(public router: Router,
+  allProducts: any = [];
+
+  constructor(
+    public router: Router,
     public service: DataCollectorService) {
-    this.categoriesData = this.service.categoriesData;
-    console.log(this.categoriesData)
+    if (service.searchQuery) {
+      this.getFilteredProducts();
+    } else {
+      this.categoriesData = this.service.categoriesData;
+    }
   }
 
   ngOnInit() {
   }
+
+
+  getFilteredProducts() {
+    this.allProducts = this.service.allProducts;
+    // this.categoriesData.push(product)
+  }
+
+
   getDiscount(product) {
     var disc = ((Number(product.originalPrice) - Number(product.discountedPrice)) / Number(product.originalPrice)) * 100;
     product.discount = disc;
     return disc;
   }
+
+
   AddCart(product) {
     if (product.availableQty >= 1) {
-      debugger;
       product.productQty = this.productQty;
       this.service.product = product;
       this.service.AddtoCart(this.productQty);
-    }
-    else {
+    } else {
       alert("Product is not in stock")
     }
-
   }
+
+
 }
