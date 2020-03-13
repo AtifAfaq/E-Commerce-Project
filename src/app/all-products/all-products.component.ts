@@ -30,7 +30,18 @@ export class AllProductsComponent implements OnInit {
 
   getFilteredProducts() {
     this.allProducts = this.service.allProducts;
-    // this.categoriesData.push(product)
+    console.log(this.allProducts)
+    for (var i = 0; i < this.allProducts.length; i++) {
+      if (this.allProducts[i].productName.toLowerCase() == this.service.searchQuery.toLowerCase() || this.allProducts[i].productCategory.toLowerCase() == this.service.searchQuery.toLowerCase()) {
+        this.categoriesData.push(this.allProducts[i])
+      }
+    }
+    if (this.categoriesData.length == 0) {
+      alert("No Product found")
+      this.router.navigate(['/home']);
+    }
+
+
   }
 
 
