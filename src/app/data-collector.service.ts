@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +24,17 @@ export class DataCollectorService {
 
   constructor(public router: Router) {
     this.getCartCount();
+  }
+
+
+  public fooSubject = new Subject<any>();
+
+  publishSomeData(data: any) {
+    this.fooSubject.next(data);
+  }
+
+  getObservable(): Subject<any> {
+    return this.fooSubject;
   }
 
 

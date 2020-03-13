@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public service: DataCollectorService,
-    public router: Router
+    public router: Router,
   ) {
     this.userType = localStorage.getItem('userType') || 'buyer';
     this.userLoggedIn = localStorage.getItem('userLoggedIn');
@@ -28,8 +28,15 @@ export class NavbarComponent implements OnInit {
 
 
   allProducts(searchQuery) {
-    this.service.searchQuery = searchQuery;
-    this.router.navigate(['/allProducts']);
+    if (searchQuery) {
+      if (this.router.url == '/allProducts') {
+        this.service.searchQuery = searchQuery;
+        this.service.publishSomeData(true);
+      } else if (this.router.url == '/home') {
+        this.service.searchQuery = searchQuery;
+        this.router.navigate(['/allProducts']);
+      }
+    }
   }
 
 
