@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase';
 import { DataCollectorService } from './../data-collector.service';
 
 @Component({
@@ -22,26 +21,31 @@ export class AllProductsComponent implements OnInit {
     } else {
       this.categoriesData = this.service.categoriesData;
     }
+    if (this.categoriesData.length == 0) {
+      router.navigate(['/home']);
+    }
   }
 
+
   ngOnInit() {
+    this.service.getObservable().subscribe((data) => {
+      this.getFilteredProducts();
+    });
   }
 
 
   getFilteredProducts() {
+    this.categoriesData = [];
     this.allProducts = this.service.allProducts;
-    console.log(this.allProducts)
     for (var i = 0; i < this.allProducts.length; i++) {
-      if (this.allProducts[i].productName.toLowerCase() == this.service.searchQuery.toLowerCase() || this.allProducts[i].productCategory.toLowerCase() == this.service.searchQuery.toLowerCase()) {
+      var matched = this.allProducts[i].productName.toLowerCase().match(this.service.searchQuery.toLowerCase())
+      if (matched || this.allProducts[i].productCategory.toLowerCase() == this.service.searchQuery.toLowerCase()) {
         this.categoriesData.push(this.allProducts[i])
       }
     }
     if (this.categoriesData.length == 0) {
       alert("No Product found")
-      this.router.navigate(['/home']);
     }
-
-
   }
 
 
@@ -62,5 +66,10 @@ export class AllProductsComponent implements OnInit {
     }
   }
 
+
+  productDetails(p) {
+    this.service.product = p;
+    this.router.navigate(['/productDetails']);
+  }
 
 }
