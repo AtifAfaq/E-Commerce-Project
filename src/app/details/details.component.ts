@@ -100,6 +100,7 @@ export class DetailsComponent implements OnInit {
       .once('value', (snapshot) => {
         var data = snapshot.val();
         for (var key in data) {
+          debugger;
           var review = data[key];
           self.myReview.push(review);
         }
@@ -135,7 +136,8 @@ export class DetailsComponent implements OnInit {
     }
     this.avgRating = ((this.rate1) * 1 + (this.rate2) * 2 + (this.rate3) * 3 + (this.rate4) * 4 + (this.rate5) * 5) / this.myReview.length;
 
-
+    debugger;
+    
     var updates = {};
 
     updates['/products/' + this.productKey + "/avgRating"] = this.avgRating;

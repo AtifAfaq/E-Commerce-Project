@@ -236,11 +236,15 @@
                         <p class="originalPrice gray mb-1">
                             <del>${{p.originalPrice}}</del> {{getDiscount(p)| number : '1.2-2'}}%</p>
                         <p class="rating">
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star gray"></i> (11)
+                            <i class="fa fa-star" [class.text-warning]="p.avgRating>=1" [class.gray]="!p.avgRating"></i>
+                            <i class="fa fa-star" [class.text-warning]="p.avgRating>=2"
+                                [class.gray]="!p.avgRating || p.avgRating<2"></i>
+                            <i class="fa fa-star" [class.text-warning]="p.avgRating>=3"
+                                [class.gray]="!p.avgRating || p.avgRating<3"></i>
+                            <i class="fa fa-star" [class.text-warning]="p.avgRating>=4"
+                                [class.gray]="!p.avgRating || p.avgRating<4"></i>
+                            <i class="fa fa-star" [class.text-warning]="p.avgRating>=5"
+                                [class.gray]="!p.avgRating || p.avgRating<5"></i> ({{p.totalReview || 0}})
                         </p>
                     </div>
                     <button class="btn btn-success w-100" (click)="AddCart(p,i)" data-toggle="modal"
