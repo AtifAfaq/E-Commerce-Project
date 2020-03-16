@@ -18,6 +18,13 @@ export class DetailsComponent implements OnInit {
   productKey;
   index;
   rating;
+  myReview: any = [];
+  rate1 = 0;
+  rate2 = 0;
+  rate3 = 0;
+  rate4 = 0;
+  rate5 = 0;
+  avgRating: any;
 
   ratingBtns: any = [
     { value: 1, status: false },
@@ -76,12 +83,67 @@ export class DetailsComponent implements OnInit {
     firebase.database().ref().update(updates)
       .then(() => {
         self.loading = false;
+        this.postProductReview();
         alert("Review submitted successfully!");
       })
       .catch((e) => {
         self.loading = false;
         alert(e.message);
       })
+  }
+
+  postProductReview() {
+    var self = this;
+    self.loading = true;
+    firebase.database().ref().child('reviews')
+      .orderByChild('productKey').equalTo(self.productKey)
+      .once('value', (snapshot) => {
+        var data = snapshot.val();
+        for (var key in data) {
+          var review = data[key];
+          self.myReview.push(review);
+        }
+        self.loading = false;
+        setTimeout(() => {
+          self.reviewCount();
+        }, 2000);
+      })
+      .catch((e) => {
+        self.loading = false;
+        alert(e.message);
+      })
+  }
+
+  reviewCount() {
+    for (var i = 0; i < this.myReview.length; i++) {
+      var rate = this.myReview[i].rating;
+      if (rate == 1) {
+        this.rate1++;
+      }
+      else if (rate == 2) {
+        this.rate2++;
+      }
+      else if (rate == 3) {
+        this.rate3++;
+      }
+      else if (rate == 4) {
+        this.rate4++;
+      }
+      else if (rate == 5) {
+        this.rate5++;
+      }
+    }
+    this.avgRating = ((this.rate1) * 1 + (this.rate2) * 2 + (this.rate3) * 3 + (this.rate4) * 4 + (this.rate5) * 5) / this.myReview.length;
+
+
+    var updates = {};
+
+    updates['/products/' + this.productKey + "/avgRating"] = this.avgRating;
+    updates['/products/' + this.productKey + "/totalReview"] = this.myReview.length;
+    firebase.database().ref().update(updates).then(() => {
+
+    })
+
   }
 
   sendProduct(key, index) {

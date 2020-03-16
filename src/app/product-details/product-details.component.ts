@@ -81,9 +81,7 @@ export class ProductDetailsComponent implements OnInit {
           self.getUserData(review);
         }
         self.loading = false;
-        setTimeout(() => {
-          self.reviewCount();
-        }, 2000);
+
       })
       .catch((e) => {
         self.loading = false;
@@ -111,26 +109,26 @@ export class ProductDetailsComponent implements OnInit {
   }
 
 
-  reviewCount() {
-    for (var i = 0; i < this.myReview.length; i++) {
-      var rate = this.myReview[i].rating;
-      if (rate == 1) {
-        this.rate1++;
-      }
-      else if (rate == 2) {
-        this.rate2++;
-      }
-      else if (rate == 3) {
-        this.rate3++;
-      }
-      else if (rate == 4) {
-        this.rate4++;
-      }
-      else if (rate == 5) {
-        this.rate5++;
-      }
-    }
-    this.avgRating = ((this.rate1) * 1 + (this.rate2) * 2 + (this.rate3) * 3 + (this.rate4) * 4 + (this.rate5) * 5) / this.myReview.length;
-  }
+  // reviewCount() {
+  //   for (var i = 0; i < this.myReview.length; i++) {
+  //     var rate = this.myReview[i].rating;
+  //     if (rate == 1) {
+  //       this.rate1++;
+  //     }
+  //     else if (rate == 2) {
+  //       this.rate2++;
+  //     }
+  //     else if (rate == 3) {
+  //       this.rate3++;
+  //     }
+  //     else if (rate == 4) {
+  //       this.rate4++;
+  //     }
+  //     else if (rate == 5) {
+  //       this.rate5++;
+  //     }
+  //   }
+  //   this.avgRating = ((this.rate1) * 1 + (this.rate2) * 2 + (this.rate3) * 3 + (this.rate4) * 4 + (this.rate5) * 5) / this.myReview.length;
+  // }
 
 }

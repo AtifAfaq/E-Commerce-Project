@@ -49,11 +49,16 @@
                 <h4 class="prodPrice primary mt-0">{{product.discountedPrice}}</h4>
                 <p class="originalPrice gray mb-1"><del>{{product.originalPrice}}</del> 35%</p>
                 <p class="rating">
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star gray"></i> (11)
+                    <i class="fa fa-star" [class.text-warning]="product.avgRating>=1"
+                        [class.gray]="!product.avgRating"></i>
+                    <i class="fa fa-star" [class.text-warning]="product.avgRating>=2"
+                        [class.gray]="!product.avgRating || product.avgRating<2"></i>
+                    <i class="fa fa-star" [class.text-warning]="product.avgRating>=3"
+                        [class.gray]="!product.avgRating || product.avgRating<3"></i>
+                    <i class="fa fa-star" [class.text-warning]="product.avgRating>=4"
+                        [class.gray]="!product.avgRating || product.avgRating<4"></i>
+                    <i class="fa fa-star" [class.text-warning]="product.avgRating>=5"
+                        [class.gray]="!product.avgRating || product.avgRating<5"></i> ({{product.totalReview}})
                 </p>
 
                 <div class="input-group mb-3">
@@ -141,24 +146,25 @@
                     <div class="col-sm-6">
                         <div class="rating-block">
                             <h4>Average product rating</h4>
-                            <h2 class="bold padding-bottom-7">{{avgRating}} <small>/ 5</small></h2>
-                            <button [class.btn-warning]="avgRating>=1" type="button" [class.btn-grey]="!avgRating"
-                                class="btn btn-xs mr-1" aria-label="Left Align"> <i class="fa fa-star text-white"></i>
-                            </button>
-                            <button [class.btn-warning]="avgRating>=2" type="button" [class.btn-grey]="avgRating<2"
-                                class="btn btn-xs mr-1" aria-label="Left Align">
+                            <h2 class="bold padding-bottom-7">{{product.avgRating}} <small>/ 5</small></h2>
+                            <button [class.btn-warning]="product.avgRating>=1" type="button"
+                                [class.btn-grey]="!product.avgRating" class="btn btn-xs mr-1" aria-label="Left Align">
                                 <i class="fa fa-star text-white"></i>
                             </button>
-                            <button [class.btn-warning]="avgRating>=3" type="button" [class.btn-grey]="avgRating<3"
-                                class="btn btn-xs mr-1" aria-label="Left Align">
+                            <button [class.btn-warning]="product.avgRating>=2" type="button"
+                                [class.btn-grey]="product.avgRating<2" class="btn btn-xs mr-1" aria-label="Left Align">
                                 <i class="fa fa-star text-white"></i>
                             </button>
-                            <button [class.btn-warning]="avgRating>=4" type="button" [class.btn-grey]="avgRating<4"
-                                class="btn btn-xs mr-1" aria-label="Left Align">
+                            <button [class.btn-warning]="product.avgRating>=3" type="button"
+                                [class.btn-grey]="product.avgRating<3" class="btn btn-xs mr-1" aria-label="Left Align">
                                 <i class="fa fa-star text-white"></i>
                             </button>
-                            <button [class.btn-warning]="avgRating>=5" type="button" [class.btn-grey]="avgRating<5"
-                                class="btn btn-xs mr-1" aria-label="Left Align">
+                            <button [class.btn-warning]="product.avgRating>=4" type="button"
+                                [class.btn-grey]="product.avgRating<4" class="btn btn-xs mr-1" aria-label="Left Align">
+                                <i class="fa fa-star text-white"></i>
+                            </button>
+                            <button [class.btn-warning]="product.avgRating>=5" type="button"
+                                [class.btn-grey]="product.avgRating<5" class="btn btn-xs mr-1" aria-label="Left Align">
                                 <i class="fa fa-star text-white"></i>
                             </button>
                         </div>
