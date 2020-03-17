@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+
+            <div class="text-center">
+                <img class="mb-3" [src]="user.profileUrl || '/assets/images/user.jpg'">
+                <label class="btn btn-info w-100 mb-3 pointer"> Upload Picture
+                    <input type="file" (change)="onChangeFile($event)">
+                </label>
+            </div>
+
+            <!-- FirstName -->
+            <div class=" form-group">
+                <label>First Name:</label>
+                <span><input [(ngModel)]="user.firstName" class="form-control "></span>
+                <hr>
+            </div>
+            <!-- LastName -->
+            <div class="form-group">
+                <label>Last Name:</label>
+                <span><input [(ngModel)]="user.lastName" class="form-control "></span>
+                <hr>
+            </div>
+            <!-- Email -->
+            <div class="form-group">
+                <label>Email:</label>
+                <span><input disabled [(ngModel)]="user.email" class="form-control "></span>
+                <hr>
+            </div>
+            <!-- Contact -->
+            <div class="form-group">
+                <label>Contact:</label>
+                <span><input [(ngModel)]="user.contact" class="form-control "></span>
+                <hr>
+            </div>
+            <div class="form-group">
+                <label>City:</label>
+                <span><input [(ngModel)]="user.city" class="form-control "></span>
+                <hr>
+            </div>
+            <div class="form-group">
+                <label>Country:</label>
+                <span><input [(ngModel)]="user.country" class="form-control "></span>
+                <hr>
+            </div>
+            <div class="form-group">
+                <label>Address:</label>
+                <span><input [(ngModel)]="user.address" class="form-control "></span>
+                <hr>
+            </div>
+
+            <div class="text-center">
+                <Button routerLink="/home" class="btn btn-dark mx-1">Back</Button>
+                <Button (click)="updateProfile()" class="btn btn-primary mx-1">Save</Button>
+            </div>
+
+        </div>
+        <div class="col-md-4"></div>
+
+    </div>
+</div>

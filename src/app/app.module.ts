@@ -27,6 +27,7 @@ import { SellerOrdersComponent } from './seller-orders/seller-orders.component';
 import { SellerDetailsComponent } from './seller-details/seller-details.component';
 import { AgmCoreModule } from '@agm/core';
 import { NgxGeoautocompleteModule } from 'ngx-geoautocomplete';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 var firebaseConfig = {
   apiKey: "AIzaSyDT97phJ84IgJ0Ye_GrZJChWRs44WJzni0",
@@ -61,7 +62,8 @@ firebase.initializeApp(firebaseConfig);
     DetailsComponent,
     SearchPipe,
     SellerOrdersComponent,
-    SellerDetailsComponent
+    SellerDetailsComponent,
+    UserProfileComponent
   ],
   imports: [
     RouterModule,

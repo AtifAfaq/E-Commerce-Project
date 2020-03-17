@@ -1,0 +1,27 @@
+div {
+    label {
+      width: 100px;
+      margin-top: 4px;
+      float: left;
+      display: inline-block;
+    }
+    span {
+      display: inline-block;
+      overflow: hidden;
+      padding: 0 4px 0 6px;
+    }
+    button {
+      width: 100px;
+      width: 46%;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: contain;
+    }
+    input[type="file"] {
+      display: none;
+    }
+  }
+  

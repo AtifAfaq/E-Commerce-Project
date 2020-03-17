@@ -66,6 +66,19 @@
           <i class="fa fa-sign-out"></i> Signuout
         </a>
       </li>
+
+      <li *ngIf="userLoggedIn=='true'" routerLink="/profile" class="nav-item mx-2">
+        <a class="nav-link pointer text-white">
+          <i class="fas fa-user-circle"></i> My Account
+        </a>
+      </li>
+
+      <!-- <li class="nav-item dropdown pointer">
+        <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+          <i class="fas fa-user-circle mr-1"></i>My Account
+        </a>
+      </li> -->
+
     </ul>
 
   </div>
