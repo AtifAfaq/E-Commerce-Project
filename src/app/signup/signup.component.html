@@ -8,7 +8,8 @@
         &nbsp;
         <div class="form-group input-container">
           <i class="fa fa-user icon"></i>
-          <input class="input-field" formControlName="firstName" type="text" placeholder="First Name">
+          <input class="input-field" [(ngModel)]="firstName" formControlName=" firstName" type="text"
+            placeholder="First Name">
         </div>
         <p class="fielderrorMsg"
           *ngIf="onRegisterForm.get('firstName').touched && onRegisterForm.get('firstName').hasError('required')">
