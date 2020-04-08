@@ -17,24 +17,8 @@ export class HomeComponent implements OnInit {
   categoriesData = [];
   Currentproduct: any = {};
   activeIndex: any;
-  categories: any = [
-    { name: "Pets", src: "/assets/images/pets.png" },
-    { name: "Rentals", src: "/assets/images/rent.jpg" },
-    { name: "Cloths", src: "/assets/images/cloths.jpg" },
-    { name: "Shoes", src: "/assets/images/shoes.jpg" },
-    { name: "Antiques", src: "/assets/images/antiques.jpg" },
-    { name: "Appliances", src: "/assets/images/appliances.png" },
-    { name: "Baby Food", src: "/assets/images/babyfood.jpg" },
-    { name: "Cables", src: "/assets/images/cable.jpeg" },
-    { name: "Auto Parts", src: "/assets/images/auto.jpg" },
-    { name: "Milk Products", src: "/assets/images/milk.jpg" },
-    { name: "Balloons", src: "/assets/images/baloons.jpg" },
-    { name: "Mobile Phones", src: "/assets/images/mobile.jpg" },
-    { name: "Child Toys", src: "/assets/images/toys.jpg" },
-    { name: "Jackets", src: "/assets/images/jackets.jpg" },
-    { name: "Vehicles", src: "/assets/images/vehicles.jpg" },
-    { name: "Furniture", src: "/assets/images/furniture.jpg" }
-  ];
+  categories: any = [];
+  featuredProducts = [];
 
   persons: any = [
     {
@@ -91,7 +75,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     public router: Router,
-    public service: DataCollectorService
+    public service: DataCollectorService,
   ) {
     var userType = localStorage.getItem('userType');
     if (userType == 'seller') {
@@ -114,8 +98,21 @@ export class HomeComponent implements OnInit {
     //   this.persons[mainInd].interests[index].name = 'Atif';
     // }
     this.getAllProducts();
+    this.getallCategories();
+    this.getAllFeaturedProducts();
   }
 
+  getAllFeaturedProducts() {
+    var self = this;
+    this.loading = true;
+    firebase.database().ref().child('featuredProducts')
+      .on('child_added', (snapshot) => {
+        var data = snapshot.val();
+        data.key = snapshot.key;
+        self.featuredProducts.push(data)
+        console.log(self.featuredProducts)
+      })
+  }
 
   getAllProducts() {
     var self = this;
@@ -130,6 +127,17 @@ export class HomeComponent implements OnInit {
         }
         self.service.allProducts = self.allProducts;
         self.loading = false;
+      })
+  }
+
+  getallCategories() {
+    var self = this;
+    firebase.database().ref().child('categories')
+      .on('child_added', (snapshot) => {
+        var data = snapshot.val();
+        data.key = snapshot.key;
+        self.categories.push(data)
+
       })
   }
 

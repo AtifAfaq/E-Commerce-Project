@@ -22,56 +22,26 @@
         <!-- The slideshow -->
         <div class="carousel-inner">
             <div class="row carousel-item active">
-                <div class="col-md-4">
-                    <div class="productCard" routerLink="/productDetails">
-                        <img src="/assets/images/perfume.jpg">
-                        <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                            consectetur .
+                <div *ngFor="let product of featuredProducts;index as i" class="col-md-4">
+                    <div *ngIf="i<3" class="productCard" routerLink="/productDetails">
+                        <img [src]="product.productUrls[0]">
+                        <p class="prodTitle mb-2">{{product.productDes}}
                         </p>
-                        <h4 class="prodPrice primary mt-0">$89.00</h4>
-                        <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
+                        <h4 class="prodPrice primary mt-0">${{product.discountedPrice}}</h4>
+                        <p class="originalPrice gray mb-1"><del>${{product.originalPrice}}</del>
+                            {{getDiscount(product)}}%</p>
                         <p class="rating">
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star gray"></i> (11)
-                        </p>
-                        <button class="btn btn-success w-100">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="productCard" routerLink="/productDetails">
-                        <img src="/assets/images/toys12.jpg">
-                        <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                            consectetur .
-                        </p>
-                        <h4 class="prodPrice primary mt-0">$89.00</h4>
-                        <p class="originalPrice gray mb-1"><del>$120.00</del>35% </p>
-                        <p class="rating">
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star gray"></i> (11)
-                        </p>
-                        <button class="btn btn-success w-100">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="productCard" routerLink="/productDetails">
-                        <img src="/assets/images/iphone11.jpg">
-                        <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                            consectetur .
-                        </p>
-                        <h4 class="prodPrice primary mt-0">$89.00</h4>
-                        <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
-                        <p class="rating">
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star gray"></i> (11)
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=1"
+                                [class.gray]="!product.avgRating"></i>
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=2"
+                                [class.gray]="!product.avgRating || product.avgRating<2"></i>
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=3"
+                                [class.gray]="!product.avgRating || product.avgRating<3"></i>
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=4"
+                                [class.gray]="!product.avgRating || product.avgRating<4"></i>
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=5"
+                                [class.gray]="!product.avgRating || product.avgRating<5"></i>
+                            ({{product.totalReview}})
                         </p>
                         <button class="btn btn-success w-100">Add to Cart</button>
                     </div>
@@ -79,118 +49,62 @@
             </div>
 
             <div class="row carousel-item">
-                <div class="col-md-4">
-                    <div class="productCard" routerLink="/productDetails">
-                        <img src="/assets/images/prod1.jpg">
-                        <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                            consectetur .
+                <div *ngFor="let product of featuredProducts;index as i" class="col-md-4">
+                    <div *ngIf="i>2 && i<6" class="productCard" routerLink="/productDetails">
+                        <img [src]="product.productUrls[0]">
+                        <p class="prodTitle mb-2">{{product.productDes}}
                         </p>
-                        <h4 class="prodPrice primary mt-0">$89.00</h4>
-                        <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
+                        <h4 class="prodPrice primary mt-0">${{product.discountedPrice}}</h4>
+                        <p class="originalPrice gray mb-1"><del>${{product.originalPrice}}</del>
+                            {{getDiscount(product)}}%</p>
                         <p class="rating">
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star gray"></i> (11)
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=1"
+                                [class.gray]="!product.avgRating"></i>
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=2"
+                                [class.gray]="!product.avgRating || product.avgRating<2"></i>
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=3"
+                                [class.gray]="!product.avgRating || product.avgRating<3"></i>
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=4"
+                                [class.gray]="!product.avgRating || product.avgRating<4"></i>
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=5"
+                                [class.gray]="!product.avgRating || product.avgRating<5"></i>
+                            ({{product.totalReview}})
                         </p>
                         <button class="btn btn-success w-100">Add to Cart</button>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="productCard" routerLink="/productDetails">
-                        <img src="/assets/images/prod2.jpg">
-                        <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                            consectetur .
-                        </p>
-                        <h4 class="prodPrice primary mt-0">$89.00</h4>
-                        <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
-                        <p class="rating">
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star gray"></i> (11)
-                        </p>
-                        <button class="btn btn-success w-100">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="productCard" routerLink="/productDetails">
-                        <img src="/assets/images/prod3.jpg">
-                        <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                            consectetur .
-                        </p>
-                        <h4 class="prodPrice primary mt-0">$89.00</h4>
-                        <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
-                        <p class="rating">
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star gray"></i> (11)
-                        </p>
-                        <button class="btn btn-success w-100">Add to Cart</button>
-                    </div>
-                </div>
+
             </div>
 
             <div class="row carousel-item">
-                <div class="col-md-4">
-                    <div class="productCard" routerLink="/productDetails">
-                        <img src="/assets/images/shoe1.jpg">
-                        <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                            consectetur .
+                <div *ngFor="let product of featuredProducts;index as i" class="col-md-4">
+                    <div *ngIf="i>5 && i<9" class="productCard" routerLink="/productDetails">
+                        <img [src]="product.productUrls[0]">
+                        <p class="prodTitle mb-2">{{product.productDes}}
                         </p>
-                        <h4 class="prodPrice primary mt-0">$89.00</h4>
-                        <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
+                        <h4 class="prodPrice primary mt-0">${{product.discountedPrice}}</h4>
+                        <p class="originalPrice gray mb-1"><del>${{product.originalPrice}}</del>
+                            {{getDiscount(product)}}%</p>
                         <p class="rating">
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star gray"></i> (11)
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=1"
+                                [class.gray]="!product.avgRating"></i>
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=2"
+                                [class.gray]="!product.avgRating || product.avgRating<2"></i>
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=3"
+                                [class.gray]="!product.avgRating || product.avgRating<3"></i>
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=4"
+                                [class.gray]="!product.avgRating || product.avgRating<4"></i>
+                            <i class="fa fa-star" [class.text-warning]="product.avgRating>=5"
+                                [class.gray]="!product.avgRating || product.avgRating<5"></i>
+                            ({{product.totalReview}})
                         </p>
                         <button class="btn btn-success w-100">Add to Cart</button>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="productCard" routerLink="/productDetails">
-                        <img src="/assets/images/swing.jpg">
-                        <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                            consectetur .
-                        </p>
-                        <h4 class="prodPrice primary mt-0">$89.00</h4>
-                        <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
-                        <p class="rating">
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star gray"></i> (11)
-                        </p>
-                        <button class="btn btn-success w-100">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="productCard" routerLink="/productDetails">
-                        <img src="/assets/images/ant.jpg">
-                        <p class="prodTitle mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit amet
-                            consectetur .
-                        </p>
-                        <h4 class="prodPrice primary mt-0">$89.00</h4>
-                        <p class="originalPrice gray mb-1"><del>$120.00</del> 35%</p>
-                        <p class="rating">
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star gray"></i> (11)
-                        </p>
-                        <button class="btn btn-success w-100">Add to Cart</button>
-                    </div>
-                </div>
+
             </div>
+
+
         </div>
 
         <!-- Left and right controls -->
@@ -208,7 +122,7 @@
         <div class="catList">
             <div class="outerDiv" *ngFor="let item of categories; index as i">
                 <div (click)="bringCategories(item)" class="anItem" *ngIf="i<8">
-                    <img [src]="item.src">
+                    <img [src]="item.profileUrl">
                     <p class="mb-0">{{item.name}}</p>
                 </div>
             </div>
@@ -216,7 +130,7 @@
         <div class="catList">
             <div *ngFor="let item of categories; index as i">
                 <div (click)="bringCategories(item)" class="anItem" *ngIf="i>=8">
-                    <img [src]="item.src">
+                    <img [src]="item.profileUrl">
                     <p class="mb-0">{{item.name}}</p>
                 </div>
             </div>
