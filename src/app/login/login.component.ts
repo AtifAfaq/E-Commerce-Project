@@ -61,14 +61,20 @@ export class LoginComponent implements OnInit {
     firebase.database().ref().child('users/' + this.uid)
       .once('value', (snapshot) => {
         var user = snapshot.val();
-        alert("You are successfully logged in!");
-        localStorage.setItem('firstName', user.firstName);
-        localStorage.setItem('lastName', user.lastName);
-        localStorage.setItem('email', user.email);
-        localStorage.setItem('uid', this.uid);
-        localStorage.setItem('userLoggedIn', 'true');
-        this.loading = false;
-        this.router.navigate(['/home']);
+        if (user.status == 'unblocked' || !user.status) {
+          alert("You are successfully logged in!");
+          localStorage.setItem('firstName', user.firstName);
+          localStorage.setItem('lastName', user.lastName);
+          localStorage.setItem('email', user.email);
+          localStorage.setItem('uid', this.uid);
+          localStorage.setItem('userLoggedIn', 'true');
+          this.loading = false;
+          this.router.navigate(['/home']);
+        }
+        else {
+          this.loading = false;
+          alert("user is blocked")
+        }
       })
       .catch((e) => {
         this.loading = false;
